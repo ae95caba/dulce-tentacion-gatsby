@@ -8,7 +8,7 @@ export const GlobalContext =
 } */);
 
 export default function GlobalContextProvider({ children }) {
-  const [cartItems, dispatch] = useReducer(reducer, []);
+  const [cartItems, dispatch] = useReducer(reducer, {});
   const [catalog, setCatalog] = useState(null);
 
   const ACTIONS = {
@@ -22,8 +22,21 @@ export default function GlobalContextProvider({ children }) {
 
   function reducer(cartItems, action) {
     switch (action.type) {
-      case ACTIONS.ADD_CART_ITEM:
-        return [...cartItems, newCartItem(action.payload.name)];
+      case "add-cart-item": {
+        const itemId = action.payload.id;
+        const isItemInCart = cartItems[itemId];
+        const cartItemsCopy = structuredClone(cartItems);
+        if (isItemInCart) {
+          console.log(`aumentar count`);
+          cartItemsCopy[itemId].count++;
+          return cartItemsCopy;
+        } else {
+          console.log(`agregar count property`);
+          console.log(`itemid is : ${itemId}`);
+          cartItemsCopy[itemId] = { count: 1 };
+          return cartItemsCopy;
+        }
+      }
     }
   }
 
@@ -92,7 +105,7 @@ export default function GlobalContextProvider({ children }) {
   }, [catalog]);
 
   return (
-    <GlobalContext.Provider value={{ catalog, cartItems, dispatch }}>
+    <GlobalContext.Provider value={{ catalog, cartItems, dispatch, ACTIONS }}>
       {children}
     </GlobalContext.Provider>
   );

@@ -4,18 +4,27 @@ import { Link } from "gatsby";
 import { GlobalContext } from "../context/GlobalContext";
 
 export default function Home() {
-  const { catalog } = useContext(GlobalContext);
+  const { catalog, dispatch, cartItems, ACTIONS } = useContext(GlobalContext);
+
   return (
     <div>
       <div>Hello world!</div>
       <Link to="/about">ab</Link>
-
-      <Sub />
+      <button
+        onClick={() => {
+          dispatch({ type: "add-cart-item", payload: { id: "tito" } });
+        }}
+      >
+        Dispatch
+      </button>
+      <button onClick={() => console.log(cartItems)}>Log cartitems</button>
+      {/* <Sub /> */}
     </div>
   );
 }
 
-function Sub() {
+/* function Sub() {
   console.log("sub comp");
   return <div>asdf</div>;
 }
+ */
