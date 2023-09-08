@@ -15,7 +15,14 @@ export default function Home() {
           dispatch({ type: "add-cart-item", payload: { id: "tito" } });
         }}
       >
-        Dispatch
+        Dispatch type add
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: "remove-cart-item", payload: { id: "tito" } });
+        }}
+      >
+        Dispatch type remove
       </button>
       <button onClick={() => console.log(cartItems)}>Log cartitems</button>
       {/* <Sub /> */}

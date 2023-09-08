@@ -21,11 +21,11 @@ export default function GlobalContextProvider({ children }) {
   }
 
   function reducer(cartItems, action) {
+    const itemId = action.payload.id;
+    const isItemInCart = cartItems[itemId];
+    const cartItemsCopy = structuredClone(cartItems);
     switch (action.type) {
       case "add-cart-item": {
-        const itemId = action.payload.id;
-        const isItemInCart = cartItems[itemId];
-        const cartItemsCopy = structuredClone(cartItems);
         if (isItemInCart) {
           console.log(`aumentar count`);
           cartItemsCopy[itemId].count++;
@@ -36,6 +36,15 @@ export default function GlobalContextProvider({ children }) {
           cartItemsCopy[itemId] = { count: 1 };
           return cartItemsCopy;
         }
+      }
+      case "remove-cart-item": {
+        //the item has to be in the cart
+        if (cartItems[itemId].count > 1) {
+          cartItemsCopy[itemId].count--;
+        } else {
+          delete cartItemsCopy[itemId];
+        }
+        return cartItemsCopy;
       }
     }
   }
