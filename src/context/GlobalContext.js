@@ -16,14 +16,11 @@ export default function GlobalContextProvider({ children }) {
     REMOVE_CART_ITEM: "remove-cart-item",
   };
 
-  function newCartItem(name) {
-    return { id: Date.now(), name: name };
-  }
-
   function reducer(cartItems, action) {
     const itemId = action.payload.id;
     const isItemInCart = cartItems[itemId];
     const cartItemsCopy = structuredClone(cartItems);
+    const itemObject = action.payload.product;
     switch (action.type) {
       case "add-cart-item": {
         if (isItemInCart) {
@@ -31,9 +28,9 @@ export default function GlobalContextProvider({ children }) {
           cartItemsCopy[itemId].count++;
           return cartItemsCopy;
         } else {
-          console.log(`agregar count property`);
+          console.log(`agregar item`);
           console.log(`itemid is : ${itemId}`);
-          cartItemsCopy[itemId] = { count: 1 };
+          cartItemsCopy[itemId] = { ...itemObject, count: 1 };
           return cartItemsCopy;
         }
       }

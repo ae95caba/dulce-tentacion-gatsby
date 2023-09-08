@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import { Link } from "gatsby";
 export default function Layout({ children }) {
   // const [cartItems, setCartItems] = useState(0);
   return (
@@ -13,7 +13,13 @@ export default function Layout({ children }) {
 }
 
 function Header() {
-  return <div>HEader</div>;
+  return (
+    <div>
+      <Link to="/about">ab</Link>
+      <Link to="/shop">shop</Link>
+      <Link to="/">home</Link>
+    </div>
+  );
 }
 
 function Footer() {

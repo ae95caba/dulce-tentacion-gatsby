@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <div>Hello world!</div>
-      <Link to="/about">ab</Link>
+
       <button
         onClick={() => {
           dispatch({ type: "add-cart-item", payload: { id: "tito" } });
