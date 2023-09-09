@@ -4,24 +4,31 @@ import { navigate } from "gatsby";
 /* import Image from "./Image"; */
 
 export default function Shop() {
-  const { catalog, dispatch, cartItems, ACTIONS } = useContext(GlobalContext);
+  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
+    useContext(GlobalContext);
 
   return (
     <>
-      <h1>Catalogo</h1>
-      <div className="cards-container">
-        {catalog?.iceCream?.map((product, index) => {
-          return product.outOfStock ? (
-            ""
-          ) : (
-            <Card
-              //this key props cause useless re-renders if set to uniqid()
-              key={`${product.name}`}
-              product={product}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        "cargando"
+      ) : (
+        <>
+          <h1>Catalogo</h1>
+          <div className="cards-container">
+            {catalog.iceCream.map((product, index) => {
+              return product.outOfStock ? (
+                ""
+              ) : (
+                <Card
+                  //this key props cause useless re-renders if set to uniqid()
+                  key={`${product.name}`}
+                  product={product}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
     </>
   );
 }

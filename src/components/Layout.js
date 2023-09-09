@@ -16,6 +16,7 @@ function Header() {
   return (
     <div>
       <Link to="/about">ab</Link>
+      <Link to="/carrito">carrito</Link>
       <Link to="/shop">shop</Link>
       <Link to="/">home</Link>
     </div>

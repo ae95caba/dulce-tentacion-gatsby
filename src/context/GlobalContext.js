@@ -57,6 +57,9 @@ export default function GlobalContextProvider({ children }) {
           return cartItemsCopy;
         }
       }
+      case "reset": {
+        return [];
+      }
     }
   }
 

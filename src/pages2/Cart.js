@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 
-import uniqid from "uniqid";
 import { options } from "../logic/barrios";
 
 import { link } from "../logic/whatsappLink";
