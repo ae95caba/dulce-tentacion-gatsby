@@ -15,9 +15,10 @@ export default function CartItem({ cartItem }) {
         alt="remove"
         src="/img/recycle-bin.png"
         onClick={() =>
-          // cartController.removeAll(cartItem)
-          //create dispatch for this
-          console.log("gi")
+          dispatch({
+            type: "remove-stack",
+            payload: { product: product },
+          })
         }
       />
       <div className="left">

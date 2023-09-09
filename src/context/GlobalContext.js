@@ -57,6 +57,10 @@ export default function GlobalContextProvider({ children }) {
           return cartItemsCopy;
         }
       }
+      case "remove-stack": {
+        cartItemsCopy.splice(indexOfProductInCart, 1);
+        return cartItemsCopy;
+      }
       case "reset": {
         return [];
       }
