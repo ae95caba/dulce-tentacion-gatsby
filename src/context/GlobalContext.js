@@ -9,6 +9,7 @@ export const GlobalContext =
 
 export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
+  const [isLoading, setIsLoading] = useState(true);
   const [catalog, setCatalog] = useState(null);
 
   const ACTIONS = {
@@ -120,11 +121,15 @@ export default function GlobalContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log(catalog);
+    if (typeof catalog === "object" && catalog !== null) {
+      setIsLoading(false);
+    }
   }, [catalog]);
 
   return (
-    <GlobalContext.Provider value={{ catalog, cartItems, dispatch, ACTIONS }}>
+    <GlobalContext.Provider
+      value={{ catalog, cartItems, dispatch, ACTIONS, isLoading }}
+    >
       {children}
     </GlobalContext.Provider>
   );
