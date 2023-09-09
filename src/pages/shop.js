@@ -38,9 +38,7 @@ function Card({ product }) {
       });
     } else {
       const encodedParamValue = encodeURIComponent(product.name);
-      navigate(
-        `/form?sabores=${product.flavours}&nombre=${encodedParamValue}&precio=${product.price}`
-      );
+      navigate(`/form?id=${product._id}`);
     }
   }
   return (

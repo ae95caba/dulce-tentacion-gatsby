@@ -6,22 +6,14 @@ import React from "react";
 
 export default function IceCreamForm({ location }) {
   const modalRef = useRef(null);
+
   const { catalog, dispatch, cartItems, ACTIONS } = useContext(GlobalContext);
   const allParams = new URLSearchParams(location.search);
-  const maxFlavours = allParams.get("sabores");
-  const title = decodeURIComponent(allParams.get("nombre"));
-  const price = allParams.get("precio");
-  console.log(`price is : ${price}`);
+  const productId = allParams.get("id");
+  const product = catalog?.iceCream?.find((obj) => obj._id === productId);
+
   const [choosenFlavours, setChoosenFlavours] = useState([]);
 
-  /* function getProduct() {
-    for (const key in catalog.iceCream) {
-      if (catalog.iceCream[key].flavours === +maxFlavours) {
-        return catalog.iceCream[key];
-      }
-    }
-  }
- */
   function handleChange(e) {
     const { value, checked } = e.target;
 
@@ -39,7 +31,10 @@ export default function IceCreamForm({ location }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (choosenFlavours.length > 0) {
-      //addproduct
+      dispatch({
+        type: "add-cart-item",
+        payload: { id: product._id, product: structuredClone(product) },
+      });
     } else {
       modalRef.current.showModal();
     }
@@ -47,10 +42,10 @@ export default function IceCreamForm({ location }) {
 
   return (
     <form id="ice-cream" onSubmit={handleSubmit}>
-      {<h1>{title}</h1>}
+      {<h1>{product?.name}</h1>}
       <h3>
         Sabores
-        {<span>{` ${choosenFlavours.length}/${maxFlavours}`}</span>}
+        {<span>{` ${choosenFlavours?.length}/${product?.flavours}`}</span>}
       </h3>
       <div className="container">
         {catalog?.flavoursList.map((flavourValue) => (
@@ -62,7 +57,7 @@ export default function IceCreamForm({ location }) {
               type="checkbox"
               disabled={
                 !choosenFlavours.includes(flavourValue) &&
-                choosenFlavours.length >= maxFlavours
+                choosenFlavours.length >= product?.flavours
               }
               name="flavour"
               value={flavourValue}

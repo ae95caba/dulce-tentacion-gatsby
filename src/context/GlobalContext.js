@@ -8,7 +8,7 @@ export const GlobalContext =
 } */);
 
 export default function GlobalContextProvider({ children }) {
-  const [cartItems, dispatch] = useReducer(reducer, {});
+  const [cartItems, dispatch] = useReducer(reducer, []);
   const [catalog, setCatalog] = useState(null);
 
   const ACTIONS = {
@@ -17,31 +17,44 @@ export default function GlobalContextProvider({ children }) {
   };
 
   function reducer(cartItems, action) {
-    const itemId = action.payload.id;
-    const isItemInCart = cartItems[itemId];
-    const cartItemsCopy = structuredClone(cartItems);
-    const itemObject = action.payload.product;
+    const product = action.payload.product;
+    const indexOfProductInCart = cartItems.findIndex((obj) => {
+      return obj.product._id === product._id;
+    });
+    const isProductInCart = indexOfProductInCart >= 0;
+    const cartItemsCopy = [...cartItems];
+
+    const isIceCream = product.hasOwnProperty("flavours");
+
     switch (action.type) {
       case "add-cart-item": {
-        if (isItemInCart) {
-          console.log(`aumentar count`);
-          cartItemsCopy[itemId].count++;
+        function newCartItem(product) {
+          return {
+            product,
+            count: 1,
+            getTotalPrice() {
+              return this.product.price * this.count;
+            },
+          };
+        }
+
+        if (isIceCream || (!isIceCream && !isProductInCart)) {
+          cartItemsCopy.push(newCartItem(product));
           return cartItemsCopy;
         } else {
-          console.log(`agregar item`);
-          console.log(`itemid is : ${itemId}`);
-          cartItemsCopy[itemId] = { ...itemObject, count: 1 };
+          cartItemsCopy[indexOfProductInCart].count++;
+
           return cartItemsCopy;
         }
       }
       case "remove-cart-item": {
-        //the item has to be in the cart
-        if (cartItems[itemId].count > 1) {
-          cartItemsCopy[itemId].count--;
+        if (cartItems[indexOfProductInCart].count > 1) {
+          cartItemsCopy[indexOfProductInCart].count--;
+          return cartItemsCopy;
         } else {
-          delete cartItemsCopy[itemId];
+          cartItemsCopy.splice(indexOfProductInCart, 1);
+          return cartItemsCopy;
         }
-        return cartItemsCopy;
       }
     }
   }
