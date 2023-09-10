@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { options } from "../logic/barrios";
+import { zones } from "../logic/barrios";
 export default function DeliveryForm({
   handleSubmit,
   setDeliveryInfo,
@@ -14,6 +14,22 @@ export default function DeliveryForm({
     } else {
       e.target.classList.remove("invalid");
     }
+  }
+
+  const optionElements = [];
+
+  for (const key in zones) {
+    zones[key].neighborhoods.forEach((neighborhood) => {
+      optionElements.push(
+        <option
+          key={neighborhood}
+          value={neighborhood}
+          data-price={zones[key].price}
+        >
+          {neighborhood}
+        </option>
+      );
+    });
   }
 
   return (
@@ -34,7 +50,7 @@ export default function DeliveryForm({
             onChange={() =>
               setDeliveryInfo((prev) => ({ ...prev, isChecked: false }))
             }
-            checked={!deliveryInfo.isChecked}
+            checked={deliveryInfo ? deliveryInfo.isChecked : false}
             required
           />
         </label>
@@ -46,7 +62,7 @@ export default function DeliveryForm({
             name="fullfillment-method"
             value="delivery"
             id="delivery"
-            checked={deliveryInfo.isChecked}
+            checked={deliveryInfo ? deliveryInfo.isChecked : false}
             onChange={() => {
               setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
             }}
@@ -64,18 +80,21 @@ export default function DeliveryForm({
               required
               onChange={(e) => {
                 const selectedValue = e.target.value;
+                const selectedOption = e.target.selectedOptions[0];
+                const priceValue = selectedOption.getAttribute("data-price");
+
+                console.log(`price is : ${priceValue}`);
                 setDeliveryInfo((prev) => ({
                   ...prev,
                   neighborhood: selectedValue,
+                  price: +priceValue,
                 }));
               }}
             >
               <option value="" disabled selected>
                 Elige un barrio *
               </option>
-              {options.map((option) => (
-                <option value={option}>{option}</option>
-              ))}
+              {optionElements}
             </select>
 
             <div className="error">Seleciona un barrio</div>

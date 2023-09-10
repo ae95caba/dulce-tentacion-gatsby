@@ -83,36 +83,43 @@ const zona4 = [
 
 const zona5 = ["Malvinas"];
 
-export const options = barriosMP.sort().map((barrio) => barrio);
+export const zones = {
+  firstZone: {
+    price: 0,
+    neighborhoods: ["El Hornero", "La Loma", "Rayito de Sol"],
+  },
+  secondZone: {
+    price: 100,
+    neighborhoods: ["Don Rolando", "Santa Catalina", "Bicentenario"],
+  },
+  thirdZone: {
+    price: 150,
+    neighborhoods: [
+      "Los Aromos",
+      "San Patricio",
 
-//function to get price from barrio
-export function priceFromBarrio(barrio) {
-  let price = undefined;
-  switch (true) {
-    //hasta el hornero
-    case zona1.includes(barrio):
-      price = 0;
-      break;
-    //hasta la paz
-    case zona2.includes(barrio):
-      price = 100;
-      break;
-    //hasta independencia
-    case zona3.includes(barrio):
-      price = 200;
-      break;
-    //hasta el pinar
-    case zona4.includes(barrio):
-      price = 300;
-      break;
-    //las malvinas
-    case zona5.includes(barrio):
-      price = 400;
-      break;
-    default:
-      // code to execute if barrio is not in any of the zones
-      break;
-  }
+      "Santa Isabel",
+      "Sarmiento",
+      "El Zorzal",
 
-  return price;
-}
+      "La Milagrosa",
+      "La Paz",
+    ],
+  },
+  fourthZone: {
+    price: 200,
+    neighborhoods: [
+      "El Lucero",
+
+      "La Recova",
+
+      "El Prado",
+
+      "Güemes",
+
+      "Las Talitas",
+      "Barrio Policial",
+      "El Tonel",
+    ],
+  },
+};

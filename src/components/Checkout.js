@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { priceFromBarrio } from "../logic/barrios";
+import { GlobalContext } from "../context/GlobalContext";
+
+import { useContext } from "react";
 export default function Checkout({ deliveryInfo }) {
-  function getDeliveryPrice() {
-    if (deliveryInfo.neighborhood && deliveryInfo.isChecked) {
-      return priceFromBarrio(deliveryInfo.neighborhood);
-    } else {
-      return 0;
-    }
-  }
+  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
+    useContext(GlobalContext);
 
   function getTotalItemsPrice() {
-    return 0;
+    let total = 0;
+
+    for (var i = 0; i < cartItems.length; i++) {
+      total += cartItems[i].getTotalPrice();
+    }
+    return total;
   }
 
   return (
@@ -23,11 +26,11 @@ export default function Checkout({ deliveryInfo }) {
         </p>
         <p>
           Envio:
-          <span>$ {getDeliveryPrice()}</span>
+          <span>$ {deliveryInfo.price}</span>
         </p>
         <p>
           Total a pagar:
-          <span>${getTotalItemsPrice() + getDeliveryPrice()}</span>
+          <span>${getTotalItemsPrice() + deliveryInfo.price}</span>
         </p>
       </div>
 

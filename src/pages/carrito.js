@@ -3,7 +3,6 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 import { link } from "../logic/whatsappLink";
-import PropTypes from "prop-types";
 
 import CartItem from "../components/CartItem";
 import Checkout from "../components/Checkout";
