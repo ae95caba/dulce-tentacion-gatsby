@@ -40,32 +40,42 @@ export default function DeliveryForm({
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="options">
-        <label className="option" htmlFor="pickup">
+        <label
+          onClick={() => {
+            setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
+            console.log(deliveryInfo?.isChecked);
+            console.log(JSON.stringify(deliveryInfo));
+          }}
+          className="option"
+          htmlFor="pickup"
+        >
           <span>Retiro en el local</span>
           <input
             type="radio"
             name="fullfillment-method"
             value="pickup"
+            defaultChecked={!deliveryInfo.isChecked}
             id="pickup"
-            onChange={() =>
-              setDeliveryInfo((prev) => ({ ...prev, isChecked: false }))
-            }
-            checked={deliveryInfo ? deliveryInfo.isChecked : false}
             required
           />
         </label>
 
-        <label className="option" htmlFor="delivery">
+        <label
+          className="option"
+          htmlFor="delivery"
+          onClick={() => {
+            setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
+            console.log(deliveryInfo?.isChecked);
+            console.log(JSON.stringify(deliveryInfo));
+          }}
+        >
           <span>Envio a domicilio</span>
           <input
             type="radio"
             name="fullfillment-method"
             value="delivery"
+            defaultChecked={deliveryInfo.isChecked}
             id="delivery"
-            checked={deliveryInfo ? deliveryInfo.isChecked : false}
-            onChange={() => {
-              setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
-            }}
             required
           />
         </label>
@@ -76,14 +86,15 @@ export default function DeliveryForm({
           <div className="container">
             <select
               name="Barrio"
-              value={deliveryInfo.neighborhood}
+              defaultValue={
+                deliveryInfo?.neighborhood ? deliveryInfo.neighborhood : ""
+              }
               required
               onChange={(e) => {
                 const selectedValue = e.target.value;
                 const selectedOption = e.target.selectedOptions[0];
                 const priceValue = selectedOption.getAttribute("data-price");
 
-                console.log(`price is : ${priceValue}`);
                 setDeliveryInfo((prev) => ({
                   ...prev,
                   neighborhood: selectedValue,
@@ -91,7 +102,7 @@ export default function DeliveryForm({
                 }));
               }}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Elige un barrio *
               </option>
               {optionElements}
@@ -109,6 +120,7 @@ export default function DeliveryForm({
               onBlur={checkValidity}
               defaultValue={deliveryInfo.address}
               onChange={(event) => {
+                console.log(`is checked is : ${deliveryInfo?.isChecked}`);
                 setDeliveryInfo((prev) => ({
                   ...prev,
                   address: event.target.value,

@@ -16,7 +16,7 @@ export default function Cart() {
   //and populate form with it
   useEffect(() => {
     let deliveryInfoString = localStorage.getItem("deliveryInfo");
-
+    console.log(JSON.stringify(deliveryInfo));
     if (deliveryInfoString) {
       const deliveryInfo = JSON.parse(deliveryInfoString);
 
@@ -28,6 +28,7 @@ export default function Cart() {
   useEffect(() => {
     //save  deliveryInfo to local storage
     if (Object.keys(deliveryInfo).length > 0) {
+      console.log(JSON.stringify(deliveryInfo));
       const deliveryInfoString = JSON.stringify(deliveryInfo);
       localStorage.setItem("deliveryInfo", deliveryInfoString);
     }
