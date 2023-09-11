@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { priceFromBarrio } from "../logic/barrios";
+import React from "react";
+
 import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";

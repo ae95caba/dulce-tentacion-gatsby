@@ -40,7 +40,10 @@ export default function IceCreamForm({ location }) {
     if (choosenFlavours.length > 0) {
       dispatch({
         type: "add-cart-item",
-        payload: { id: product._id, product: structuredClone(product) },
+        payload: {
+          id: product._id,
+          product: { ...product, flavours: choosenFlavours },
+        },
       });
     } else {
       modalRef.current.showModal();
