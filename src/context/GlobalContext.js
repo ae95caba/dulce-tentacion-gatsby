@@ -18,14 +18,20 @@ export default function GlobalContextProvider({ children }) {
   };
 
   function reducer(cartItems, action) {
-    const product = action.payload.product;
-    const indexOfProductInCart = cartItems.findIndex((obj) => {
-      return obj.product._id === product._id;
-    });
-    const isProductInCart = indexOfProductInCart >= 0;
-    const cartItemsCopy = [...cartItems];
+    let product;
+    let indexOfProductInCart;
+    let isProductInCart;
+    let isIceCream;
+    if (action.payload && action.payload.product) {
+      product = action.payload.product;
+      indexOfProductInCart = cartItems.findIndex((obj) => {
+        return obj.product._id === product._id;
+      });
+      isProductInCart = indexOfProductInCart >= 0;
+      isIceCream = product.hasOwnProperty("flavours");
+    }
 
-    const isIceCream = product.hasOwnProperty("flavours");
+    const cartItemsCopy = [...cartItems];
 
     switch (action.type) {
       case "add-cart-item": {

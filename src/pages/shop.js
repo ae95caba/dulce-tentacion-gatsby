@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
+import Swal from "sweetalert2";
+
 /* import Image from "./Image"; */
 
 export default function Shop() {
@@ -43,6 +45,14 @@ function Card({ product }) {
         type: "add-cart-item",
         payload: { id: product._id, product: structuredClone(product) },
       });
+      //
+      Swal.fire(
+        `${product.name} agregado al carrito`,
+        "Ve al carrito para finalizar tu compra",
+        "success"
+      );
+
+      //
     } else {
       const encodedParamValue = encodeURIComponent(product.name);
       navigate(`/form?id=${product._id}`);

@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { Link } from "gatsby";
 import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
-
+import { navigate } from "gatsby";
+import Swal from "sweetalert2";
 export default function IceCreamForm({ location }) {
   const modalRef = useRef(null);
   const [product, setProduct] = useState(null);
@@ -45,6 +46,12 @@ export default function IceCreamForm({ location }) {
           product: { ...product, flavours: choosenFlavours },
         },
       });
+      navigate("/shop");
+      Swal.fire(
+        `${product.name} agregado al carrito`,
+        "Ve al carrito para finalizar tu compra",
+        "success"
+      );
     } else {
       modalRef.current.showModal();
     }
