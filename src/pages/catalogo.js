@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
 
-/* import Image from "./Image"; */
+import Image from "../components/Image";
 
 export default function Shop() {
   const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
@@ -60,7 +60,7 @@ function Card({ product }) {
   }
   return (
     <div className="card">
-      {/*  <Image url={product.imgUrl} /> */}
+      <Image url={product.imgUrl} />
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
 

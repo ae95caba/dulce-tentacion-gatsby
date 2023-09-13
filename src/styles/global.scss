@@ -371,7 +371,7 @@ header {
   }
 }
 
-main.reviews {
+#reviews {
   padding: 2rem 0rem 4rem 0rem;
   display: flex;
   flex-direction: column;
@@ -431,7 +431,7 @@ main.reviews {
   }
 }
 
-main.gallery {
+#gallery {
   padding: 2rem 0rem 4rem 0rem;
   h1 {
     margin-bottom: 2rem;
@@ -458,7 +458,7 @@ main.gallery {
 }
 
 //home
-main.home {
+#home {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -605,7 +605,7 @@ main.home {
   }
 }
 
-main.we {
+#we {
   padding: 2rem;
   justify-self: center;
   max-width: $universal-width;
