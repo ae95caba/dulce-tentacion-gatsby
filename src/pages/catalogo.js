@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
-
+import toCartIcon from "../images/to-cart.svg";
 import Image from "../components/Image";
 
 export default function Shop() {
@@ -67,11 +67,7 @@ function Card({ product }) {
       <button onClick={handleClick} className={`to-cart  `}>
         <span>Añadir</span>
 
-        <img
-          style={{ filter: "invert(1)" }}
-          src="/img/to-cart.svg"
-          alt="cart icon"
-        />
+        <img style={{ filter: "invert(1)" }} src={toCartIcon} alt="cart icon" />
       </button>
     </div>
   );

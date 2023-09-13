@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import uniqid from "uniqid";
 import { GlobalContext } from "../context/GlobalContext";
-
+import recycleBin from "../images/recycle-bin.png";
 import { useContext } from "react";
 export default function CartItem({ cartItem }) {
   const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
@@ -13,7 +13,7 @@ export default function CartItem({ cartItem }) {
       <img
         className="remove"
         alt="remove"
-        src="/img/recycle-bin.png"
+        src={recycleBin}
         onClick={() =>
           dispatch({
             type: "remove-stack",

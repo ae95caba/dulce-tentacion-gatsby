@@ -1,5 +1,5 @@
 import React from "react";
-
+import quotes from "../images/quotes.png";
 const reviewsArr = [
   {
     message: `Exelente servicio muy ricos helados,
@@ -35,7 +35,7 @@ export default function Reviews() {
       <div className="container">
         <h1>Testimonios</h1>
         <p className="description">
-          Nuestros clientes han disfrutrado nuestro producto yquieren compartir
+          Nuestros clientes han disfrutrado nuestro producto y quieren compartir
           sus experiencias con vos.
         </p>
       </div>
@@ -58,12 +58,7 @@ function Review({ review }) {
           <h4>{review.author}</h4>
           <p>{review.dateString}</p>
         </div>
-        <img
-          className="quotes"
-          src="/img/reviews/quotes.png"
-          alt="as"
-          srcSet=""
-        />
+        <img className="quotes" src={quotes} alt="as" srcSet="" />
       </section>
     </div>
   );
