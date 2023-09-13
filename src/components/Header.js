@@ -3,13 +3,12 @@ import { GlobalContext } from "../context/GlobalContext";
 import { Link } from "gatsby";
 import { useContext } from "react";
 import cartIcon from "../images/cart.svg";
-import Logo from "./Logo";
+import Logo from "./Images/Logo";
 const tabsObj = ["Catalogo", "Nosotros", "Galeria", "Testimonios"];
 export default function Header() {
   return (
     <header>
       <Link to="/">
-        {/*  <img id="logo" alt="company logo" src="/img/logo-white.png" /> */}
         <Logo />
       </Link>
       <div className="container">

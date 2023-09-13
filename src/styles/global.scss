@@ -474,19 +474,19 @@ header {
     padding-bottom: 4rem;
   }
 
-  img.right,
-  img.left {
+  .right,
+  .left {
     width: 150px !important;
     height: 100%;
 
     position: absolute;
   }
 
-  img.right {
+  .right {
     right: -150px;
     transform: rotateY(180deg);
   }
-  img.left {
+  .left {
     left: -150px;
     top: 0;
   }

@@ -1,17 +1,18 @@
 import Image from "../components/Image";
 import React, { useState } from "react";
-
+import WaveLeft from "../components/Images/WaveLeft";
+import WaveRight from "../components/Images/WaveRight";
 export default function Home() {
   return (
     <main id="home">
       <div className="content">
-        <img className="right" src="/wave2.png" />
+        <WaveRight />
         <Carousel1 />
         <h3>#DULCE-TENTACION</h3>
         <Carousel2 />
         <h3>#Promos</h3>
         {/* <Carousel3 iceCream={iceCream} /> */}
-        <img className="left" src="/wave2.png" />
+        <WaveLeft />
       </div>
     </main>
   );

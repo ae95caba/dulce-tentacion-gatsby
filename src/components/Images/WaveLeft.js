@@ -1,14 +1,13 @@
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
-export default function We() {
+export default function WaveLeft() {
   return (
     <StaticImage
-      src="../images/logo-white.png"
-      id="logo"
-      alt="A dinosaur"
+      src="../../images/wave.png"
+      alt="wave"
       placeholder="blurred"
-      className="logo"
+      className="left"
     />
   );
 }
