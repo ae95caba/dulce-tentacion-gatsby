@@ -1,12 +1,14 @@
-import { NavLink } from "react-router-dom";
-
+import React from "react";
+import { GlobalContext } from "../context/GlobalContext";
+import { Link } from "gatsby";
+import { useContext } from "react";
 const tabsObj = ["Catalogo", "Nosotros", "Galeria", "Testimonios"];
-export function Header({ getTotalCartItems }) {
+export default function Header() {
   return (
     <header>
-      <NavLink to="/">
+      <Link to="/">
         <img id="logo" alt="company logo" src="/img/logo-white.png" />
-      </NavLink>
+      </Link>
       <div className="container">
         <nav>
           <Tabs />
@@ -16,26 +18,28 @@ export function Header({ getTotalCartItems }) {
           <input type="checkbox" />
         </label>
         <Sidebar />
-        <CartButton getTotalCartItems={getTotalCartItems} />
+        <CartButton />
       </div>
     </header>
   );
 }
 
-function CartButton({ getTotalCartItems }) {
+function CartButton() {
+  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
+    useContext(GlobalContext);
   return (
-    <NavLink
+    <Link
       to="/carrito"
       /*  the following could me unnecesary but better keep it */
 
-      className={getTotalCartItems() > 0 ? "" : null}
+      className={cartItems.length > 0 ? "" : null}
       id="cart-button"
     >
       <img src="/img/cart.svg" alt="shopping cart" />
       <span id="total-items" className="neon-green">
-        {getTotalCartItems() > 0 ? getTotalCartItems() : null}
+        {cartItems.length > 0 ? cartItems.length : null}
       </span>
-    </NavLink>
+    </Link>
   );
 }
 
@@ -51,7 +55,7 @@ function Tabs() {
   return (
     <>
       {tabsObj.map((tab) => (
-        <NavLink to={`/${tab.toLowerCase()}`}>{tab}</NavLink>
+        <Link to={`/${tab.toLowerCase()}`}>{tab}</Link>
       ))}
     </>
   );

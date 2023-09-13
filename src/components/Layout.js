@@ -1,6 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import Header from "./Header";
 import { Link } from "gatsby";
+import Footer from "./Footer";
+import "../styles/global.scss"; // Import the global CSS file
+import "../styles/HamburgerMenu.scss";
 export default function Layout({ children }) {
   // const [cartItems, setCartItems] = useState(0);
   return (
@@ -10,19 +14,4 @@ export default function Layout({ children }) {
       <Footer />
     </>
   );
-}
-
-function Header() {
-  return (
-    <div>
-      <Link to="/about">ab</Link>
-      <Link to="/carrito">carrito</Link>
-      <Link to="/shop">shop</Link>
-      <Link to="/">home</Link>
-    </div>
-  );
-}
-
-function Footer() {
-  return <div>Footer</div>;
 }

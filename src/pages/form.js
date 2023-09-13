@@ -46,7 +46,7 @@ export default function IceCreamForm({ location }) {
           product: { ...product, flavours: choosenFlavours },
         },
       });
-      navigate("/shop");
+      navigate("/catalogo");
       Swal.fire(
         `${product.name} agregado al carrito`,
         "Ve al carrito para finalizar tu compra",
@@ -58,11 +58,11 @@ export default function IceCreamForm({ location }) {
   }
 
   return (
-    <>
+    <main id="ice-cream-list">
       {isLoading ? (
         "Cargando"
       ) : (
-        <form id="ice-cream" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           {<h1>{product?.name}</h1>}
           <h3>
             Sabores
@@ -103,6 +103,6 @@ export default function IceCreamForm({ location }) {
           <button>Aceptar</button>
         </form>
       )}
-    </>
+    </main>
   );
 }

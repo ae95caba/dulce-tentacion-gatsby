@@ -10,7 +10,7 @@ export default function Shop() {
     useContext(GlobalContext);
 
   return (
-    <>
+    <main id="catalog">
       {isLoading ? (
         "cargando"
       ) : (
@@ -31,7 +31,7 @@ export default function Shop() {
           </div>
         </>
       )}
-    </>
+    </main>
   );
 }
 

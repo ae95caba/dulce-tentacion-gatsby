@@ -67,28 +67,29 @@ export default function Cart() {
 
   ///////////////////////////
   return (
-    <div id="cart">
-      <h1>Tu carrito</h1>
-
-      {cartItems.length > 0 ? (
-        <>
-          <section className="cart-items">
-            {cartItems.map((cartItem, index) => {
-              return (
-                <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
-              );
-            })}
-          </section>
-          <DeliveryForm
-            handleSubmit={handleSubmit}
-            deliveryInfo={deliveryInfo}
-            setDeliveryInfo={setDeliveryInfo}
-          />
-          <Checkout deliveryInfo={deliveryInfo} />
-        </>
-      ) : (
-        <p id="empty">No hay nada aca, porque no agregas algo?</p>
-      )}
-    </div>
+    <main id="cart">
+      <div className="content">
+        <h1>Tu carrito</h1>
+        {cartItems.length > 0 ? (
+          <>
+            <section className="cart-items">
+              {cartItems.map((cartItem, index) => {
+                return (
+                  <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
+                );
+              })}
+            </section>
+            <DeliveryForm
+              handleSubmit={handleSubmit}
+              deliveryInfo={deliveryInfo}
+              setDeliveryInfo={setDeliveryInfo}
+            />
+            <Checkout deliveryInfo={deliveryInfo} />
+          </>
+        ) : (
+          <p id="empty">No hay nada aca, porque no agregas algo?</p>
+        )}
+      </div>
+    </main>
   );
 }
