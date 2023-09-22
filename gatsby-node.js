@@ -43,7 +43,10 @@ exports.sourceNodes = async ({ actions }) => {
         // Other fields that you want to query with GraphQL
         name: product.name,
         price: product.price,
+        _id: product._id,
+        imgUrl: product.imgUrl,
         outOfStock: product.outOfStock,
+        flavours: product.flavours,
         // etc...
       };
 

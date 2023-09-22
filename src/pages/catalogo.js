@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
@@ -7,33 +7,26 @@ import Image from "../components/Image";
 import { graphql } from "gatsby";
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
-  console.log(products);
-  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
-    useContext(GlobalContext);
 
   return (
     <main id="catalog">
-      {isLoading ? (
-        "cargando"
-      ) : (
-        <>
-          <h1>Catalogo</h1>
-          <div className="cards-container">
-            {products.map((product, index) => {
-              const productData = product.node;
-              return productData.outOfStock ? (
-                ""
-              ) : (
-                <Card
-                  //this key props cause useless re-renders if set to uniqid()
-                  key={`${productData.name}`}
-                  product={productData}
-                />
-              );
-            })}
-          </div>
-        </>
-      )}
+      <>
+        <h1>Catalogo</h1>
+        <div className="cards-container">
+          {products.map((product, index) => {
+            const productData = product.node;
+            return productData.outOfStock ? (
+              ""
+            ) : (
+              <Card
+                //this key props cause useless re-renders if set to uniqid()
+                key={`${productData.name}`}
+                product={productData}
+              />
+            );
+          })}
+        </div>
+      </>
     </main>
   );
 }
@@ -84,6 +77,9 @@ export const query = graphql`
           price
           outOfStock
           name
+          imgUrl
+          _id
+          flavours
         }
       }
     }
