@@ -4,8 +4,10 @@ import { navigate } from "gatsby";
 import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
 import Image from "../components/Image";
-
-export default function Shop() {
+import { graphql } from "gatsby";
+export default function Shop(props) {
+  const products = props.data.allProduct.edges;
+  console.log(products);
   const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
     useContext(GlobalContext);
 
@@ -17,14 +19,15 @@ export default function Shop() {
         <>
           <h1>Catalogo</h1>
           <div className="cards-container">
-            {catalog.iceCream.map((product, index) => {
-              return product.outOfStock ? (
+            {products.map((product, index) => {
+              const productData = product.node;
+              return productData.outOfStock ? (
                 ""
               ) : (
                 <Card
                   //this key props cause useless re-renders if set to uniqid()
-                  key={`${product.name}`}
-                  product={product}
+                  key={`${productData.name}`}
+                  product={productData}
                 />
               );
             })}
@@ -72,3 +75,17 @@ function Card({ product }) {
     </div>
   );
 }
+
+export const query = graphql`
+  query MyQuery {
+    allProduct {
+      edges {
+        node {
+          price
+          outOfStock
+          name
+        }
+      }
+    }
+  }
+`;
