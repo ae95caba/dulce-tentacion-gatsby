@@ -1,15 +1,24 @@
+////////////
+
 import Image from "../components/Image";
 import React, { useState } from "react";
 import WaveLeft from "../components/Images/WaveLeft";
 import WaveRight from "../components/Images/WaveRight";
+
+import {
+  UnCuarto,
+  UnCuarto2,
+  UnKilo,
+  Todos,
+} from "../components/Images/Promotional";
 export default function Home() {
   return (
     <main id="home">
       <div className="content">
         <WaveRight />
-        <Carousel1 />
+        <FirstCarousel />
         <h3>#DULCE-TENTACION</h3>
-        <Carousel2 />
+        <PromotionalCarousel />
         <h3>#Promos</h3>
         {/* <Carousel3 iceCream={iceCream} /> */}
         <WaveLeft />
@@ -18,7 +27,7 @@ export default function Home() {
   );
 }
 
-function Carousel1() {
+function FirstCarousel() {
   return (
     <div className="first carousel">
       <div className="logos-slide">
@@ -30,6 +39,25 @@ function Carousel1() {
         <span className="img"> Helado Artesanal de la mejor calidad</span>
         {<span className="img">Aceptamos Mercado Pago</span>}
         <span className="img">Delivery Sin Cargo por la zona</span>
+      </div>
+    </div>
+  );
+}
+
+function PromotionalCarousel() {
+  return (
+    <div className="second carousel">
+      <div className="logos-slide">
+        <UnCuarto />
+        <UnCuarto2 />
+        <UnKilo />
+        <Todos />
+      </div>
+      <div className="logos-slide">
+        <UnCuarto />
+        <UnCuarto2 />
+        <UnKilo />
+        <Todos />
       </div>
     </div>
   );

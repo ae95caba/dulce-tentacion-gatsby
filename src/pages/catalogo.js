@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
 import Image from "../components/Image";
 import { graphql } from "gatsby";
+
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
 
@@ -18,11 +19,7 @@ export default function Shop(props) {
             return productData.outOfStock ? (
               ""
             ) : (
-              <Card
-                //this key props cause useless re-renders if set to uniqid()
-                key={`${productData.name}`}
-                product={productData}
-              />
+              <Card key={`${productData.name}`} product={productData} />
             );
           })}
         </div>
@@ -57,6 +54,7 @@ function Card({ product }) {
   return (
     <div className="card">
       <Image url={product.imgUrl} />
+
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
 
