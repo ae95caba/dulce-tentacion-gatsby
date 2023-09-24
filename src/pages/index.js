@@ -4,7 +4,7 @@ import Image from "../components/Image";
 import React, { useState } from "react";
 import WaveLeft from "../components/Images/WaveLeft";
 import WaveRight from "../components/Images/WaveRight";
-
+import { Kilo, Cuarto, Medio } from "../components/Images/Promotions";
 import {
   UnCuarto,
   UnCuarto2,
@@ -20,7 +20,7 @@ export default function Home() {
         <h3>#DULCE-TENTACION</h3>
         <PromotionalCarousel />
         <h3>#Promos</h3>
-        {/* <Carousel3 iceCream={iceCream} /> */}
+        <PromotionsCarousel />
         <WaveLeft />
       </div>
     </main>
@@ -63,24 +63,18 @@ function PromotionalCarousel() {
   );
 }
 
-function Carousel2() {
-  const urls = [
-    "/img/carousel/netflix.jpg",
-
-    "/img/carousel/delivery.jpg",
-    "/img/carousel/doge.jpg",
-  ];
+function PromotionsCarousel() {
   return (
     <div className="second carousel">
       <div className="logos-slide">
-        {urls.map((url) => (
-          <Image url={url} />
-        ))}
+        <Kilo />
+        <Medio />
+        <Cuarto />
       </div>
       <div className="logos-slide">
-        {urls.map((url) => (
-          <Image url={url} />
-        ))}
+        <Kilo />
+        <Medio />
+        <Cuarto />
       </div>
     </div>
   );

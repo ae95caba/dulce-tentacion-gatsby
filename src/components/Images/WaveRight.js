@@ -5,7 +5,7 @@ export default function WaveRight() {
   return (
     <StaticImage
       src="../../images/wave.png"
-      alt="wave"
+      alt="marco en forma de onda"
       placeholder="blurred"
       className="right"
     />

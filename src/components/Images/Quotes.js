@@ -5,7 +5,7 @@ export default function Quotes() {
   return (
     <StaticImage
       src="../../images/quotes.png"
-      alt="Quotes"
+      alt="comillas"
       placeholder="blurred"
       className="quotes"
     />
