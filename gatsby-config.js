@@ -13,5 +13,12 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: "Product", // Replace with your actual node type
+        imagePath: "imgUrl", // Replace with your actual image path
+      },
+    },
   ],
 };

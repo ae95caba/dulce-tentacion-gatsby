@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
 import Image from "../components/Image";
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
@@ -31,6 +32,7 @@ export default function Shop(props) {
 //this rerenders every time the addProductToCart function gets called
 function Card({ product }) {
   const { catalog, dispatch, cartItems, ACTIONS } = useContext(GlobalContext);
+  const image = getImage(product.localImage);
 
   function handleClick() {
     if (!product.flavours) {
@@ -53,7 +55,8 @@ function Card({ product }) {
   }
   return (
     <div className="card">
-      <Image url={product.imgUrl} />
+      {/*  <Image url={product.imgUrl} /> */}
+      <GatsbyImage image={image} alt={product.name} />
 
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
@@ -73,6 +76,11 @@ export const query = graphql`
       edges {
         node {
           price
+          localImage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED)
+            }
+          }
           outOfStock
           name
           imgUrl
