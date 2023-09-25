@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import WaveLeft from "../components/Images/WaveLeft";
 import WaveRight from "../components/Images/WaveRight";
 import { Kilo, Cuarto, Medio } from "../components/Images/Promotions";
+import Layout from "../components/Layout";
 import {
   UnCuarto,
   UnCuarto2,
@@ -12,17 +13,19 @@ import {
 } from "../components/Images/Promotional";
 export default function Home() {
   return (
-    <main id="home">
-      <div className="content">
-        <WaveRight />
-        <FirstCarousel />
-        <h3>#DULCE-TENTACION</h3>
-        <PromotionalCarousel />
-        <h3>#Promos</h3>
-        <PromotionsCarousel />
-        <WaveLeft />
-      </div>
-    </main>
+    <Layout>
+      <main id="home">
+        <div className="content">
+          <WaveRight />
+          <FirstCarousel />
+          <h3>#DULCE-TENTACION</h3>
+          <PromotionalCarousel />
+          <h3>#Promos</h3>
+          <PromotionsCarousel />
+          <WaveLeft />
+        </div>
+      </main>
+    </Layout>
   );
 }
 

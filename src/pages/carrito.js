@@ -7,6 +7,7 @@ import { link } from "../logic/whatsappLink";
 import CartItem from "../components/CartItem";
 import Checkout from "../components/Checkout";
 import DeliveryForm from "../components/DeliveryForm";
+import Layout from "../components/Layout";
 export default function Cart() {
   const { dispatch, cartItems } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -66,29 +67,31 @@ export default function Cart() {
 
   ///////////////////////////
   return (
-    <main id="cart">
-      <div className="content">
-        <h1>Tu carrito</h1>
-        {cartItems.length > 0 ? (
-          <>
-            <section className="cart-items">
-              {cartItems.map((cartItem, index) => {
-                return (
-                  <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
-                );
-              })}
-            </section>
-            <DeliveryForm
-              handleSubmit={handleSubmit}
-              deliveryInfo={deliveryInfo}
-              setDeliveryInfo={setDeliveryInfo}
-            />
-            <Checkout deliveryInfo={deliveryInfo} />
-          </>
-        ) : (
-          <p id="empty">No hay nada aca, porque no agregas algo?</p>
-        )}
-      </div>
-    </main>
+    <Layout>
+      <main id="cart">
+        <div className="content">
+          <h1>Tu carrito</h1>
+          {cartItems.length > 0 ? (
+            <>
+              <section className="cart-items">
+                {cartItems.map((cartItem, index) => {
+                  return (
+                    <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
+                  );
+                })}
+              </section>
+              <DeliveryForm
+                handleSubmit={handleSubmit}
+                deliveryInfo={deliveryInfo}
+                setDeliveryInfo={setDeliveryInfo}
+              />
+              <Checkout deliveryInfo={deliveryInfo} />
+            </>
+          ) : (
+            <p id="empty">No hay nada aca, porque no agregas algo?</p>
+          )}
+        </div>
+      </main>
+    </Layout>
   );
 }

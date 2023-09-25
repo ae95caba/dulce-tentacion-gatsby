@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
-
+import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -11,21 +11,23 @@ export default function Shop(props) {
   const products = props.data.allProduct.edges;
 
   return (
-    <main id="catalog">
-      <>
-        <h1>Catalogo</h1>
-        <div className="cards-container">
-          {products.map((product, index) => {
-            const productData = product.node;
-            return productData.outOfStock ? (
-              ""
-            ) : (
-              <Card key={`${productData.name}`} product={productData} />
-            );
-          })}
-        </div>
-      </>
-    </main>
+    <Layout>
+      <main id="catalog">
+        <>
+          <h1>Catalogo</h1>
+          <div className="cards-container">
+            {products.map((product, index) => {
+              const productData = product.node;
+              return productData.outOfStock ? (
+                ""
+              ) : (
+                <Card key={`${productData.name}`} product={productData} />
+              );
+            })}
+          </div>
+        </>
+      </main>
+    </Layout>
   );
 }
 
