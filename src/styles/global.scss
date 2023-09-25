@@ -47,26 +47,27 @@ button {
 
     vertical-align: middle;
   }
-  .loader {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+}
 
-    width: 48px;
-    height: 48px;
-    border: 5px solid #fff;
-    border-bottom-color: $secondary-color;
-    border-radius: 50%;
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
 
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    @keyframes rotation {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: $secondary-color;
+  border-radius: 50%;
+
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  @keyframes rotation {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
     }
   }
 }
@@ -482,7 +483,6 @@ header {
   }
 }
 
-//home
 #home {
   width: 100%;
   display: flex;
@@ -657,6 +657,12 @@ header {
 }
 
 #ice-cream-list {
+  .loader-container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: auto;
+  }
   form {
     width: fit-content;
     margin: 2rem auto;

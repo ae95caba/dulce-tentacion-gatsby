@@ -3,9 +3,8 @@ const crypto = require("crypto");
 exports.sourceNodes = async ({ actions }) => {
   const { createNode } = actions;
 
-  // Fetch raw data from the randomuser api
   const fetchProducts = async () => {
-    const apiUrl = "http://localhost:3000";
+    const apiUrl = process.env.GATSBY_API_URL;
     const requestOptions = {
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +33,7 @@ exports.sourceNodes = async ({ actions }) => {
         id: `${product._id}`,
         parent: `__SOURCE__`,
         internal: {
-          type: `Product`, // name of the graphQL query --> allRandomUser {}
+          type: `Product`, // name of the graphQL query
           // contentDigest will be added just after
           // but it is required
         },
@@ -62,7 +61,7 @@ exports.sourceNodes = async ({ actions }) => {
       createNode(productNode);
     });
   } catch (error) {
-    console.error("Error fetching data from the RandomUser API:", error);
+    console.error("Error fetching data from the API:", error);
   }
 
   return;

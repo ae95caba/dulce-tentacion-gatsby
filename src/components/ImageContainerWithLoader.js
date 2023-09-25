@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Image({ url }) {
+export default function ImageContainerWithLoader({ url }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const onLoad = () => {

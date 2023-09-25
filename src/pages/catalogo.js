@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
-import Image from "../components/Image";
+
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 

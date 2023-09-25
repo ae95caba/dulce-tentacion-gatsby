@@ -30,7 +30,7 @@ export default function IceCreamForm({ data, location }) {
         },
       };
       try {
-        const apiUrl = "http://localhost:3000";
+        const apiUrl = process.env.GATSBY_API_URL;
 
         const response = await fetch(`${apiUrl}/flavours`, requestOptions);
 
@@ -117,7 +117,9 @@ export default function IceCreamForm({ data, location }) {
   return (
     <main id="ice-cream-list">
       {isLoading ? (
-        "Cargando"
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
       ) : (
         <form onSubmit={handleSubmit}>
           {<h1>{product.name}</h1>}
