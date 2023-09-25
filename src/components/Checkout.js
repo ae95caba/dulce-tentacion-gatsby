@@ -4,8 +4,7 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 export default function Checkout({ deliveryInfo }) {
-  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
-    useContext(GlobalContext);
+  const { cartItems } = useContext(GlobalContext);
 
   function getTotalItemsPrice() {
     let total = 0;

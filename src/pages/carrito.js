@@ -8,8 +8,7 @@ import CartItem from "../components/CartItem";
 import Checkout from "../components/Checkout";
 import DeliveryForm from "../components/DeliveryForm";
 export default function Cart() {
-  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
-    useContext(GlobalContext);
+  const { dispatch, cartItems } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
 
   //get deliveryInfo from localStorage if there is any

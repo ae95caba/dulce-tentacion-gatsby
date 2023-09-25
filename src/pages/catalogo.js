@@ -31,7 +31,7 @@ export default function Shop(props) {
 
 //this rerenders every time the addProductToCart function gets called
 function Card({ product }) {
-  const { catalog, dispatch, cartItems, ACTIONS } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
   const image = getImage(product.localImage);
 
   function handleClick() {

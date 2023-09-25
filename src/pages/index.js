@@ -11,7 +11,6 @@ import {
   Todos,
 } from "../components/Images/Promotional";
 export default function Home() {
-  console.log(process.env.GATSBY_API_URL);
   return (
     <main id="home">
       <div className="content">
