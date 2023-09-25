@@ -26,13 +26,14 @@ export default function GlobalContextProvider({ children }) {
         return obj.product._id === product._id;
       });
       isProductInCart = indexOfProductInCart >= 0;
-      isIceCream = product.hasOwnProperty("flavours");
+      isIceCream = product.flavours !== null;
     }
 
     const cartItemsCopy = [...cartItems];
 
     switch (action.type) {
       case "add-cart-item": {
+        console.log(`add cart item : ${JSON.stringify(product)}`);
         function newCartItem(product) {
           return {
             product,
