@@ -1,11 +1,10 @@
 import React, { createContext, useState, useEffect, useReducer } from "react";
 
-export const GlobalContext =
-  createContext(/* {
-  products: [],
+export const GlobalContext = createContext({
+  ACTIONS: {},
+  dispatch: () => {},
   cartItems: [],
-  addToCart: () => {},
-} */);
+});
 
 export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
