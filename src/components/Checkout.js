@@ -25,11 +25,17 @@ export default function Checkout({ deliveryInfo }) {
         </p>
         <p>
           Envio:
-          <span>$ {deliveryInfo.price}</span>
+          <span>
+            $ {deliveryInfo.price !== undefined ? deliveryInfo.price : "0"}
+          </span>
         </p>
         <p>
           Total a pagar:
-          <span>${getTotalItemsPrice() + deliveryInfo.price}</span>
+          <span>
+            $
+            {getTotalItemsPrice() +
+              (deliveryInfo.price !== undefined ? deliveryInfo.price : 0)}
+          </span>
         </p>
       </div>
 
