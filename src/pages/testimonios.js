@@ -6,7 +6,6 @@ import {
   ThirdAvatar,
   FourthAvatar,
 } from "../components/Images/Avatars";
-import Layout from "../components/Layout";
 
 const reviewsArr = [
   {
@@ -39,22 +38,20 @@ const reviewsArr = [
 
 export default function Reviews() {
   return (
-    <Layout>
-      <main id="reviews">
-        <div className="container">
-          <h1>Testimonios</h1>
-          <p className="description">
-            Nuestros clientes han disfrutrado nuestro producto y quieren
-            compartir sus experiencias con vos.
-          </p>
-        </div>
-        <div className="container">
-          {reviewsArr.map((review) => (
-            <Review review={review} />
-          ))}
-        </div>
-      </main>
-    </Layout>
+    <main id="reviews">
+      <div className="container">
+        <h1>Testimonios</h1>
+        <p className="description">
+          Nuestros clientes han disfrutrado nuestro producto y quieren compartir
+          sus experiencias con vos.
+        </p>
+      </div>
+      <div className="container">
+        {reviewsArr.map((review) => (
+          <Review review={review} />
+        ))}
+      </div>
+    </main>
   );
 }
 

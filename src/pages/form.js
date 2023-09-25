@@ -6,7 +6,6 @@ import React from "react";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
 import Swal from "sweetalert2";
-import Layout from "../components/Layout";
 export default function IceCreamForm({ data, location }) {
   const [isLoading, setIsLoading] = useState(true);
   const [flavourList, setFlavourList] = useState(null);
@@ -116,53 +115,54 @@ export default function IceCreamForm({ data, location }) {
   }
 
   return (
-    <Layout>
-      <main id="ice-cream-list">
-        {isLoading ? (
-          <div className="loader-container">
-            <div className="loader"></div>
+    <main id="ice-cream-list">
+      {isLoading ? (
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          {<h1>{product.name}</h1>}
+          <h3>
+            Sabores
+            {<span>{` ${choosenFlavours.length}/${product.flavours}`}</span>}
+          </h3>
+          <div className="container">
+            {flavourList.map((flavourValue) => (
+              <label key={flavourValue} htmlFor={flavourValue}>
+                <span>{flavourValue}</span>
+
+                <input
+                  id={flavourValue}
+                  type="checkbox"
+                  disabled={
+                    !choosenFlavours.includes(flavourValue) &&
+                    choosenFlavours.length >= product.flavours
+                  }
+                  name="flavour"
+                  value={flavourValue}
+                  onChange={handleChange}
+                />
+              </label>
+            ))}
           </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            {<h1>{product.name}</h1>}
-            <h3>
-              Sabores
-              {<span>{` ${choosenFlavours.length}/${product.flavours}`}</span>}
-            </h3>
-            <div className="container">
-              {flavourList.map((flavourValue) => (
-                <label key={flavourValue} htmlFor={flavourValue}>
-                  <span>{flavourValue}</span>
-                  <input
-                    id={flavourValue}
-                    type="checkbox"
-                    disabled={
-                      !choosenFlavours.includes(flavourValue) &&
-                      choosenFlavours.length >= product.flavours
-                    }
-                    name="flavour"
-                    value={flavourValue}
-                    onChange={handleChange}
-                  />
-                </label>
-              ))}
-            </div>
-            <dialog ref={modalRef}>
-              <p>Debes elegir por lo menos un sabor</p>
-              <button
-                type="button"
-                onClick={() => {
-                  modalRef.current.close();
-                }}
-              >
-                Ok
-              </button>
-            </dialog>
-            <button>Aceptar</button>
-          </form>
-        )}
-      </main>
-    </Layout>
+
+          <dialog ref={modalRef}>
+            <p>Debes elegir por lo menos un sabor</p>
+            <button
+              type="button"
+              onClick={() => {
+                modalRef.current.close();
+              }}
+            >
+              Ok
+            </button>
+          </dialog>
+
+          <button>Aceptar</button>
+        </form>
+      )}
+    </main>
   );
 }
 
