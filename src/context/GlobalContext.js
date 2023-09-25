@@ -9,8 +9,6 @@ export const GlobalContext =
 
 export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
-  const [isLoading, setIsLoading] = useState(true);
-  const [catalog, setCatalog] = useState(null);
 
   const ACTIONS = {
     ADD_CART_ITEM: "add-cart-item",
@@ -46,9 +44,11 @@ export default function GlobalContextProvider({ children }) {
         }
 
         if (isIceCream || (!isIceCream && !isProductInCart)) {
+          //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
           return cartItemsCopy;
         } else {
+          //increase the count of the item
           cartItemsCopy[indexOfProductInCart].count++;
 
           return cartItemsCopy;
@@ -73,76 +73,8 @@ export default function GlobalContextProvider({ children }) {
     }
   }
 
-  //fetch catalog from api
-  useEffect(() => {
-    const MAX_REFRESHES = 3; // Maximum number of refresh attempts
-    const REFRESH_DELAY = 1000; // Delay in milliseconds before each refresh
-    let refreshCount = 0;
-
-    async function fetchProductsAndFlavorsAndSetState() {
-      const requestOptions = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      try {
-        const apiUrl = "http://localhost:3000";
-        console.log(apiUrl);
-        const productResponse = await fetch(
-          `${apiUrl}/products`,
-          requestOptions
-        );
-        const flavorsResponse = await fetch(
-          `${apiUrl}/flavours`,
-          requestOptions
-        );
-
-        if (!productResponse.ok || !flavorsResponse.ok) {
-          throw new Error("Request failed");
-        }
-
-        const products = await productResponse.json();
-        const flavours = await flavorsResponse.json();
-
-        const availableFlavours = flavours
-          .filter((obj) => obj.outOfStock === false)
-          .map((obj) => obj.name);
-
-        setCatalog((prev) => ({
-          ...prev,
-          iceCream: [...products],
-          flavoursList: [...availableFlavours],
-        }));
-
-        // Process the data or perform other operations
-      } catch (error) {
-        if (refreshCount < MAX_REFRESHES) {
-          refreshCount++;
-          setTimeout(() => {
-            window.location.reload();
-          }, REFRESH_DELAY);
-        } else {
-          // Handle the maximum refresh attempts reached
-          console.log(
-            "Maximum refresh attempts reached. Please try again later."
-          );
-          alert("Estamos teniendo problemas. Por favor intenta mas tarde");
-        }
-      }
-    }
-    fetchProductsAndFlavorsAndSetState();
-  }, []);
-
-  useEffect(() => {
-    if (typeof catalog === "object" && catalog !== null) {
-      setIsLoading(false);
-    }
-  }, [catalog]);
-
   return (
-    <GlobalContext.Provider
-      value={{ catalog, cartItems, dispatch, ACTIONS, isLoading }}
-    >
+    <GlobalContext.Provider value={{ cartItems, dispatch, ACTIONS }}>
       {children}
     </GlobalContext.Provider>
   );

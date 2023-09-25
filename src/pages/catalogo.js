@@ -55,7 +55,6 @@ function Card({ product }) {
   }
   return (
     <div className="card">
-      {/*  <Image url={product.imgUrl} /> */}
       <GatsbyImage image={image} alt={product.name} />
 
       <p className="product-name">{product.name}</p>

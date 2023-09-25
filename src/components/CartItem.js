@@ -3,11 +3,12 @@ import uniqid from "uniqid";
 import { GlobalContext } from "../context/GlobalContext";
 import recycleBin from "../images/recycle-bin.png";
 import { useContext } from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 export default function CartItem({ cartItem }) {
-  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
-    useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
   const [showDetails, setShowDetails] = useState(false);
   const product = cartItem.product;
+  const image = getImage(product.localImage);
   return (
     <div className="cart-item">
       <img
@@ -22,7 +23,7 @@ export default function CartItem({ cartItem }) {
         }
       />
       <div className="left">
-        <img className="thumbnail" src={product.imgUrl} alt={product.name} />
+        <GatsbyImage image={image} alt={product.name} />
       </div>
       <div className="right">
         <div className="description">

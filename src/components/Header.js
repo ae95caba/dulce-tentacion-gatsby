@@ -27,8 +27,7 @@ export default function Header() {
 }
 
 function CartButton() {
-  const { catalog, dispatch, cartItems, ACTIONS, isLoading } =
-    useContext(GlobalContext);
+  const { cartItems } = useContext(GlobalContext);
   return (
     <Link
       to="/carrito"
