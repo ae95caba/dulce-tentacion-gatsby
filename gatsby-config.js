@@ -11,13 +11,32 @@ require("dotenv").config({
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  siteMetadata: {
+    title: "Dulce Tentacion",
+    description: "Te llevamos el helado artesanal mas rico directo a tu casa",
+    author: "André Espinoza",
+    image: `src/images/logo512.png`,
+  },
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Dulce Tentacion Marcos Paz`,
+        short_name: `Dulce Tentacion`,
+        start_url: `/`,
+        background_color: `#FFFFFF`,
+        theme_color: `#e8547e`,
+        display: `standalone`,
+        icon: `src/images/logo512.png`,
+      },
+    },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/components/Layout.js`),
       },
     },
+    "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
