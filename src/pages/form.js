@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
-import { Link } from "gatsby";
+import Swal from "sweetalert2";
 import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
 import { navigate } from "gatsby";
@@ -9,7 +9,7 @@ import { graphql } from "gatsby";
 export default function IceCreamForm({ data, location }) {
   const [isLoading, setIsLoading] = useState(true);
   const [flavourList, setFlavourList] = useState(null);
-  const modalRef = useRef(null);
+
   const [product, setProduct] = useState(null);
   const { dispatch } = useContext(GlobalContext);
   const allParams = new URLSearchParams(location.search);
@@ -105,7 +105,11 @@ export default function IceCreamForm({ data, location }) {
       });
       navigate("/catalogo");
     } else {
-      modalRef.current.showModal();
+      Swal.fire(
+        `Elige por lo menos un sabor`,
+        "O es que queres un pote vacio ? :V",
+        "warning"
+      );
     }
   }
 
@@ -141,18 +145,6 @@ export default function IceCreamForm({ data, location }) {
               </label>
             ))}
           </div>
-
-          <dialog ref={modalRef}>
-            <p>Debes elegir por lo menos un sabor</p>
-            <button
-              type="button"
-              onClick={() => {
-                modalRef.current.close();
-              }}
-            >
-              Ok
-            </button>
-          </dialog>
 
           <button>Aceptar</button>
         </form>
