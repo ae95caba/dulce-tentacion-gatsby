@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
-import Swal from "sweetalert2";
+
 export default function IceCreamForm({ data, location }) {
   const [isLoading, setIsLoading] = useState(true);
   const [flavourList, setFlavourList] = useState(null);
@@ -104,11 +104,6 @@ export default function IceCreamForm({ data, location }) {
         },
       });
       navigate("/catalogo");
-      Swal.fire(
-        `${product.name} agregado al carrito`,
-        "Ve al carrito para finalizar tu compra",
-        "success"
-      );
     } else {
       modalRef.current.showModal();
     }

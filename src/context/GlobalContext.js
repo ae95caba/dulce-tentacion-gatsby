@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useReducer } from "react";
-
+import Swal from "sweetalert2";
 export const GlobalContext = createContext({
   ACTIONS: {},
   dispatch: () => {},
@@ -8,6 +8,14 @@ export const GlobalContext = createContext({
 
 export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
+
+  function triggerAlert(product) {
+    Swal.fire(
+      `${product.name} agregado al carrito`,
+      "Ve al carrito para finalizar tu compra",
+      "success"
+    );
+  }
 
   const ACTIONS = {
     ADD_CART_ITEM: "add-cart-item",
@@ -46,6 +54,7 @@ export default function GlobalContextProvider({ children }) {
         if (isIceCream || (!isIceCream && !isProductInCart)) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
+          triggerAlert(product);
           return cartItemsCopy;
         } else {
           //increase the count of the item

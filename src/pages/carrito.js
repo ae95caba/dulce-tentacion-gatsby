@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import Swal from "sweetalert2";
+
 import { useContext } from "react";
 import { link } from "../logic/whatsappLink";
 
@@ -49,12 +49,6 @@ export default function Cart() {
       );
 
       dispatch({ type: "reset" });
-
-      Swal.fire(
-        `Gracias`,
-        "Continua con tu conmpra en el siguiente chat",
-        "success"
-      );
     } else {
       const formElements = e.target.elements;
 
