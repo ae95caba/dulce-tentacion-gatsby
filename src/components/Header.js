@@ -16,10 +16,11 @@ export default function Header() {
           <Tabs />
         </nav>
 
-        <label className="hamburger-menu">
-          <input type="checkbox" />
-        </label>
+        <input type="checkbox" id="checkbox" />
+        <label for="checkbox" class="overlay"></label>
         <Sidebar />
+        <label className="hamburger-menu" htmlFor="checkbox"></label>
+
         <CartButton />
       </div>
     </header>
