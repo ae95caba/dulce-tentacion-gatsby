@@ -19,14 +19,21 @@ export default function Header() {
           <Tabs />
         </nav>
 
-        <input type="checkbox" id="checkbox" />
-        <label
-          for="checkbox"
-          class="overlay"
-          onClick={() => {
-            hambugerAnimationRef.current?.playSegments([75, 150], false);
+        <input
+          type="checkbox"
+          id="checkbox"
+          onChange={(e) => {
+            console.log("change");
+            const isChecked = e.target.checked;
+            console.log(isChecked);
+            if (isChecked) {
+              hambugerAnimationRef.current?.playSegments([0, 50], true);
+            } else {
+              hambugerAnimationRef.current?.playSegments([75, 150], false);
+            }
           }}
-        ></label>
+        />
+        <label for="checkbox" class="overlay"></label>
         <Sidebar />
         <label className="hamburger-menu" htmlFor="checkbox">
           <Lottie
@@ -34,9 +41,6 @@ export default function Header() {
             animationData={animationData}
             autoplay={false}
             loop={0}
-            onClick={() => {
-              hambugerAnimationRef.current?.playSegments([0, 50], true);
-            }}
           />
         </label>
 
