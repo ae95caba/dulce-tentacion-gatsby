@@ -99,7 +99,11 @@ header {
   .hamburger-menu {
     width: 3rem;
     height: 3rem;
-    background-color: black;
+    svg {
+      path {
+        stroke: black;
+      }
+    }
   }
   a {
     &:hover,

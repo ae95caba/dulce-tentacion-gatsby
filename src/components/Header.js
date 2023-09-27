@@ -1,11 +1,14 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { Link } from "gatsby";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import cartIcon from "../images/cart.svg";
 import Logo from "./Images/Logo";
+import animationData from "../animations/hamburger-menu.json";
+import Lottie from "lottie-react";
 const tabsObj = ["Catalogo", "Nosotros", "Galeria", "Testimonios"];
 export default function Header() {
+  const hambugerAnimationRef = useRef(null);
   return (
     <header>
       <Link to="/">
@@ -17,9 +20,25 @@ export default function Header() {
         </nav>
 
         <input type="checkbox" id="checkbox" />
-        <label for="checkbox" class="overlay"></label>
+        <label
+          for="checkbox"
+          class="overlay"
+          onClick={() => {
+            hambugerAnimationRef.current?.playSegments([75, 150], false);
+          }}
+        ></label>
         <Sidebar />
-        <label className="hamburger-menu" htmlFor="checkbox"></label>
+        <label className="hamburger-menu" htmlFor="checkbox">
+          <Lottie
+            lottieRef={hambugerAnimationRef}
+            animationData={animationData}
+            autoplay={false}
+            loop={0}
+            onClick={() => {
+              hambugerAnimationRef.current?.playSegments([0, 50], true);
+            }}
+          />
+        </label>
 
         <CartButton />
       </div>
