@@ -11,7 +11,7 @@ export default function Header() {
   const hambugerAnimationRef = useRef(null);
   return (
     <header>
-      <Link to="/">
+      <Link to="/" activeClassName="active">
         <Logo />
       </Link>
       <div className="container">
@@ -76,7 +76,9 @@ function Tabs() {
   return (
     <>
       {tabsObj.map((tab) => (
-        <Link to={`/${tab.toLowerCase()}`}>{tab}</Link>
+        <Link to={`/${tab.toLowerCase()}`} activeClassName="active">
+          {tab}
+        </Link>
       ))}
     </>
   );
