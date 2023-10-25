@@ -600,7 +600,6 @@ header {
 
     width: 60px;
     height: 100%;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
 
     content: "";
     z-index: 2;
@@ -616,17 +615,23 @@ header {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
   }
 
-  .first.carousel {
+  .carousel {
     overflow: hidden;
-
-    background-color: aliceblue;
-
+    position: relative;
     display: flex;
 
     .logos-slide {
-      animation: $timing-first slide infinite linear;
       display: flex;
-      flex-wrap: nowrap;
+      flex-direction: row;
+      .gatsby-image-wrapper {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .first.carousel {
+    .logos-slide {
+      animation: $timing-first slide infinite linear;
 
       .img {
         height: 50px;
@@ -644,46 +649,23 @@ header {
   }
   .second.carousel,
   .third.carousel {
-    overflow: hidden;
-    position: relative;
-    display: flex;
-
     .logos-slide {
-      animation: $timing-second slide infinite linear;
-
-      display: flex;
-      flex-wrap: nowrap;
-
-      gap: 1rem;
       padding: 0.2rem 0.5rem;
-
+      animation: 9s slide infinite linear;
       .gatsby-image-wrapper {
         height: 14rem;
 
         width: 14rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 900;
         border-radius: $image-radius;
         box-shadow: $cool-shadow;
       }
     }
   }
-  .second.carousel {
-    .logos-slide {
-      animation: $timing-second slide infinite linear;
-    }
-  }
-  .third.carousel {
-    .logos-slide {
-      animation: $timing-third slide infinite linear;
-    }
-  }
+
   @keyframes slide {
     from {
-      transform: translateX(0);
+      transform: translateX(0%);
     }
     to {
       transform: translateX(-100%);

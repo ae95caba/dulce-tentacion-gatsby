@@ -44,37 +44,33 @@ function FirstCarousel() {
 }
 
 function PromotionalCarousel() {
+  const slider = (
+    <div className="logos-slide">
+      <UnCuarto />
+      <UnCuarto2 />
+      <UnKilo />
+      <Todos />
+    </div>
+  );
   return (
     <div className="second carousel">
-      <div className="logos-slide">
-        <UnCuarto />
-        <UnCuarto2 />
-        <UnKilo />
-        <Todos />
-      </div>
-      <div className="logos-slide">
-        <UnCuarto />
-        <UnCuarto2 />
-        <UnKilo />
-        <Todos />
-      </div>
+      {slider}
+      {slider}
     </div>
   );
 }
 
 function PromotionsCarousel() {
+  const slider = (
+    <div className="logos-slide">
+      <Kilo />
+      <Medio />
+      <Cuarto />
+    </div>
+  );
   return (
-    <div className="second carousel">
-      <div className="logos-slide">
-        <Kilo />
-        <Medio />
-        <Cuarto />
-      </div>
-      <div className="logos-slide">
-        <Kilo />
-        <Medio />
-        <Cuarto />
-      </div>
+    <div className="third carousel">
+      {slider} {slider}
     </div>
   );
 }
