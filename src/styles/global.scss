@@ -81,16 +81,19 @@ header {
   top: 0px;
   z-index: 999;
   font-weight: 900;
-  /*   container-type: inline-size;
-  container-name: nav; */
   display: flex;
-
-  padding: 0.5rem 2rem;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background-color: $primary-color;
 
   box-shadow: $cool-shadow;
+
+  .content {
+    display: flex;
+    width: $universal-width;
+    padding: 0.5rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   input[type="checkbox"] {
     display: none;
@@ -561,23 +564,6 @@ header {
     overflow-x: hidden;
   }
 
-  .right,
-  .left {
-    width: 150px !important;
-    height: 100%;
-
-    position: absolute;
-  }
-
-  .right {
-    right: -150px;
-    transform: rotateY(180deg);
-  }
-  .left {
-    left: -150px;
-    top: 0;
-  }
-
   h3 {
     margin-left: 1rem;
     margin-bottom: 1.5rem;
@@ -761,13 +747,19 @@ header {
 
 #footer {
   background-color: $primary-color;
-  padding: 3rem 1rem;
+
   text-align: center;
   box-shadow: $cool-shadow;
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  justify-content: center;
   text-align: left;
+  .content {
+    width: $universal-width;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
   .container {
     width: 100%;
     display: grid;
@@ -830,7 +822,7 @@ header {
 }
 
 @media (max-width: 700px) {
-  header {
+  header > .content {
     & > .container > nav {
       display: none !important;
     }
@@ -848,18 +840,16 @@ header {
 
 @media (hover: hover) {
   //targets only devices that can hover
-  .second.carousel:hover .logos-slide,
-  .first.carousel:hover .logos-slide,
-  .third.carousel:hover .logos-slide {
+
+  .first.carousel:hover .logos-slide {
     animation-play-state: paused !important;
   }
 }
 
 @media (hover: none) {
   //targets only devices that can hover
-  .second.carousel:active .logos-slide,
-  .first.carousel:active .logos-slide,
-  .third.carousel:active .logos-slide {
+
+  .first.carousel:active .logos-slide {
     animation-play-state: paused !important;
   }
 }

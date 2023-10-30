@@ -15,7 +15,6 @@ export default function Home() {
   return (
     <main id="home">
       <div className="content">
-        <WaveRight />
         <FirstCarousel />
         <h3>#DULCE-TENTACION</h3>
 
@@ -28,7 +27,6 @@ export default function Home() {
           </SimpleSlider>
         </div>
 
-        {/*      <PromotionalCarousel /> */}
         <h3>#Promos</h3>
 
         <div className="container">
@@ -38,9 +36,6 @@ export default function Home() {
             <Cuarto /> <Kilo />
           </SimpleSlider>
         </div>
-
-        {/*  <PromotionsCarousel /> */}
-        <WaveLeft />
       </div>
     </main>
   );
