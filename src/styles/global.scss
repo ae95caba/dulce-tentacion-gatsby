@@ -558,6 +558,7 @@ header {
     width: $universal-width;
     position: relative;
     padding-bottom: 4rem;
+    overflow-x: hidden;
   }
 
   .right,
@@ -585,16 +586,22 @@ header {
     text-transform: uppercase;
   }
 
+  .slick-slider {
+    width: 800px;
+  }
+  .container {
+    padding-left: 1rem;
+    position: relative;
+  }
+
   $timing-first: 10s;
   $timing-second: 9s;
   $timing-third: 6s;
 
   $image-radius: 1.5rem;
 
-  .second.carousel:before,
-  .third.carousel:before,
-  .second.carousel:after,
-  .third.carousel:after {
+  .container:before,
+  .container:after {
     position: absolute;
     top: 0;
 
@@ -604,13 +611,12 @@ header {
     content: "";
     z-index: 2;
   }
-  .second.carousel:before,
-  .third.carousel:before {
+  .container:before {
     left: 0;
     background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
   }
-  .second.carousel:after,
-  .third.carousel:after {
+
+  .container:after {
     right: 0;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
   }
@@ -629,6 +635,15 @@ header {
     }
   }
 
+  .gatsby-image-wrapper {
+    height: 14rem;
+
+    width: 14rem;
+
+    border-radius: $image-radius;
+    box-shadow: $cool-shadow;
+  }
+
   .first.carousel {
     .logos-slide {
       animation: $timing-first slide infinite linear;
@@ -644,21 +659,6 @@ header {
         align-items: center;
         font-weight: 900;
         text-transform: uppercase;
-      }
-    }
-  }
-  .second.carousel,
-  .third.carousel {
-    .logos-slide {
-      padding: 0.2rem 0.5rem;
-      animation: 9s slide infinite linear;
-      .gatsby-image-wrapper {
-        height: 14rem;
-
-        width: 14rem;
-
-        border-radius: $image-radius;
-        box-shadow: $cool-shadow;
       }
     }
   }

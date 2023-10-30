@@ -30,6 +30,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-simple-carousel": "^1.0.1",
+    "react-simply-carousel": "^9.0.5",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.7.27",
     "uniqid": "^5.4.0"
   },

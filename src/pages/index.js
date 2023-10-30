@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import WaveLeft from "../components/Images/WaveLeft";
 import WaveRight from "../components/Images/WaveRight";
+import SimpleSlider from "../components/SlickCarousel";
 import { Kilo, Cuarto, Medio } from "../components/Images/Promotions";
 import {
   UnCuarto,
@@ -17,9 +18,28 @@ export default function Home() {
         <WaveRight />
         <FirstCarousel />
         <h3>#DULCE-TENTACION</h3>
-        <PromotionalCarousel />
+
+        <div className="container">
+          <SimpleSlider>
+            <UnCuarto />
+            <UnCuarto2 />
+            <UnKilo />
+            <Todos />
+          </SimpleSlider>
+        </div>
+
+        {/*      <PromotionalCarousel /> */}
         <h3>#Promos</h3>
-        <PromotionsCarousel />
+
+        <div className="container">
+          <SimpleSlider>
+            <Kilo />
+            <Medio />
+            <Cuarto /> <Kilo />
+          </SimpleSlider>
+        </div>
+
+        {/*  <PromotionsCarousel /> */}
         <WaveLeft />
       </div>
     </main>
@@ -43,7 +63,7 @@ function FirstCarousel() {
   );
 }
 
-function PromotionalCarousel() {
+/* function PromotionalCarousel() {
   const slider = (
     <div className="logos-slide">
       <UnCuarto />
@@ -74,3 +94,4 @@ function PromotionsCarousel() {
     </div>
   );
 }
+ */
