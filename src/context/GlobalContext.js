@@ -82,8 +82,19 @@ export default function GlobalContextProvider({ children }) {
     }
   }
 
+  function getTotalItemsPrice() {
+    let total = 0;
+
+    for (var i = 0; i < cartItems.length; i++) {
+      total += cartItems[i].getTotalPrice();
+    }
+    return total;
+  }
+
   return (
-    <GlobalContext.Provider value={{ cartItems, dispatch, ACTIONS }}>
+    <GlobalContext.Provider
+      value={{ getTotalItemsPrice, cartItems, dispatch, ACTIONS }}
+    >
       {children}
     </GlobalContext.Provider>
   );

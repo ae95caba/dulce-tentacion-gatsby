@@ -2,13 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
-import { link } from "../logic/whatsappLink";
+import { createWhatsAppLink } from "../logic/whatsappLink";
 
 import CartItem from "../components/CartItem";
 import Checkout from "../components/Checkout";
 import DeliveryForm from "../components/DeliveryForm";
 export default function Cart() {
-  const { dispatch, cartItems } = useContext(GlobalContext);
+  const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
 
   //get deliveryInfo from localStorage if there is any
@@ -38,15 +38,15 @@ export default function Cart() {
   function handleSubmit(e) {
     e.preventDefault();
     if (e.target.checkValidity()) {
-      window.open(
-        link(
-          cartItems,
-          deliveryInfo
+      const messageData = {
+        cartItems,
+        deliveryInfo,
+        totalPrice: getTotalItemsPrice(),
+      };
 
-          //make a function that calculates the price of all the items in the cart
-        ),
-        "_blank"
-      );
+      const whatsappLink = createWhatsAppLink(messageData);
+
+      window.open(whatsappLink, "_blank");
 
       dispatch({ type: "reset" });
     } else {

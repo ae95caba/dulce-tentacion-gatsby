@@ -4,16 +4,7 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 export default function Checkout({ deliveryInfo }) {
-  const { cartItems } = useContext(GlobalContext);
-
-  function getTotalItemsPrice() {
-    let total = 0;
-
-    for (var i = 0; i < cartItems.length; i++) {
-      total += cartItems[i].getTotalPrice();
-    }
-    return total;
-  }
+  const { getTotalItemsPrice } = useContext(GlobalContext);
 
   return (
     <section className="checkout">
