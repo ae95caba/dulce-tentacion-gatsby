@@ -50,7 +50,8 @@ export default function Cart() {
       const messageData = {
         cartItems,
         deliveryInfo,
-        totalPrice: getTotalItemsPrice(),
+        totalItemsPrice: getTotalItemsPrice(),
+        totalPrice: getTotalPrice(),
       };
 
       const whatsappLink = createWhatsAppLink(messageData);

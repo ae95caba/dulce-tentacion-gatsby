@@ -18,7 +18,12 @@ export function createWhatsAppLink(messageData) {
 }
 // to make a line break use "\n"
 //tabs are visible on whatsapp
-function createMessage({ cartItems, deliveryInfo, totalPrice }) {
+function createMessage({
+  cartItems,
+  deliveryInfo,
+  totalPrice,
+  totalItemsPrice,
+}) {
   function createCartItemsList() {
     let cartItemsList = "";
     //fill itemList
@@ -40,12 +45,16 @@ function createMessage({ cartItems, deliveryInfo, totalPrice }) {
   ${flavours}`;
       }
     });
-    cartItemsList += `*Total: $${totalPrice}*`;
+
     return cartItemsList;
   }
 
   return `*Orden*:		
 ${createCartItemsList()}	
+
+*Productos: $${totalItemsPrice}*
+*Envio: $${deliveryInfo.price}*
+*Total: $${totalPrice}*
 
 ${
   deliveryInfo.isChecked
