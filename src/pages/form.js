@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
-
+import cone from "../images/ice-cream-cone.svg";
 export default function IceCreamForm({ data, location }) {
   const [isLoading, setIsLoading] = useState(true);
   const [flavourList, setFlavourList] = useState(null);
@@ -117,7 +117,8 @@ export default function IceCreamForm({ data, location }) {
     <main id="ice-cream-list">
       {isLoading ? (
         <div className="loader-container">
-          <div className="loader"></div>
+          <img src={cone} className="loader" />
+          <p>Cargando</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>

@@ -34,40 +34,59 @@ button {
   font-weight: 800;
 }
 
-.img-loader-container {
+.loader-container {
+  width: 300px;
+  height: 300px;
   position: relative;
-  width: 100%;
+  margin: auto;
 
-  aspect-ratio: 1/1;
-
-  box-shadow: $cool-shadow;
-
-  img {
-    width: 100%;
-
-    vertical-align: middle;
-  }
-}
-
-.loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  width: 48px;
-  height: 48px;
-  border: 5px solid #fff;
-  border-bottom-color: $secondary-color;
-  border-radius: 50%;
-
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  @keyframes rotation {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg);
+  p {
+    font-weight: 900;
+    width: min-content;
+    margin: auto;
+    font-size: 2rem;
+    position: relative;
+    &::after {
+      content: "";
+      width: 50px;
+      position: absolute;
+      left: 140px;
     }
-    100% {
-      transform: translate(-50%, -50%) rotate(360deg);
+    &::after {
+      animation: dots 4s linear infinite;
+    }
+  }
+  .loader {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+
+    width: 75px;
+    height: 75px;
+    position: relative;
+
+    animation: rotation 1s linear infinite;
+    @keyframes rotation {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(375deg);
+      }
+    }
+    @keyframes dots {
+      0% {
+        content: " .";
+      }
+      33.3% {
+        content: " . .";
+      }
+      66.6% {
+        content: " . . .";
+      }
+      99.9% {
+        content: " . .";
+      }
     }
   }
 }
@@ -694,12 +713,6 @@ header {
 }
 
 #ice-cream-list {
-  .loader-container {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    margin: auto;
-  }
   form {
     width: fit-content;
     margin: 2rem auto;
