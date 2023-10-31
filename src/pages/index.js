@@ -19,7 +19,7 @@ export default function Home() {
         <h3>#DULCE-TENTACION</h3>
 
         <div className="container">
-          <SimpleSlider>
+          <SimpleSlider speed={750} autoplaySpeed={1500}>
             <UnCuarto />
             <UnCuarto2 />
             <UnKilo />
@@ -30,7 +30,7 @@ export default function Home() {
         <h3>#Promos</h3>
 
         <div className="container">
-          <SimpleSlider>
+          <SimpleSlider speed={1000} autoplaySpeed={2500}>
             <Kilo />
             <Medio />
             <Cuarto /> <Kilo />
