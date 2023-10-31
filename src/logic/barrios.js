@@ -93,7 +93,7 @@ export const zones = {
     neighborhoods: ["Don Rolando", "Santa Catalina", "Bicentenario"],
   },
   thirdZone: {
-    price: 150,
+    price: 200,
     neighborhoods: [
       "Los Aromos",
       "San Patricio",
@@ -107,7 +107,7 @@ export const zones = {
     ],
   },
   fourthZone: {
-    price: 200,
+    price: 300,
     neighborhoods: [
       "El Lucero",
 

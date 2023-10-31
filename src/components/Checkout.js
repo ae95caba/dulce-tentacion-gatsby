@@ -3,7 +3,11 @@ import React from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
-export default function Checkout({ deliveryInfo }) {
+export default function Checkout({
+  deliveryInfo,
+  getTotalPrice,
+  getDeliveryPrice,
+}) {
   const { getTotalItemsPrice } = useContext(GlobalContext);
 
   return (
@@ -14,19 +18,15 @@ export default function Checkout({ deliveryInfo }) {
         <p>
           Productos: <span>$ {getTotalItemsPrice()}</span>
         </p>
-        <p>
-          Envio:
-          <span>
-            $ {deliveryInfo.price !== undefined ? deliveryInfo.price : "0"}
-          </span>
-        </p>
+        {deliveryInfo.isChecked && (
+          <p>
+            Envio:
+            <span>$ {getDeliveryPrice()}</span>
+          </p>
+        )}
         <p>
           Total a pagar:
-          <span>
-            $
-            {getTotalItemsPrice() +
-              (deliveryInfo.price !== undefined ? deliveryInfo.price : 0)}
-          </span>
+          <span>${getTotalPrice()}</span>
         </p>
       </div>
 

@@ -11,11 +11,21 @@ export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
 
+  function getDeliveryPrice() {
+    return deliveryInfo.isChecked && deliveryInfo.price
+      ? deliveryInfo.price
+      : 0;
+  }
+
+  function getTotalPrice() {
+    return getTotalItemsPrice() + getDeliveryPrice();
+  }
+
   //get deliveryInfo from localStorage if there is any
   //and populate form with it
   useEffect(() => {
     let deliveryInfoString = localStorage.getItem("deliveryInfo");
-    console.log(JSON.stringify(deliveryInfo));
+
     if (deliveryInfoString) {
       const deliveryInfo = JSON.parse(deliveryInfoString);
 
@@ -27,7 +37,6 @@ export default function Cart() {
   useEffect(() => {
     //save  deliveryInfo to local storage
     if (Object.keys(deliveryInfo).length > 0) {
-      console.log(JSON.stringify(deliveryInfo));
       const deliveryInfoString = JSON.stringify(deliveryInfo);
       localStorage.setItem("deliveryInfo", deliveryInfoString);
     }
@@ -77,7 +86,11 @@ export default function Cart() {
               deliveryInfo={deliveryInfo}
               setDeliveryInfo={setDeliveryInfo}
             />
-            <Checkout deliveryInfo={deliveryInfo} />
+            <Checkout
+              deliveryInfo={deliveryInfo}
+              getDeliveryPrice={getDeliveryPrice}
+              getTotalPrice={getTotalPrice}
+            />
           </>
         ) : (
           <p id="empty">No hay nada aca, porque no agregas algo?</p>

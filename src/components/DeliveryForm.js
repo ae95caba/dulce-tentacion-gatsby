@@ -43,8 +43,6 @@ export default function DeliveryForm({
         <label
           onClick={() => {
             setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
-            console.log(deliveryInfo?.isChecked);
-            console.log(JSON.stringify(deliveryInfo));
           }}
           className="option"
           htmlFor="pickup"
@@ -65,8 +63,6 @@ export default function DeliveryForm({
           htmlFor="delivery"
           onClick={() => {
             setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
-            console.log(deliveryInfo?.isChecked);
-            console.log(JSON.stringify(deliveryInfo));
           }}
         >
           <span>Envio a domicilio</span>
