@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import WaveLeft from "../components/Images/WaveLeft";
 import WaveRight from "../components/Images/WaveRight";
 import SimpleSlider from "../components/SlickCarousel";
-import { Kilo, Cuarto, Medio } from "../components/Images/Promotions";
+import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
 import {
   UnCuarto,
   UnCuarto2,
@@ -19,7 +19,7 @@ export default function Home() {
         <h3>#DULCE-TENTACION</h3>
 
         <div className="container">
-          <SimpleSlider speed={750} autoplaySpeed={1500}>
+          <SimpleSlider speed={1000} autoplaySpeed={3000}>
             <UnCuarto />
             <UnCuarto2 />
             <UnKilo />
@@ -30,10 +30,10 @@ export default function Home() {
         <h3>#Promos</h3>
 
         <div className="container">
-          <SimpleSlider speed={1000} autoplaySpeed={2500}>
+          <SimpleSlider speed={1000} autoplaySpeed={3500}>
             <Kilo />
             <Medio />
-            <Cuarto /> <Kilo />
+            <Cuarto /> <Deals />
           </SimpleSlider>
         </div>
       </div>

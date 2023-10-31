@@ -21,6 +21,16 @@ export function Kilo() {
   );
 }
 
+export function Deals() {
+  return (
+    <StaticImage
+      src="../../images/promotions/deals.png"
+      alt="promocion"
+      placeholder="blurred"
+    />
+  );
+}
+
 export function Medio() {
   return (
     <StaticImage
