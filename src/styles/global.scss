@@ -324,6 +324,11 @@ header {
     flex-direction: column;
     gap: $gap * 2;
 
+    .question {
+      margin: auto;
+      width: 10rem;
+    }
+
     .cart-items {
       display: flex;
       flex-direction: column;

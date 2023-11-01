@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 import { createWhatsAppLink } from "../logic/whatsappLink";
-
+import questionMark from "../images/question-mark.svg";
 import CartItem from "../components/CartItem";
 import Checkout from "../components/Checkout";
 import DeliveryForm from "../components/DeliveryForm";
@@ -15,6 +15,10 @@ export default function Cart() {
     return deliveryInfo.isChecked && deliveryInfo.price
       ? deliveryInfo.price
       : 0;
+  }
+
+  function getDiscount() {
+    return 0;
   }
 
   function getTotalPrice() {
@@ -94,7 +98,10 @@ export default function Cart() {
             />
           </>
         ) : (
-          <p id="empty">No hay nada aca, porque no agregas algo?</p>
+          <>
+            <img className="question" src={questionMark} />
+            <p id="empty">No hay nada aca, porque no agregas algo?</p>
+          </>
         )}
       </div>
     </main>
