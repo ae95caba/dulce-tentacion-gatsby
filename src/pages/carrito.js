@@ -17,8 +17,32 @@ export default function Cart() {
       : 0;
   }
 
-  function getDiscount() {
-    return 0;
+  function getDiscounts() {
+    const products = ["1/2 kg", "1 kg", "1/4 kg"];
+    let discounts = [];
+    products.forEach((product) => {
+      discounts.push(...getDiscountsOf_(product));
+    });
+    return discounts;
+  }
+
+  function getCountOf_(name) {
+    let count = 0;
+    cartItems.map((item) => {
+      if (item.product.name === name) {
+        count++;
+      }
+    });
+    return count;
+  }
+
+  function getDiscountsOf_(name) {
+    let disccounts = [];
+    const pairOfMedios = Math.floor(getCountOf_(name) / 2);
+    for (let index = 0; index < pairOfMedios; index++) {
+      disccounts.push({ name: `Combo 2 x ${name}`, ammount: 200 });
+    }
+    return disccounts;
   }
 
   function getTotalPrice() {
@@ -103,6 +127,7 @@ export default function Cart() {
             <p id="empty">No hay nada aca, porque no agregas algo?</p>
           </>
         )}
+        <button onClick={() => console.log(getDiscounts())}>Log</button>
       </div>
     </main>
   );
