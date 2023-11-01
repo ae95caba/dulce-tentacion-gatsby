@@ -29,10 +29,28 @@ export default function Cart() {
         return count;
       }
 
+      function getAmount() {
+        let amount = 0;
+        switch (name) {
+          case "1 kg":
+            amount = 300;
+            break;
+          case "1/2 kg":
+            amount = 200;
+            break;
+          case "1/4 kg":
+            amount = 200;
+            break;
+          default:
+            break;
+        }
+        return amount;
+      }
+
       let disccounts = [];
       const pairOfMedios = Math.floor(getCountOf_(name) / 2);
       for (let index = 0; index < pairOfMedios; index++) {
-        disccounts.push({ name: `Combo 2 x ${name}`, ammount: 200 });
+        disccounts.push({ name: `Combo 2 x ${name}`, ammount: getAmount() });
       }
       return disccounts;
     }
