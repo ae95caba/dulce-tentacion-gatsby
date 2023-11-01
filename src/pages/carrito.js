@@ -18,6 +18,25 @@ export default function Cart() {
   }
 
   function getDiscounts() {
+    function getDiscountsOf_(name) {
+      function getCountOf_(name) {
+        let count = 0;
+        cartItems.forEach((item) => {
+          if (item.product.name === name) {
+            count++;
+          }
+        });
+        return count;
+      }
+
+      let disccounts = [];
+      const pairOfMedios = Math.floor(getCountOf_(name) / 2);
+      for (let index = 0; index < pairOfMedios; index++) {
+        disccounts.push({ name: `Combo 2 x ${name}`, ammount: 200 });
+      }
+      return disccounts;
+    }
+
     const products = ["1/2 kg", "1 kg", "1/4 kg"];
     let discounts = [];
     products.forEach((product) => {
@@ -26,23 +45,12 @@ export default function Cart() {
     return discounts;
   }
 
-  function getCountOf_(name) {
-    let count = 0;
-    cartItems.map((item) => {
-      if (item.product.name === name) {
-        count++;
-      }
+  function getTotalDiscountAmmount() {
+    let total = 0;
+    getDiscounts().forEach((discount) => {
+      total += discount.ammount;
     });
-    return count;
-  }
-
-  function getDiscountsOf_(name) {
-    let disccounts = [];
-    const pairOfMedios = Math.floor(getCountOf_(name) / 2);
-    for (let index = 0; index < pairOfMedios; index++) {
-      disccounts.push({ name: `Combo 2 x ${name}`, ammount: 200 });
-    }
-    return disccounts;
+    return total;
   }
 
   function getTotalPrice() {
@@ -127,7 +135,14 @@ export default function Cart() {
             <p id="empty">No hay nada aca, porque no agregas algo?</p>
           </>
         )}
-        <button onClick={() => console.log(getDiscounts())}>Log</button>
+        <button
+          onClick={() => {
+            console.log(getDiscounts());
+            console.log(`total discount : ${getTotalDiscountAmmount()}`);
+          }}
+        >
+          Log
+        </button>
       </div>
     </main>
   );
