@@ -40,7 +40,6 @@ export default function GlobalContextProvider({ children }) {
 
     switch (action.type) {
       case "add-cart-item": {
-        console.log(`add cart item : ${JSON.stringify(product)}`);
         function newCartItem(product) {
           return {
             product,

@@ -100,7 +100,7 @@ export default function IceCreamForm({ data, location }) {
         type: "add-cart-item",
         payload: {
           id: product._id,
-          product: { ...product, flavours: choosenFlavours },
+          product: { ...product, choosenFlavours },
         },
       });
       navigate("/catalogo");

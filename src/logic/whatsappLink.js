@@ -37,7 +37,7 @@ function createMessage({
       } else {
         //flavours
         let flavours = "		*Sabores*:\n";
-        product.flavours.forEach((flavour) => {
+        product.choosenFlavours.forEach((flavour) => {
           flavours += `			-${flavour}\n`;
         });
 

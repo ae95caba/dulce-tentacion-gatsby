@@ -68,7 +68,7 @@ export default function CartItem({ cartItem }) {
         <div className="details">
           <h3>Sabores</h3>
           <ul>
-            {product.flavours.map((flavour) => {
+            {product.choosenFlavours.map((flavour) => {
               return <li key={uniqid()}>{flavour}</li>;
             })}
           </ul>

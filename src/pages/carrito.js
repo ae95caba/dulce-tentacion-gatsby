@@ -17,28 +17,28 @@ export default function Cart() {
       : 0;
   }
 
-  function getDiscounts() {
-    function getDiscountsOf_(name) {
-      function getCountOf_(name) {
+  function getAllIceCreamDiscounts() {
+    function getDiscountsOf_FlavoursIceCream(flavours) {
+      function get_FlavourIceCreamAparitions(flavours) {
         let count = 0;
         cartItems.forEach((item) => {
-          if (item.product.name === name) {
+          if (item.product.flavours === flavours) {
             count++;
           }
         });
         return count;
       }
 
-      function getAmount() {
+      function getDiscountAmount() {
         let amount = 0;
-        switch (name) {
-          case "1 kg":
+        switch (flavours) {
+          case 4:
             amount = 300;
             break;
-          case "1/2 kg":
+          case 3:
             amount = 200;
             break;
-          case "1/4 kg":
+          case 2:
             amount = 200;
             break;
           default:
@@ -47,25 +47,50 @@ export default function Cart() {
         return amount;
       }
 
+      function getIceCreamNameFrom_(flavours) {
+        let name;
+        switch (flavours) {
+          case 4:
+            name = "1 kg";
+            break;
+          case 3:
+            name = "1/2 kg";
+            break;
+
+          case 2:
+            name = "1/4 kg";
+            break;
+
+          default:
+            break;
+        }
+        return name;
+      }
+
       let disccounts = [];
-      const pairOfMedios = Math.floor(getCountOf_(name) / 2);
-      for (let index = 0; index < pairOfMedios; index++) {
-        disccounts.push({ name: `Combo 2 x ${name}`, ammount: getAmount() });
+      const numberOfCombos = Math.floor(
+        get_FlavourIceCreamAparitions(flavours) / 2
+      );
+      for (let index = 0; index < numberOfCombos; index++) {
+        disccounts.push({
+          name: `Combo 2 x ${getIceCreamNameFrom_(flavours)}`,
+          ammount: getDiscountAmount(),
+        });
       }
       return disccounts;
     }
 
-    const products = ["1/2 kg", "1 kg", "1/4 kg"];
     let discounts = [];
-    products.forEach((product) => {
-      discounts.push(...getDiscountsOf_(product));
-    });
+
+    for (let index = 2; index <= 4; index++) {
+      discounts.push(...getDiscountsOf_FlavoursIceCream(index));
+    }
     return discounts;
   }
 
   function getTotalDiscountAmmount() {
     let total = 0;
-    getDiscounts().forEach((discount) => {
+    getAllIceCreamDiscounts().forEach((discount) => {
       total += discount.ammount;
     });
     return total;
@@ -155,7 +180,7 @@ export default function Cart() {
         )}
         <button
           onClick={() => {
-            console.log(getDiscounts());
+            console.log(getAllIceCreamDiscounts());
             console.log(`total discount : ${getTotalDiscountAmmount()}`);
           }}
         >
