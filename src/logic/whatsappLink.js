@@ -23,26 +23,24 @@ function createMessage({
   deliveryInfo,
   totalPrice,
   totalItemsPrice,
+  totalDiscountAmmount,
 }) {
   function createCartItemsList() {
     let cartItemsList = "";
     //fill itemList
     cartItems.forEach((cartItem) => {
       const product = cartItem.product;
-      console.log(`product is ${product}`);
-      if (!product.flavours) {
-        cartItemsList += `\u{1F6D2} ${product.name} X ${
-          cartItem.count
-        } | $${cartItem.getTotalPrice()}\n`;
-      } else {
-        //flavours
-        let flavours = "		*Sabores*:\n";
+
+      cartItemsList += `\u{1F6D2} ${product.name} X ${
+        cartItem.count
+      } | $${cartItem.getTotalPrice()}\n`;
+      if (product.flavours) {
+        let flavoursList = "		*Sabores*:\n";
         product.choosenFlavours.forEach((flavour) => {
-          flavours += `			-${flavour}\n`;
+          flavoursList += `			-${flavour}\n`;
         });
 
-        cartItemsList += `\u{1F6D2} ${product.name} | $${product.price}:
-  ${flavours}`;
+        cartItemsList += `${flavoursList}`;
       }
     });
 
@@ -54,6 +52,7 @@ ${createCartItemsList()}
 
 *Productos: $${totalItemsPrice}*
 *Envio: $${deliveryInfo.price}*
+*Descuentos: $${totalDiscountAmmount}*
 *Total: $${totalPrice}*
 
 ${

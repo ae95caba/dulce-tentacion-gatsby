@@ -133,6 +133,7 @@ export default function Cart() {
         deliveryInfo,
         totalItemsPrice: getTotalItemsPrice(),
         totalPrice: getTotalPrice(),
+        totalDiscountAmmount: getTotalDiscountAmmount(),
       };
 
       const whatsappLink = createWhatsAppLink(messageData);
