@@ -7,6 +7,7 @@ export default function Checkout({
   deliveryInfo,
   getTotalPrice,
   getDeliveryPrice,
+  getAllIceCreamDiscounts,
 }) {
   const { getTotalItemsPrice } = useContext(GlobalContext);
 
@@ -24,6 +25,12 @@ export default function Checkout({
             <span>$ {getDeliveryPrice()}</span>
           </p>
         )}
+        {getAllIceCreamDiscounts().length > 0 &&
+          getAllIceCreamDiscounts().map((discount) => (
+            <p>
+              {discount.name} <span>- ${discount.ammount}</span>
+            </p>
+          ))}
         <p>
           Total a pagar:
           <span>${getTotalPrice()}</span>

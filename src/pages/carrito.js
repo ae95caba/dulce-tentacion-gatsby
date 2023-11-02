@@ -97,7 +97,9 @@ export default function Cart() {
   }
 
   function getTotalPrice() {
-    return getTotalItemsPrice() + getDeliveryPrice();
+    return (
+      getTotalItemsPrice() + getDeliveryPrice() - getTotalDiscountAmmount()
+    );
   }
 
   //get deliveryInfo from localStorage if there is any
@@ -170,6 +172,7 @@ export default function Cart() {
               deliveryInfo={deliveryInfo}
               getDeliveryPrice={getDeliveryPrice}
               getTotalPrice={getTotalPrice}
+              getAllIceCreamDiscounts={getAllIceCreamDiscounts}
             />
           </>
         ) : (
