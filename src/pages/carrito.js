@@ -153,14 +153,14 @@ export default function Cart() {
             <p id="empty">No hay nada aca, porque no agregas algo?</p>
           </>
         )}
-        {/*  <button
+        <button
           onClick={() => {
             console.log(getDiscounts());
             console.log(`total discount : ${getTotalDiscountAmmount()}`);
           }}
         >
           Log
-        </button> */}
+        </button>
       </div>
     </main>
   );
