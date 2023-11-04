@@ -182,14 +182,6 @@ export default function Cart() {
             <p id="empty">No hay nada aca, porque no agregas algo?</p>
           </>
         )}
-        <button
-          onClick={() => {
-            console.log(getAllIceCreamDiscounts());
-            console.log(`total discount : ${getTotalDiscountAmmount()}`);
-          }}
-        >
-          Log
-        </button>
       </div>
     </main>
   );
