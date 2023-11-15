@@ -1,8 +1,9 @@
 import React from "react";
-
+import instagram from "../images/instagram.svg";
+import whatsapp from "../images/whatsapp.svg";
 export default function Footer() {
   return (
-    <section id="footer">
+    <footer>
       <div className="content">
         <div className="container">
           <div className="working-hours subcontainer">
@@ -20,8 +21,16 @@ export default function Footer() {
             <p>Whatsapp: 11-2169-0969</p>
           </div>
         </div>
+        <div className="icons">
+          <a href="https://www.instagram.com/dulce.tentacion.mp/">
+            <img src={instagram} alt="instagram" />
+          </a>
+          <a href="https://www.instagram.com/dulce.tentacion.mp/">
+            <img src={whatsapp} alt="whatsapp" />
+          </a>
+        </div>
         <div className="copyright">Copyright © 2023 | André Espinoza</div>
       </div>
-    </section>
+    </footer>
   );
 }
