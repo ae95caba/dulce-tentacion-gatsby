@@ -1,8 +1,8 @@
 ////////////
 
 import React, { useState } from "react";
-import WaveLeft from "../components/Images/WaveLeft";
-import WaveRight from "../components/Images/WaveRight";
+import CountUp from "react-countup";
+import ScrollTrigger from "react-scroll-trigger";
 import SimpleSlider from "../components/SlickCarousel";
 import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
 import {
@@ -12,81 +12,84 @@ import {
   Todos,
 } from "../components/Images/Promotional";
 export default function Home() {
+  const [startCounters, setStartCounters] = useState(false);
+
   return (
     <main id="home">
-      <div className="content">
+      <section className="hero">
         <FirstCarousel />
-        <h3>#DULCE-TENTACION</h3>
-
-        <div className="container">
-          <SimpleSlider speed={1000} autoplaySpeed={3000}>
-            <UnCuarto />
-            <UnCuarto2 />
-            <UnKilo />
-            <Todos />
-          </SimpleSlider>
+        <div className="content">
+          <h3>#DULCE-TENTACION</h3>
+          <div className="container">
+            <SimpleSlider speed={1000} autoplaySpeed={3000}>
+              <UnCuarto />
+              <UnCuarto2 />
+              <UnKilo />
+              <Todos />
+            </SimpleSlider>
+          </div>
+          <h3>#Promos</h3>
+          <div className="container">
+            <SimpleSlider speed={1000} autoplaySpeed={3500}>
+              <Kilo />
+              <Medio />
+              <Cuarto /> <Deals />
+            </SimpleSlider>
+          </div>
         </div>
-
-        <h3>#Promos</h3>
-
-        <div className="container">
-          <SimpleSlider speed={1000} autoplaySpeed={3500}>
-            <Kilo />
-            <Medio />
-            <Cuarto /> <Deals />
-          </SimpleSlider>
-        </div>
-      </div>
+      </section>
+      <section class="stats">
+        <ScrollTrigger
+          onEnter={() => setStartCounters(true)}
+          className="content"
+        >
+          <div class="container">
+            <p>
+              +
+              {startCounters && (
+                <CountUp end={4} duration={6} start={0} delay={0.5} />
+              )}
+            </p>
+            <p>Anios de en el rubro</p>
+          </div>
+          <div class="container">
+            <p>
+              +
+              {startCounters && (
+                <CountUp end={500} duration={7.5} start={0} delay={0.5} />
+              )}
+            </p>
+            <p>Clientes satisfechos</p>
+          </div>
+          <div class="container">
+            <p>
+              +
+              {startCounters && (
+                <CountUp end={20} duration={3} start={0} delay={0.5} />
+              )}
+            </p>
+            <p>Sabores diferentes</p>
+          </div>
+        </ScrollTrigger>
+      </section>
     </main>
   );
 }
 
 function FirstCarousel() {
+  const slide = (
+    <div className="logos-slide">
+      <span className="img"> Helado Artesanal de la mejor calidad</span>
+      <span className="img">Aceptamos Mercado Pago</span>
+      <span className="img">Delivery Sin Cargo por la zona</span>
+      <span className="img">De Lunes a Viernes de 20:30 a 24</span>
+      <span className="img">Sabado, Domindo y feriados de 12 a 24</span>
+    </div>
+  );
   return (
     <div className="first carousel">
-      <div className="logos-slide">
-        <span className="img"> Helado Artesanal de la mejor calidad</span>
-        {<span className="img">Aceptamos Mercado Pago</span>}
-        <span className="img">Delivery Sin Cargo por la zona</span>
-      </div>
-      <div className="logos-slide">
-        <span className="img"> Helado Artesanal de la mejor calidad</span>
-        {<span className="img">Aceptamos Mercado Pago</span>}
-        <span className="img">Delivery Sin Cargo por la zona</span>
-      </div>
+      {slide}
+      {slide}
     </div>
   );
 }
-
-/* function PromotionalCarousel() {
-  const slider = (
-    <div className="logos-slide">
-      <UnCuarto />
-      <UnCuarto2 />
-      <UnKilo />
-      <Todos />
-    </div>
-  );
-  return (
-    <div className="second carousel">
-      {slider}
-      {slider}
-    </div>
-  );
-}
-
-function PromotionsCarousel() {
-  const slider = (
-    <div className="logos-slide">
-      <Kilo />
-      <Medio />
-      <Cuarto />
-    </div>
-  );
-  return (
-    <div className="third carousel">
-      {slider} {slider}
-    </div>
-  );
-}
- */

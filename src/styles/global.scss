@@ -580,108 +580,123 @@ header {
 }
 
 #home {
-  display: flex;
-  justify-content: center;
+  $spacing: 6rem;
+  section.hero {
+    padding-bottom: $spacing;
 
-  .content {
+    h3 {
+      margin-left: 1rem;
+      margin-bottom: 1.5rem;
+      margin-top: $spacing;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+    }
+
+    .slick-slider {
+      width: 800px;
+    }
+    .container {
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    $image-radius: 1.5rem;
+
+    .container:before,
+    .container:after {
+      position: absolute;
+      top: 0;
+
+      width: 60px;
+      height: 100%;
+
+      content: "";
+      z-index: 2;
+    }
+    .container:before {
+      left: 0;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+    }
+
+    .container:after {
+      right: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    }
+
+    .gatsby-image-wrapper {
+      height: 14rem;
+
+      width: 14rem;
+
+      border-radius: $image-radius;
+      box-shadow: $cool-shadow;
+    }
+
+    .first.carousel {
+      overflow: hidden;
+      position: relative;
+      display: flex;
+
+      .logos-slide {
+        display: flex;
+        flex-direction: row;
+        animation: 20s slide infinite linear;
+
+        .img {
+          height: 50px;
+          color: $contras-color;
+          width: 36rem;
+          font-size: 1.2rem;
+          background-color: $accent-color;
+          display: flex;
+          justify-content: center;
+          letter-spacing: 0.2rem;
+          align-items: center;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    @keyframes slide {
+      from {
+        transform: translateX(0%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  }
+  section .content {
     max-width: 100%;
     width: $universal-width;
-    position: relative;
-    padding-bottom: 4rem;
+    margin: auto;
     overflow-x: hidden;
   }
-
-  h3 {
-    margin-left: 1rem;
-    margin-bottom: 1.5rem;
-    margin-top: 4rem;
-    letter-spacing: 0.3rem;
-    text-transform: uppercase;
-  }
-
-  .slick-slider {
-    width: 800px;
-  }
-  .container {
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  $timing-first: 10s;
-  $timing-second: 9s;
-  $timing-third: 6s;
-
-  $image-radius: 1.5rem;
-
-  .container:before,
-  .container:after {
-    position: absolute;
-    top: 0;
-
-    width: 60px;
-    height: 100%;
-
-    content: "";
-    z-index: 2;
-  }
-  .container:before {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-  }
-
-  .container:after {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-  }
-
-  .carousel {
-    overflow: hidden;
-    position: relative;
-    display: flex;
-
-    .logos-slide {
+  section.stats {
+    background-color: orange;
+    padding: $spacing 0rem;
+    .content {
       display: flex;
-      flex-direction: row;
-      .gatsby-image-wrapper {
-        margin-right: 1rem;
-      }
-    }
-  }
-
-  .gatsby-image-wrapper {
-    height: 14rem;
-
-    width: 14rem;
-
-    border-radius: $image-radius;
-    box-shadow: $cool-shadow;
-  }
-
-  .first.carousel {
-    .logos-slide {
-      animation: $timing-first slide infinite linear;
-
-      .img {
-        height: 50px;
-        color: $contras-color;
-        width: 30rem;
-        font-size: 1.2rem;
-        background-color: $accent-color;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: center;
+      gap: 3rem;
+      padding: 0rem 2rem;
+      .container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 900;
-        text-transform: uppercase;
-      }
-    }
-  }
+        flex-direction: column;
+        gap: 1rem;
 
-  @keyframes slide {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(-100%);
+        & p:first-of-type,
+        .counter {
+          font-weight: 900;
+          font-size: 2rem;
+        }
+        & p:last-of-type {
+          font-size: 1.2rem;
+        }
+      }
     }
   }
 }
@@ -838,6 +853,14 @@ header {
       .location {
         text-align: left !important;
       }
+    }
+  }
+}
+
+@media (max-width: 452px) {
+  section.stats {
+    .content {
+      justify-content: center !important;
     }
   }
 }
