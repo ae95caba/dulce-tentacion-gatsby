@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 $primary-color: #e8547e;
 $secondary-color: black;
 $contras-color: white;
@@ -16,6 +18,7 @@ $universal-width: 700px;
   margin: 0px;
   list-style: none;
   text-decoration: none;
+  font-family: Roboto;
 }
 
 img {
@@ -634,26 +637,25 @@ header {
 
     .first.carousel {
       overflow: hidden;
-      position: relative;
-      display: flex;
+      background-color: $accent-color;
+      white-space: nowrap;
+      padding: 1rem 0rem;
+      color: $contras-color;
+      font-size: 1.2rem;
+      letter-spacing: 0.2rem;
 
+      font-weight: 900;
+
+      text-transform: uppercase;
       .logos-slide {
-        display: flex;
-        flex-direction: row;
+        display: inline-flex;
+        justify-content: space-evenly;
+        min-width: 100%;
+
         animation: 20s slide infinite linear;
 
         .img {
-          height: 50px;
-          color: $contras-color;
-          width: 36rem;
-          font-size: 1.2rem;
-          background-color: $accent-color;
-          display: flex;
-          justify-content: center;
-          letter-spacing: 0.2rem;
-          align-items: center;
-          font-weight: 900;
-          text-transform: uppercase;
+          margin-left: 4rem;
         }
       }
     }
@@ -674,7 +676,7 @@ header {
     overflow-x: hidden;
   }
   section.stats {
-    background-color: orange;
+    background-color: #90caf9;
     padding: $spacing 0rem;
     .content {
       display: flex;
@@ -688,13 +690,27 @@ header {
         flex-direction: column;
         gap: 1rem;
 
-        & p:first-of-type,
-        .counter {
+        & p:first-of-type {
+          color: #face43;
           font-weight: 900;
+          text-align: center;
           font-size: 2rem;
+
+          span {
+            position: relative;
+          }
+          span::before {
+            content: "+";
+            position: absolute;
+            left: -1.5rem;
+          }
         }
-        & p:last-of-type {
+        p {
           font-size: 1.2rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          word-spacing: 4px;
+          font-weight: 600;
         }
       }
     }
@@ -847,20 +863,18 @@ header {
 }
 
 @media (max-width: 650px) {
+  section.stats {
+    .content {
+      justify-content: center !important;
+    }
+  }
+
   #footer {
     .container {
       grid-template-columns: 1fr !important;
       .location {
         text-align: left !important;
       }
-    }
-  }
-}
-
-@media (max-width: 452px) {
-  section.stats {
-    .content {
-      justify-content: center !important;
     }
   }
 }
