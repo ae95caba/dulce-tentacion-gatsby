@@ -676,9 +676,39 @@ header {
     overflow-x: hidden;
   }
   section.stats {
+    position: relative;
     background-color: $accent-color;
 
-    padding: 10rem 0rem;
+    padding: 12rem 0rem;
+    &:before {
+      position: absolute;
+
+      top: 0;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0), white);
+
+      width: 100%;
+      height: 60px;
+
+      content: "";
+      z-index: 2;
+    }
+    &:after {
+      position: absolute;
+
+      bottom: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        $primary-color
+      );
+
+      width: 100%;
+      height: 60px;
+
+      content: "";
+      z-index: 2;
+    }
+
     .content {
       display: flex;
       flex-wrap: wrap;

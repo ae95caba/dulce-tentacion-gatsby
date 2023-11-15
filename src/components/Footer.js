@@ -22,10 +22,18 @@ export default function Footer() {
           </div>
         </div>
         <div className="icons">
-          <a href="https://www.instagram.com/dulce.tentacion.mp/">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/dulce.tentacion.mp/"
+          >
             <img src={instagram} alt="instagram" />
           </a>
-          <a href="https://www.instagram.com/dulce.tentacion.mp/">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://api.whatsapp.com/send?phone=5491121690959&text=Hola%20vengo%20de%20la%20pagina%20web%20oficial%20!"
+          >
             <img src={whatsapp} alt="whatsapp" />
           </a>
         </div>
