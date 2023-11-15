@@ -50,7 +50,7 @@ export default function Home() {
                 <CountUp end={4} duration={6} start={0} delay={0.5} />
               )}
             </p>
-            <p>Años de en el rubro</p>
+            <p>Años en el rubro</p>
           </div>
           <div class="container">
             <p>
