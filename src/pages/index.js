@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import CountUp from "react-countup";
+import { Link } from "gatsby";
 import animationData from "../animations/delivery.json";
 import Lottie from "lottie-react";
 import ScrollTrigger from "react-scroll-trigger";
@@ -88,7 +89,9 @@ export default function Home() {
               loop={true}
             />
           </div>
-          <button>Pedi ya! 😋🍦</button>
+          <Link to="/catalogo">
+            <button>Pedi ya! 😋🍦</button>
+          </Link>
         </div>
       </section>
     </main>
