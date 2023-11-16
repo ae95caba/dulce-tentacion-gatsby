@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 $primary-color: #e8547e;
 $secondary-color: black;
 $contras-color: white;
@@ -18,7 +17,7 @@ $universal-width: 700px;
   margin: 0px;
   list-style: none;
   text-decoration: none;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
 }
 
 img {
@@ -764,20 +763,21 @@ header {
       content: "";
       z-index: 2;
     }
-    padding-top: 10rem;
-    padding-bottom: 5rem;
+    padding: 10rem 0rem;
 
     background-color: $primary-color;
     .content {
       padding: 0rem 2rem;
       p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 400;
-        color: $accent-color;
+        letter-spacing: 2px;
+        line-height: 3rem;
+        color: white;
         text-align: center;
-        word-spacing: 5px;
-
-        max-width: 66.66%;
+        word-spacing: 8px;
+        font-family: "Caveat", cursive;
+        max-width: 420px;
         margin: 0rem auto 3rem auto;
       }
     }

@@ -65,7 +65,6 @@ export default function Home() {
             <Kid1 />
             <Kid2 /> <Kid3 /> <Kid4 />
           </SimpleSlider>
-          <p></p>
         </div>
       </section>
       <section class="stats">
