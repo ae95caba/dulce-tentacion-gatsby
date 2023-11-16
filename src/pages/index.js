@@ -13,8 +13,6 @@ import {
 } from "../components/Images/Promotional";
 import { Kid1, Kid2, Kid3, Kid4 } from "../components/Images/Kids";
 export default function Home() {
-  const [startCounters, setStartCounters] = useState(false);
-
   return (
     <main id="home">
       <section className="hero">
@@ -68,37 +66,27 @@ export default function Home() {
         </div>
       </section>
       <section class="stats">
-        <ScrollTrigger
-          onEnter={() => setStartCounters(true)}
-          className="content"
-        >
-          <div class="container">
-            <p>
-              {startCounters && (
-                <CountUp end={4} duration={6} start={0} delay={0.5} />
-              )}
-            </p>
-            <p>Años en el rubro</p>
-          </div>
-          <div class="container">
-            <p>
-              {startCounters && (
-                <CountUp end={500} duration={7.5} start={0} delay={0.5} />
-              )}
-            </p>
-            <p>Clientes satisfechos</p>
-          </div>
-          <div class="container">
-            <p>
-              {startCounters && (
-                <CountUp end={20} duration={3} start={0} delay={0.5} />
-              )}
-            </p>
-            <p>Sabores diferentes</p>
-          </div>
-        </ScrollTrigger>
+        <div className="content">
+          <Counter value={4} text={"Años en el rubro"} duration={4} />
+          <Counter value={500} text={"Clientes satisfechos"} duration={5} />
+          <Counter value={20} text={"Sabores diferentes"} duration={6} />
+        </div>
       </section>
     </main>
+  );
+}
+
+function Counter({ value, duration, text }) {
+  const [startCounters, setStartCounters] = useState(false);
+  return (
+    <ScrollTrigger onEnter={() => setStartCounters(true)} className="container">
+      <p>
+        {startCounters && (
+          <CountUp end={value} duration={duration} start={0} delay={0.5} />
+        )}
+      </p>
+      <p>{text}</p>
+    </ScrollTrigger>
   );
 }
 
