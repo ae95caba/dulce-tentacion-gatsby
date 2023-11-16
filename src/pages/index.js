@@ -81,8 +81,10 @@ function Counter({ value, duration, text }) {
   return (
     <ScrollTrigger onEnter={() => setStartCounters(true)} className="container">
       <p>
-        {startCounters && (
+        {startCounters ? (
           <CountUp end={value} duration={duration} start={0} delay={0.5} />
+        ) : (
+          "0"
         )}
       </p>
       <p>{text}</p>
