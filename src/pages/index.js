@@ -1,9 +1,12 @@
 ////////////
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import CountUp from "react-countup";
+import animationData from "../animations/delivery.json";
+import Lottie from "lottie-react";
 import ScrollTrigger from "react-scroll-trigger";
 import SimpleSlider from "../components/SlickCarousel";
+import ShoppingCart from "../components/Images/ShoppingCart";
 import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
 import {
   UnCuarto,
@@ -11,8 +14,9 @@ import {
   UnKilo,
   Todos,
 } from "../components/Images/Promotional";
-import { Kid1, Kid2, Kid3, Kid4 } from "../components/Images/Kids";
+import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
 export default function Home() {
+  const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
       <section className="hero">
@@ -61,7 +65,7 @@ export default function Home() {
             fade={true}
           >
             <Kid1 />
-            <Kid2 /> <Kid3 /> <Kid4 />
+            <Kid2 /> <Kid3 /> <Kid4 /> <Kid5 /> <Kid6 />
           </SimpleSlider>
         </div>
       </section>
@@ -70,6 +74,21 @@ export default function Home() {
           <Counter value={4} text={"Años en el rubro"} duration={4} />
           <Counter value={500} text={"Clientes satisfechos"} duration={5} />
           <Counter value={20} text={"Sabores diferentes"} duration={6} />
+        </div>
+      </section>
+      <section className="call-to-action">
+        <div className="content">
+          <h2>Envios a Marcos Paz y Mariano Acosta</h2>
+          <div className="container">
+            <ShoppingCart />
+            <Lottie
+              lottieRef={deliveryAnimationRef}
+              animationData={animationData}
+              autoplay={true}
+              loop={true}
+            />
+          </div>
+          <button>Pedi ya! 😋🍦</button>
         </div>
       </section>
     </main>

@@ -583,6 +583,15 @@ header {
 
 #home {
   $motto-background: #9fd3dc;
+
+  .call-to-action,
+  .stats,
+  .motto {
+    .content {
+      padding: 0rem 2rem;
+    }
+  }
+
   section.hero {
     $spacing: 6rem;
     padding-bottom: $spacing;
@@ -669,6 +678,47 @@ header {
       }
     }
   }
+  section.call-to-action {
+    padding-top: 6rem;
+    padding-bottom: 10rem;
+    position: relative;
+
+    &:after {
+      position: absolute;
+
+      bottom: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        $primary-color
+      );
+
+      width: 100%;
+      height: 60px;
+
+      content: "";
+      z-index: 2;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      h2 {
+        font-size: 2rem;
+      }
+      button {
+        font-size: 2rem;
+        border-radius: 1rem;
+      }
+
+      .container {
+        display: flex;
+
+        align-items: center;
+      }
+    }
+  }
   section .content {
     max-width: 100%;
     width: $universal-width;
@@ -679,7 +729,8 @@ header {
     position: relative;
     background-color: $accent-color;
 
-    padding: 12rem 0rem;
+    padding-top: 12rem;
+    padding-bottom: 12rem;
     &:before {
       position: absolute;
 
@@ -700,11 +751,7 @@ header {
       position: absolute;
 
       bottom: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0),
-        $primary-color
-      );
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
 
       width: 100%;
       height: 60px;
@@ -719,7 +766,7 @@ header {
       justify-content: space-between;
       align-content: center;
       gap: 3rem;
-      padding: 0rem 2rem;
+
       .container {
         display: flex;
         flex-direction: column;
@@ -764,11 +811,11 @@ header {
       content: "";
       z-index: 2;
     }
-    padding: 10rem 0rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
 
     background-color: $motto-background;
     .content {
-      padding: 0rem 2rem;
       p {
         font-size: 2rem;
         font-weight: 400;

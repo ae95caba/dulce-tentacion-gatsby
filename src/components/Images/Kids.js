@@ -40,3 +40,23 @@ export function Kid4() {
     />
   );
 }
+
+export function Kid5() {
+  return (
+    <StaticImage
+      src="../../images/kids/5.jpg"
+      alt="kid with icecream"
+      placeholder="blurred"
+    />
+  );
+}
+
+export function Kid6() {
+  return (
+    <StaticImage
+      src="../../images/kids/6.jpg"
+      alt="kid with icecream"
+      placeholder="blurred"
+    />
+  );
+}
