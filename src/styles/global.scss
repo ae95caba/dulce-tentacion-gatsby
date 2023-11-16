@@ -582,6 +582,7 @@ header {
 }
 
 #home {
+  $motto-background: #9fd3dc;
   section.hero {
     $spacing: 6rem;
     padding-bottom: $spacing;
@@ -686,7 +687,7 @@ header {
       background: linear-gradient(
         to top,
         rgba(255, 255, 255, 0),
-        $primary-color
+        $motto-background
       );
 
       width: 100%;
@@ -765,7 +766,7 @@ header {
     }
     padding: 10rem 0rem;
 
-    background-color: $primary-color;
+    background-color: $motto-background;
     .content {
       padding: 0rem 2rem;
       p {
@@ -773,7 +774,7 @@ header {
         font-weight: 400;
         letter-spacing: 2px;
         line-height: 3rem;
-        color: white;
+
         text-align: center;
         word-spacing: 8px;
         font-family: "Caveat", cursive;
