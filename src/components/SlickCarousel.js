@@ -7,16 +7,18 @@ export default function SimpleSlider({
   children,
   speed,
   autoplaySpeed,
-  slidesToScroll,
+  slidesToShow,
+  fade,
 }) {
   var settings = {
     arrows: false,
+    fade: fade,
     dots: false,
     infinite: true,
     speed: speed,
     autoplay: true,
     autoplaySpeed: autoplaySpeed,
-    slidesToShow: slidesToScroll,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
   };
   return <Slider {...settings}>{children}</Slider>;

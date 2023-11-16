@@ -11,6 +11,7 @@ import {
   UnKilo,
   Todos,
 } from "../components/Images/Promotional";
+import { Kid1, Kid2, Kid3, Kid4 } from "../components/Images/Kids";
 export default function Home() {
   const [startCounters, setStartCounters] = useState(false);
 
@@ -22,7 +23,12 @@ export default function Home() {
         <div className="content">
           <h3>#DULCE-TENTACION</h3>
           <div className="container">
-            <SimpleSlider speed={1000} autoplaySpeed={3000} slidesToScroll={3}>
+            <SimpleSlider
+              speed={1000}
+              autoplaySpeed={3000}
+              slidesToShow={3}
+              fade={false}
+            >
               <UnCuarto />
               <UnCuarto2 />
               <UnKilo />
@@ -31,12 +37,35 @@ export default function Home() {
           </div>
           <h3>#Promos</h3>
           <div className="container">
-            <SimpleSlider speed={1000} autoplaySpeed={3500} slidesToScroll={3}>
+            <SimpleSlider
+              speed={1000}
+              autoplaySpeed={3500}
+              slidesToShow={3}
+              fade={false}
+            >
               <Kilo />
               <Medio />
               <Cuarto /> <Deals />
             </SimpleSlider>
           </div>
+        </div>
+      </section>
+      <section className="motto">
+        <div className="content">
+          <p>
+            No podes comprar felicidad, pero si podes comprar helado, lo que es
+            casi lo mismo! 😎
+          </p>
+          <SimpleSlider
+            speed={1000}
+            autoplaySpeed={3500}
+            slidesToShow={1}
+            fade={true}
+          >
+            <Kid1 />
+            <Kid2 /> <Kid3 /> <Kid4 />
+          </SimpleSlider>
+          <p></p>
         </div>
       </section>
       <section class="stats">
