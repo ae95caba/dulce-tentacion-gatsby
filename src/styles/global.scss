@@ -1040,10 +1040,9 @@ footer {
   }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 540px) {
   .cards-container {
-    width: fit-content;
-    margin: auto;
+    justify-content: center !important;
   }
 }
 
