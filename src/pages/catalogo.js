@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
+import { Link } from "gatsby";
+import Maid from "../components/Images/Maid";
 import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
 import { CatalogBanner } from "../components/Images/Banners";
@@ -13,15 +15,15 @@ export default function Shop(props) {
   return (
     <main id="catalog">
       <div className="content">
-        <div className="banner">
+        <section className="banner">
           <div className="container">
             <CatalogBanner />
             <h1>Catalogo</h1>
           </div>
 
           <h2>Añade productos a tu carrito</h2>
-        </div>
-        <div className="cards-container">
+        </section>
+        <section className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;
             return productData.outOfStock ? (
@@ -30,7 +32,16 @@ export default function Shop(props) {
               <Card key={`${productData.name}`} product={productData} />
             );
           })}
-        </div>
+        </section>
+        <section className="maid">
+          <Maid />
+          <div className="container">
+            <p>Finaliza tu pedido</p>{" "}
+            <Link to="/carrito">
+              <button>Aca 👇</button>
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );
