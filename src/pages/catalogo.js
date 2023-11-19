@@ -14,8 +14,12 @@ export default function Shop(props) {
     <main id="catalog">
       <div className="content">
         <div className="banner">
-          <CatalogBanner />
-          <h1>Catalogo</h1>
+          <div className="container">
+            <CatalogBanner />
+            <h1>Catalogo</h1>
+          </div>
+
+          <h2>Añade productos a tu carrito</h2>
         </div>
         <div className="cards-container">
           {products.map((product, index) => {
