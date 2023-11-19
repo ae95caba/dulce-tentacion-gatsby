@@ -232,32 +232,49 @@ header {
 }
 
 #catalog {
-  padding: 2rem 0rem 4rem 0rem;
+  padding: 2rem 2rem 4rem 2rem;
 
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
-  h1 {
-    text-align: center;
+  .content {
+    max-width: $universal-width;
   }
+
+  .banner {
+    position: relative;
+
+    margin-bottom: 2rem;
+    img {
+      aspect-ratio: 16/4;
+    }
+
+    h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      color: white;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   .cards-container {
     display: grid;
-    width: $universal-width;
 
-    justify-content: center;
+    gap: 2rem;
+    justify-content: space-between;
     grid-template-columns: repeat(auto-fit, 8rem);
 
-    gap: 2.3rem;
-
     .card {
-      $border-radius-value: 0.2rem;
       box-shadow: $cool-shadow;
+      overflow: hidden;
       width: 8rem;
       background-color: #e8547e;
       display: grid;
-      border-radius: $border-radius-value;
+      border-radius: 1rem;
       gap: 0.4rem;
       grid-template-rows: min-content min-content min-content;
 
@@ -273,8 +290,7 @@ header {
 
       button.to-cart {
         position: relative;
-        border-bottom-left-radius: $border-radius-value;
-        border-bottom-right-radius: $border-radius-value;
+
         padding: 0.4rem 0rem;
         span {
           margin-right: 1rem;
@@ -987,12 +1003,6 @@ footer {
   }
 }
 
-@media (max-width: 700px) {
-  .cards-container {
-    width: 320px !important;
-  }
-}
-
 @media (max-width: 800px) {
   footer {
     .container {
@@ -1027,6 +1037,13 @@ footer {
     & > .container > nav {
       display: none !important;
     }
+  }
+}
+
+@media (max-width: 376px) {
+  .cards-container {
+    width: fit-content;
+    margin: auto;
   }
 }
 

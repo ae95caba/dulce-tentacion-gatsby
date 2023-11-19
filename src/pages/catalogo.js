@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import Swal from "sweetalert2";
 import toCartIcon from "../images/to-cart.svg";
-
+import { CatalogBanner } from "../components/Images/Banners";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -12,8 +12,11 @@ export default function Shop(props) {
 
   return (
     <main id="catalog">
-      <>
-        <h1>Catalogo</h1>
+      <div className="content">
+        <div className="banner">
+          <CatalogBanner />
+          <h1>Catalogo</h1>
+        </div>
         <div className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;
@@ -24,7 +27,7 @@ export default function Shop(props) {
             );
           })}
         </div>
-      </>
+      </div>
     </main>
   );
 }
