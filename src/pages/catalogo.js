@@ -36,7 +36,7 @@ export default function Shop(props) {
         <section className="maid">
           <Maid />
           <div className="container">
-            <p>Finaliza tu pedido</p>{" "}
+            <p>Finaliza tu pedido</p>
             <Link to="/carrito">
               <button>Aca 👇</button>
             </Link>
@@ -71,9 +71,29 @@ function Card({ product }) {
       navigate(`/form?id=${product._id}`);
     }
   }
+  console.log(`aswdf`);
+  console.log(`product is : ${product.description}`);
   return (
     <div className="card">
       <GatsbyImage image={image} alt={product.name} />
+      {product.description && (
+        <button
+          className="info"
+          onClick={() => {
+            Swal.fire(
+              `${product.name} :`,
+              `${
+                product.description
+                  ? product.description
+                  : "No hay mas informacion acerca de este producto"
+              }`,
+              "info"
+            );
+          }}
+        >
+          ?
+        </button>
+      )}
 
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
@@ -99,6 +119,7 @@ export const query = graphql`
             }
           }
           outOfStock
+          description
           name
           imgUrl
           _id
