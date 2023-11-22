@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { zones } from "../logic/barrios";
-export default function DeliveryForm({
+export default function DeliverySection({
   handleSubmit,
   setDeliveryInfo,
   deliveryInfo,
@@ -33,13 +33,8 @@ export default function DeliveryForm({
   }
 
   return (
-    <form
-      noValidate
-      id="delivery-form"
-      autoComplete="on"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <div className="options">
+    <>
+      <section className="fullfillment-method options">
         <label
           onClick={() => {
             setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
@@ -75,10 +70,10 @@ export default function DeliveryForm({
             required
           />
         </label>
-      </div>
+      </section>
 
       {deliveryInfo.isChecked && (
-        <div id="delivery-info">
+        <div id="delivery-details">
           <div className="container">
             <select
               name="Barrio"
@@ -159,6 +154,6 @@ export default function DeliveryForm({
           ></textarea>
         </div>
       )}
-    </form>
+    </>
   );
 }

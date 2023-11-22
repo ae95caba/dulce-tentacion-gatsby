@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { createWhatsAppLink } from "../logic/whatsappLink";
 import questionMark from "../images/question-mark.svg";
 import CartItem from "../components/CartItem";
-import Checkout from "../components/Checkout";
-import DeliveryForm from "../components/DeliveryForm";
+import SummarySection from "../components/SummarySection";
+import DeliverySection from "../components/DeliverySection";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -164,17 +164,37 @@ export default function Cart() {
                 );
               })}
             </section>
-            <DeliveryForm
-              handleSubmit={handleSubmit}
-              deliveryInfo={deliveryInfo}
-              setDeliveryInfo={setDeliveryInfo}
-            />
-            <Checkout
-              deliveryInfo={deliveryInfo}
-              getDeliveryPrice={getDeliveryPrice}
-              getTotalPrice={getTotalPrice}
-              getAllIceCreamDiscounts={getAllIceCreamDiscounts}
-            />
+            <form
+              noValidate
+              id="checkout-form"
+              autoComplete="on"
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <DeliverySection
+                handleSubmit={handleSubmit}
+                deliveryInfo={deliveryInfo}
+                setDeliveryInfo={setDeliveryInfo}
+              />
+              <SummarySection
+                deliveryInfo={deliveryInfo}
+                getDeliveryPrice={getDeliveryPrice}
+                getTotalPrice={getTotalPrice}
+                getAllIceCreamDiscounts={getAllIceCreamDiscounts}
+              />
+              <section className="payment options">
+                <label className="option">
+                  <span>Efectivo</span>
+                  <input type="radio" name="payment" value="cash" />
+                </label>
+                <label className="option">
+                  <span>Transferencia</span>
+                  <input type="radio" name="payment" />
+                </label>
+              </section>
+              <button type="submit" form="checkout-form" value="transfer">
+                Comprar
+              </button>
+            </form>
           </>
         ) : (
           <>

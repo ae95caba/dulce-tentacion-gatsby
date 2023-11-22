@@ -3,7 +3,7 @@ import React from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
-export default function Checkout({
+export default function SummarySection({
   deliveryInfo,
   getTotalPrice,
   getDeliveryPrice,
@@ -12,7 +12,7 @@ export default function Checkout({
   const { getTotalItemsPrice } = useContext(GlobalContext);
 
   return (
-    <section className="checkout">
+    <section className="summary">
       <h3>Detalle: </h3>
 
       <div className="container">
@@ -36,10 +36,6 @@ export default function Checkout({
           <span>${getTotalPrice()}</span>
         </p>
       </div>
-
-      <button type="submit" form="delivery-form">
-        Comprar
-      </button>
     </section>
   );
 }
