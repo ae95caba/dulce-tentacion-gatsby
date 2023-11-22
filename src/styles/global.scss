@@ -506,7 +506,8 @@ header {
         .container {
           .error {
             display: none;
-            color: $accent-color;
+            color: red;
+            margin-top: 0.3rem;
           }
 
           input,
