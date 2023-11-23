@@ -128,6 +128,7 @@ export default function Cart() {
   function handleSubmit(e) {
     e.preventDefault();
     if (e.target.checkValidity()) {
+      /*    const  paymentMethod = form.elements.payment.value; */
       const messageData = {
         cartItems,
         deliveryInfo,
@@ -184,14 +185,19 @@ export default function Cart() {
               <section className="payment options">
                 <label className="option">
                   <span>Efectivo</span>
-                  <input type="radio" name="payment" value="cash" />
+                  <input type="radio" name="payment" value="cash" required />
                 </label>
                 <label className="option">
                   <span>Transferencia</span>
-                  <input type="radio" name="payment" />
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="transfer"
+                    required
+                  />
                 </label>
               </section>
-              <button type="submit" form="checkout-form" value="transfer">
+              <button type="submit" form="checkout-form">
                 Comprar
               </button>
             </form>
