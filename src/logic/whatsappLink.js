@@ -24,6 +24,7 @@ function createMessage({
   totalPrice,
   totalItemsPrice,
   totalDiscountAmmount,
+  paymentMethod,
 }) {
   function createCartItemsList() {
     let cartItemsList = "";
@@ -50,10 +51,12 @@ function createMessage({
   return `*Orden*:		
 ${createCartItemsList()}	
 
-*Productos: $${totalItemsPrice}*
-*Envio: $${deliveryInfo.price}*
-*Descuentos: $${totalDiscountAmmount}*
-*Total: $${totalPrice}*
+*Productos:* $${totalItemsPrice}
+*Envio:* $${deliveryInfo.price}
+*Descuentos:* $${totalDiscountAmmount}
+*Total:* $${totalPrice}
+
+*${paymentMethod == "cash" ? "Paga en efectivo" : "Paga con transferencia"}*
 
 ${
   deliveryInfo.isChecked

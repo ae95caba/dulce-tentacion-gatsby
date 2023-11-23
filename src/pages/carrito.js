@@ -10,6 +10,7 @@ import DeliverySection from "../components/DeliverySection";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
+  const [paymentMethod, setPaymentMethod] = useState(null);
 
   function getDeliveryPrice() {
     return deliveryInfo.isChecked && deliveryInfo.price
@@ -128,9 +129,10 @@ export default function Cart() {
   function handleSubmit(e) {
     e.preventDefault();
     if (e.target.checkValidity()) {
-      /*    const  paymentMethod = form.elements.payment.value; */
+      console.log(paymentMethod);
       const messageData = {
         cartItems,
+        paymentMethod,
         deliveryInfo,
         totalItemsPrice: getTotalItemsPrice(),
         totalPrice: getTotalPrice(),
@@ -185,7 +187,15 @@ export default function Cart() {
               <section className="payment options">
                 <label className="option">
                   <span>Efectivo</span>
-                  <input type="radio" name="payment" value="cash" required />
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="cash"
+                    required
+                    onClick={(e) => {
+                      setPaymentMethod(e.target.value);
+                    }}
+                  />
                 </label>
                 <label className="option">
                   <span>Transferencia</span>
@@ -194,6 +204,9 @@ export default function Cart() {
                     name="payment"
                     value="transfer"
                     required
+                    onClick={(e) => {
+                      setPaymentMethod(e.target.value);
+                    }}
                   />
                 </label>
               </section>
