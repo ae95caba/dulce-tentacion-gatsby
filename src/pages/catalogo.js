@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
+import { BannerSection } from "../components/BannerSection";
 import { Link } from "gatsby";
 import Maid from "../components/Images/Maid";
 import Swal from "sweetalert2";
@@ -15,14 +16,11 @@ export default function Shop(props) {
   return (
     <main id="catalog">
       <div className="content">
-        <section className="banner">
-          <div className="container">
-            <CatalogBanner />
-            <h1>Catalogo</h1>
-          </div>
-
-          <h2>Añade productos a tu carrito</h2>
-        </section>
+        <BannerSection
+          h2="Añade productos a tu carrito"
+          h1="Catalogo"
+          GatsbyImage={CatalogBanner}
+        />
         <section className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;

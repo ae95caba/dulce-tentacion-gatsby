@@ -14,7 +14,7 @@ export function CatalogBanner() {
 export function CartBanner() {
   return (
     <StaticImage
-      src="../../images/cashier.jpg"
+      src="../../images/cart-banner.jpg"
       alt="cashier"
       placeholder="blurred"
     />

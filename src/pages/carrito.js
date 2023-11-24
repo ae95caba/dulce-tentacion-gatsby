@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { CartBanner } from "../components/Images/Banners";
 import { useContext } from "react";
+
 import { createWhatsAppLink } from "../logic/whatsappLink";
 import AnimeGirldThinking from "../components/Images/AnimeGirlThinking";
 import CartItem from "../components/CartItem";
 import SummarySection from "../components/SummarySection";
 import DeliverySection from "../components/DeliverySection";
+import { BannerSection } from "../components/BannerSection";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -157,14 +159,12 @@ export default function Cart() {
   return (
     <main id="cart">
       <div className="content">
-        <section className="banner">
-          <div className="container">
-            <CartBanner />
-            <h1>Carrito</h1>
-          </div>
+        <BannerSection
+          h2="Aca podes finalizar tu compra"
+          h1="Carrito"
+          GatsbyImage={CartBanner}
+        />
 
-          <h2>Aca podes finalizar tu compra</h2>
-        </section>
         {cartItems.length > 0 ? (
           <>
             <div className="container">
