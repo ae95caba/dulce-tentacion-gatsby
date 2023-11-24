@@ -15,7 +15,17 @@ export function CartBanner() {
   return (
     <StaticImage
       src="../../images/cart-banner.jpg"
-      alt="cashier"
+      alt="anime styled ice cream shop from inside"
+      placeholder="blurred"
+    />
+  );
+}
+
+export function AboutUsBanner() {
+  return (
+    <StaticImage
+      src="../../images/about-us-banner.jpg"
+      alt="anime styled ice cream shop from outside"
       placeholder="blurred"
     />
   );

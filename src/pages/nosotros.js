@@ -1,9 +1,15 @@
 import React from "react";
+import { BannerSection } from "../components/BannerSection";
+import { AboutUsBanner } from "../components/Images/Banners";
 
 export default function We() {
   return (
     <main id="we">
-      <h1>Nosotros</h1>
+      <BannerSection
+        h1={"Nosotros"}
+        h2="Estamos para servirte"
+        GatsbyImage={AboutUsBanner}
+      />
       <h2>Helado Artesanal</h2>
       <p>
         Helado artesanal es sinónimo de <strong>calidad</strong>. Los helados
