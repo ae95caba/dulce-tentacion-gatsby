@@ -10,3 +10,13 @@ export function CatalogBanner() {
     />
   );
 }
+
+export function CartBanner() {
+  return (
+    <StaticImage
+      src="../../images/cashier.jpg"
+      alt="cashier"
+      placeholder="blurred"
+    />
+  );
+}

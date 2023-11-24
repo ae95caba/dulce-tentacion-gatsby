@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-
+import { CartBanner } from "../components/Images/Banners";
 import { useContext } from "react";
 import { createWhatsAppLink } from "../logic/whatsappLink";
-import questionMark from "../images/question-mark.svg";
+import AnimeGirldThinking from "../components/Images/AnimeGirlThinking";
 import CartItem from "../components/CartItem";
 import SummarySection from "../components/SummarySection";
 import DeliverySection from "../components/DeliverySection";
@@ -157,69 +157,78 @@ export default function Cart() {
   return (
     <main id="cart">
       <div className="content">
-        <h1>Tu carrito</h1>
+        <section className="banner">
+          <div className="container">
+            <CartBanner />
+            <h1>Carrito</h1>
+          </div>
+
+          <h2>Aca podes finalizar tu compra</h2>
+        </section>
         {cartItems.length > 0 ? (
           <>
-            <section className="cart-items">
-              {cartItems.map((cartItem, index) => {
-                return (
-                  <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
-                );
-              })}
-            </section>
-            <form
-              noValidate
-              id="checkout-form"
-              autoComplete="on"
-              onSubmit={(e) => handleSubmit(e)}
-            >
-              <DeliverySection
-                handleSubmit={handleSubmit}
-                deliveryInfo={deliveryInfo}
-                setDeliveryInfo={setDeliveryInfo}
-              />
-              <SummarySection
-                deliveryInfo={deliveryInfo}
-                getDeliveryPrice={getDeliveryPrice}
-                getTotalPrice={getTotalPrice}
-                getAllIceCreamDiscounts={getAllIceCreamDiscounts}
-              />
-              <section className="payment options">
-                <label className="option">
-                  <span>Efectivo</span>
-                  <input
-                    type="radio"
-                    name="payment"
-                    value="cash"
-                    required
-                    onClick={(e) => {
-                      setPaymentMethod(e.target.value);
-                    }}
-                  />
-                </label>
-                <label className="option">
-                  <span>Transferencia</span>
-                  <input
-                    type="radio"
-                    name="payment"
-                    value="transfer"
-                    required
-                    onClick={(e) => {
-                      setPaymentMethod(e.target.value);
-                    }}
-                  />
-                </label>
+            <div className="container">
+              <section className="cart-items">
+                {cartItems.map((cartItem, index) => {
+                  return (
+                    <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
+                  );
+                })}
               </section>
-              <button type="submit" form="checkout-form">
-                Comprar
-              </button>
-            </form>
+              <form
+                noValidate
+                id="checkout-form"
+                autoComplete="on"
+                onSubmit={(e) => handleSubmit(e)}
+              >
+                <DeliverySection
+                  handleSubmit={handleSubmit}
+                  deliveryInfo={deliveryInfo}
+                  setDeliveryInfo={setDeliveryInfo}
+                />
+                <SummarySection
+                  deliveryInfo={deliveryInfo}
+                  getDeliveryPrice={getDeliveryPrice}
+                  getTotalPrice={getTotalPrice}
+                  getAllIceCreamDiscounts={getAllIceCreamDiscounts}
+                />
+                <section className="payment options">
+                  <label className="option">
+                    <span>Efectivo</span>
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="cash"
+                      required
+                      onClick={(e) => {
+                        setPaymentMethod(e.target.value);
+                      }}
+                    />
+                  </label>
+                  <label className="option">
+                    <span>Transferencia</span>
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="transfer"
+                      required
+                      onClick={(e) => {
+                        setPaymentMethod(e.target.value);
+                      }}
+                    />
+                  </label>
+                </section>
+                <button type="submit" form="checkout-form">
+                  Comprar
+                </button>
+              </form>
+            </div>
           </>
         ) : (
-          <>
-            <img className="question" src={questionMark} />
-            <p id="empty">No hay nada aca, porque no agregas algo?</p>
-          </>
+          <div className="empty">
+            <p>No hay nada aca, porque no agregas algo?</p>
+            <AnimeGirldThinking />
+          </div>
         )}
       </div>
     </main>

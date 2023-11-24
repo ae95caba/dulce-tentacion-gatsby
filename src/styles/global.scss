@@ -232,6 +232,36 @@ header {
   grid-template-rows: min-content min-content 1fr;
 }
 
+.banner {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  .container {
+    position: relative;
+    img {
+      aspect-ratio: 16/4;
+    }
+
+    h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: min(10vw, 4rem);
+      text-align: center;
+      color: white;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  h2 {
+    background-color: black;
+    color: white;
+    padding: 0.5rem;
+    font-size: min(4vw, 1.5rem);
+    text-align: center;
+  }
+}
+
 #catalog {
   padding: 2rem 2rem 0rem 2rem;
 
@@ -242,36 +272,6 @@ header {
 
   .content {
     max-width: $universal-width;
-  }
-
-  .banner {
-    margin-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    .container {
-      position: relative;
-      img {
-        aspect-ratio: 16/4;
-      }
-
-      h1 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: min(10vw, 4rem);
-        text-align: center;
-        color: white;
-        transform: translate(-50%, -50%);
-      }
-    }
-
-    h2 {
-      background-color: black;
-      color: white;
-      padding: 0.5rem;
-      font-size: min(4vw, 1.5rem);
-      text-align: center;
-    }
   }
 
   .maid {
@@ -382,21 +382,37 @@ header {
 }
 
 #cart {
-  display: flex;
-  padding: 2rem 0rem;
-  justify-content: center;
+  padding: 2rem 2rem 0rem 2rem;
+
   & > .content {
     background-color: white;
     font-weight: 500;
+    margin: auto;
+    max-width: $universal-width;
     $gap: 1rem;
-
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: $gap * 2;
 
-    .question {
-      margin: auto;
-      width: 10rem;
+    .empty {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+      p {
+        font-family: "Caveat", cursive;
+        font-size: 2rem;
+      }
+      img {
+        width: 66.66%;
+      }
+    }
+
+    & > .container {
+      display: flex;
+      flex-direction: column;
+      gap: $gap * 2;
+      margin-bottom: 2rem;
     }
 
     .cart-items {
