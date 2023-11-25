@@ -9,6 +9,7 @@ import CartItem from "../components/CartItem";
 import SummarySection from "../components/SummarySection";
 import DeliverySection from "../components/DeliverySection";
 import { BannerSection } from "../components/BannerSection";
+import SadShoppingCart from "../components/Images/SadShoppingCart";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -226,6 +227,7 @@ export default function Cart() {
           </>
         ) : (
           <div className="empty">
+            <SadShoppingCart />
             <p>No hay nada aca, porque no agregas algo?</p>
             <AnimeGirldThinking />
           </div>

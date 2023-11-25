@@ -395,16 +395,25 @@ header {
     $gap: 1rem;
     @include singleSectionPageContent();
     .empty {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
+      display: grid;
+      grid-template-rows: auto auto auto;
+      justify-content: center;
+      gap: 1.2rem;
+
+      .gatsby-image-wrapper:first-of-type {
+        width: 6rem;
+        margin: auto;
+      }
+      .gatsby-image-wrapper:nth-of-type(2) {
+        img {
+          width: 12rem;
+
+          margin-right: auto;
+        }
+      }
       p {
         font-family: "Caveat", cursive;
         font-size: 2rem;
-      }
-      img {
-        width: 66.66%;
       }
     }
 
