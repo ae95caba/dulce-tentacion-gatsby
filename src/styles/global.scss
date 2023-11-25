@@ -1093,6 +1093,9 @@ footer {
     font-weight: 900;
     font-size: 0.85rem;
     line-height: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     p:nth-of-type(2),
     a {
