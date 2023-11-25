@@ -681,6 +681,7 @@ header {
 
 .open-close-sign {
   position: fixed;
+  z-index: 9;
   bottom: 5%;
   display: flex;
   width: 6.5rem;
