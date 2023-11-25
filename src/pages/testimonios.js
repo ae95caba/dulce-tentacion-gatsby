@@ -6,6 +6,8 @@ import {
   ThirdAvatar,
   FourthAvatar,
 } from "../components/Images/Avatars";
+import { BannerSection } from "../components/BannerSection";
+import { ReviewsBanner } from "../components/Images/Banners";
 
 const reviewsArr = [
   {
@@ -39,17 +41,18 @@ const reviewsArr = [
 export default function Reviews() {
   return (
     <main id="reviews">
-      <div className="container">
-        <h1>Testimonios</h1>
-        <p className="description">
-          Nuestros clientes han disfrutrado nuestro producto y quieren compartir
-          sus experiencias con vos.
-        </p>
-      </div>
-      <div className="container">
-        {reviewsArr.map((review) => (
-          <Review review={review} />
-        ))}
+      <div className="content">
+        <BannerSection
+          h1={"Testimonios"}
+          h2="Palabras de algunos de nuestros clientes"
+          GatsbyImage={ReviewsBanner}
+        />
+
+        <div className="container">
+          {reviewsArr.map((review) => (
+            <Review review={review} />
+          ))}
+        </div>
       </div>
     </main>
   );

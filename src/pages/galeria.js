@@ -1,5 +1,5 @@
 import React from "react";
-import { CatalogBanner } from "../components/Images/Banners";
+import { GalleryBanner } from "../components/Images/Banners";
 import {
   Sambayon,
   DulceBombon,
@@ -16,7 +16,7 @@ export default function Gallery() {
         <BannerSection
           h1="Galeria"
           h2="El detras de camaras"
-          GatsbyImage={CatalogBanner}
+          GatsbyImage={GalleryBanner}
         />
         <div className="gallery-container">
           <Sambayon />

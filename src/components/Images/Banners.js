@@ -21,6 +21,26 @@ export function CartBanner() {
   );
 }
 
+export function ReviewsBanner() {
+  return (
+    <StaticImage
+      src="../../images/reviews-banner.jpeg"
+      alt="anime styled street ice cream shop  "
+      placeholder="blurred"
+    />
+  );
+}
+
+export function GalleryBanner() {
+  return (
+    <StaticImage
+      src="../../images/gallery-banner.jpeg"
+      alt="tokyo in anime style  "
+      placeholder="blurred"
+    />
+  );
+}
+
 export function AboutUsBanner() {
   return (
     <StaticImage
