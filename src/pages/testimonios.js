@@ -44,7 +44,7 @@ export default function Reviews() {
       <div className="content">
         <BannerSection
           h1={"Testimonios"}
-          h2="Palabras de algunos de nuestros clientes"
+          h2="de algunos de nuestros clientes"
           GatsbyImage={ReviewsBanner}
         />
 

@@ -15,7 +15,7 @@ export default function Gallery() {
       <div className="content">
         <BannerSection
           h1="Galeria"
-          h2="El detras de camaras"
+          h2="Fotos 100% reales"
           GatsbyImage={GalleryBanner}
         />
         <div className="gallery-container">
