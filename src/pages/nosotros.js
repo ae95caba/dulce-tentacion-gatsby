@@ -1,6 +1,7 @@
 import React from "react";
 import { BannerSection } from "../components/BannerSection";
 import { AboutUsBanner } from "../components/Images/Banners";
+import CuteAnimeGirl from "../components/Images/CuteAnimeGirl";
 
 export default function We() {
   return (
@@ -8,14 +9,14 @@ export default function We() {
       <div className="content">
         <BannerSection
           h1={"Nosotros"}
-          h2="Estamos para servirte"
+          h2="El mejor helado artesanal"
           GatsbyImage={AboutUsBanner}
         />
-        <h2>Helado Artesanal</h2>
+        <h2>El helado Artesanal 👍 </h2>
         <p>
-          Helado artesanal es sinónimo de <strong>calidad</strong>. Los helados
-          artesanales se elaboran en un obrador, básicamente con procedimientos
-          manuales. En su elaboración se emplea únicamente
+          Es sinónimo de <strong>calidad</strong>. Los helados artesanales se
+          elaboran en un obrador, básicamente con procedimientos manuales. En su
+          elaboración se emplea únicamente
           <strong> materia prima fresca y local</strong>, y al contrario de los
           helados industriales, no se utilizan saborizantes, colorantes, ni
           conservantes.
@@ -26,12 +27,12 @@ export default function We() {
           cremoso y con mucho más cuerpo que un helado industrial.
           Nutricionalmente nos aporta calcio, aminoácidos y vitaminas.
         </p>
-        <h2>Helado Industrial</h2>
+        <h2>El helado Industrial 👎</h2>
         <p>
-          Son los helados elaborados en plantas industriales en cuya producción
-          se usan colorantes y saborizantes para realzar su aspecto y sabor. El
-          heladero industrial busca fabricar un producto con el menor coste
-          posible, el objetivo es maximizar la rentabilidad. Por eso se
+          Son elaborados en plantas industriales en cuya producción se usan
+          colorantes y saborizantes para realzar su aspecto y sabor. El heladero
+          industrial busca fabricar un producto con el menor coste posible, el
+          objetivo es maximizar la rentabilidad. Por eso se
           <strong> utilizan ingredientes de menor calidad</strong> y
           procedimientos como los siguientes: se sustituye la leche por sólido
           lácteo, la nata por grasa de coco, y sobre todo{" "}
@@ -47,7 +48,10 @@ export default function We() {
           </strong>{" "}
           ya que hablamos de calorías vacías.
         </p>
-        <p>Por eso nosotros apostamos por la calidad del helado artesanal.</p>
+        <div className="container">
+          <p>Por eso nosotros apostamos por la calidad del helado artesanal.</p>
+          <CuteAnimeGirl />
+        </div>
       </div>
     </main>
   );

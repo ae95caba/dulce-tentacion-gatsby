@@ -951,34 +951,44 @@ header {
 }
 
 #we {
-  padding: 2rem;
+  padding: 2rem 2rem 0rem 2rem;
 
   .content {
     @include singleSectionPageContent();
-  }
-  h1 {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  h2 {
-    margin-bottom: 1rem;
-    color: $primary-color;
-  }
-  p {
-    margin-bottom: 2rem;
-    line-height: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    strong {
-      font-weight: 900;
+    & > .container:last-of-type {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-weight: 900;
+        width: 15rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        line-height: 1.8rem;
+      }
+      .gatsby-image-wrapper {
+        width: 15rem;
+      }
     }
-  }
-  P:last-child {
-    font-weight: 900;
-
-    text-transform: uppercase;
-    letter-spacing: 0.4rem;
-    line-height: 1.8rem;
+    h1 {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1rem;
+      color: $primary-color;
+    }
+    p {
+      margin-bottom: 2rem;
+      line-height: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      strong {
+        font-weight: 900;
+      }
+    }
   }
 }
 
@@ -1036,11 +1046,10 @@ footer {
   color: $contras-color;
   text-align: center;
   box-shadow: $cool-shadow;
-  display: flex;
-  justify-content: center;
+
   text-align: left;
   .content {
-    width: $universal-width;
+    max-width: $universal-width;
     padding: 3rem 1rem;
     display: flex;
     flex-direction: column;
@@ -1076,12 +1085,18 @@ footer {
   .copyright {
     //display: none;
     grid-column: 1/4;
+
     text-align: center;
     letter-spacing: 2px;
     word-spacing: 4px;
     font-weight: 900;
     font-size: 0.85rem;
     line-height: 1.6rem;
+
+    p:nth-of-type(2),
+    a {
+      word-break: break-all;
+    }
   }
 }
 

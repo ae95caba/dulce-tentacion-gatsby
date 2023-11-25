@@ -37,7 +37,13 @@ export default function Footer() {
             <img src={whatsapp} alt="whatsapp" />
           </a>
         </div>
-        <div className="copyright">Copyright © 2023 | André Espinoza</div>
+        <div className="copyright">
+          <p>Copyright © 2023 | André Espinoza</p>
+          <a href="https://andreespinozadev.netlify.app/">
+            andreespinozadev.netlify.app
+          </a>
+          <p>andre.espinoza@estudiantes.unahur.edu.ar</p>
+        </div>
       </div>
     </footer>
   );
