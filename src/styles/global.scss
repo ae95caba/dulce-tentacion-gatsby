@@ -718,7 +718,7 @@ header {
     .container:after {
       position: absolute;
       top: 0;
-
+      pointer-events: none;
       width: 60px;
       height: 100%;
 
