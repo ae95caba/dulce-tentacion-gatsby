@@ -4,6 +4,7 @@ import Header from "./Header";
 import useSiteMetadata from "../hooks/use-sitemMetadata";
 import Footer from "./Footer";
 import "../styles/global.scss"; // Import the global CSS file
+import OpenCloseSign from "./OpenCloseSign";
 
 export default function Layout({ children }) {
   const { title, description } = useSiteMetadata();
@@ -17,6 +18,7 @@ export default function Layout({ children }) {
       <Header />
       {children}
       <Footer />
+      <OpenCloseSign />
     </>
   );
 }

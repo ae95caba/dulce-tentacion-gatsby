@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sofia&display=swap");
 $primary-color: #e8547e;
 $secondary-color: black;
 $contras-color: white;
@@ -676,6 +676,30 @@ header {
     .gatsby-image-wrapper {
       width: 10rem;
     }
+  }
+}
+
+.open-close-sign {
+  position: fixed;
+  bottom: 5%;
+  display: flex;
+  width: 6.5rem;
+  height: 3rem;
+  right: 5%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  box-shadow: $cool-shadow;
+  text-transform: uppercase;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: greenyellow;
+    text-shadow: 0 0 3px greenyellow, 0 0 5px greenyellow, 0 0 10px greenyellow,
+      0 0 21px greenyellow;
+    font-family: "Sofia", cursive;
+    letter-spacing: 2px;
   }
 }
 
