@@ -421,7 +421,10 @@ header {
       display: flex;
       flex-direction: column;
       gap: $gap * 2;
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 2rem;
+      width: fit-content;
     }
 
     .cart-items {

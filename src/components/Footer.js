@@ -8,8 +8,8 @@ export default function Footer() {
         <div className="container">
           <div className="working-hours subcontainer">
             <h4>Horarios de atencion</h4>
-            <p>Lunes a Viernes de 19 a 24</p>
-            <p>Sabados y Domingos de 12 a 24</p>
+            <p>Lunes a Viernes de 20:30 a 24</p>
+            <p>Sabados y Domingos de 13 a 24</p>
           </div>
           <div className="location subcontainer">
             <h4>Ubicacion</h4>
