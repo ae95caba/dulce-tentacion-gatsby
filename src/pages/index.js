@@ -20,9 +20,8 @@ export default function Home() {
   const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
+      <FirstCarousel />
       <section className="hero">
-        <FirstCarousel />
-
         <div className="content">
           <h3>#DULCE-TENTACION</h3>
           <div className="container">

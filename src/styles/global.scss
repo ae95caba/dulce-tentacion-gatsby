@@ -7,19 +7,24 @@ $secondary-filter: invert(99%) sepia(0%) saturate(7500%) hue-rotate(101deg)
   brightness(108%) contrast(100%);
 $cool-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
 $universal-width: 700px;
-@mixin singleSectionPageContent {
+@mixin mainContent {
   margin: auto;
   max-width: $universal-width;
-
+  overflow-x: hidden;
   display: flex;
 
   flex-direction: column;
 }
 
 //
-@mixin carouselSection {
+@mixin carouselsSection {
   $spacing: 6rem;
   padding-bottom: $spacing;
+  .slick-list {
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-left: 1rem;
+  }
 
   h3 {
     margin-left: 1rem;
@@ -33,11 +38,8 @@ $universal-width: 700px;
     width: 800px;
   }
   .container {
-    padding-left: 1rem;
     position: relative;
   }
-
-  $image-radius: 1.5rem;
 
   .container:before,
   .container:after {
@@ -65,7 +67,7 @@ $universal-width: 700px;
 
     width: 14rem;
 
-    border-radius: $image-radius;
+    border-radius: 1.5rem;
     box-shadow: $cool-shadow;
   }
 }
@@ -331,7 +333,7 @@ header {
   padding: 2rem 2rem 0rem 2rem;
 
   .content {
-    @include singleSectionPageContent();
+    @include mainContent();
   }
 
   .maid {
@@ -448,7 +450,7 @@ header {
     font-weight: 500;
 
     $gap: 1rem;
-    @include singleSectionPageContent();
+    @include mainContent();
     .empty {
       display: grid;
       grid-template-rows: auto auto auto;
@@ -655,7 +657,7 @@ header {
   padding: 2rem 2rem 4rem 2rem;
 
   & > .content {
-    @include singleSectionPageContent();
+    @include mainContent();
     gap: 3rem;
   }
   .description {
@@ -715,7 +717,7 @@ header {
 #gallery {
   padding: 2rem 2rem 4rem 2rem;
   .content {
-    @include singleSectionPageContent();
+    @include mainContent();
   }
   h1 {
     margin-bottom: 2rem;
@@ -764,7 +766,12 @@ header {
 
 #kiosko {
   & > .content {
-    @include carouselSection();
+    @include mainContent();
+    @include carouselsSection();
+    .gatsby-image-wrapper {
+      border-radius: 0px;
+      box-shadow: none;
+    }
   }
 }
 
@@ -781,40 +788,40 @@ header {
     }
   }
 
-  section.hero {
-    @include carouselSection();
-    .first.carousel {
-      overflow: hidden;
-      background-color: $accent-color;
-      white-space: nowrap;
-      padding: 1rem 0rem;
-      color: $contras-color;
-      font-size: 1.2rem;
-      letter-spacing: 0.2rem;
+  .first.carousel {
+    overflow: hidden;
+    background-color: $accent-color;
+    white-space: nowrap;
+    padding: 1rem 0rem;
+    color: $contras-color;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
 
-      font-weight: 900;
+    font-weight: 900;
 
-      text-transform: uppercase;
-      @keyframes slide {
-        from {
-          transform: translateX(0%);
-        }
-        to {
-          transform: translateX(-100%);
-        }
+    text-transform: uppercase;
+    @keyframes slide {
+      from {
+        transform: translateX(0%);
       }
-      .logos-slide {
-        display: inline-flex;
-        justify-content: space-evenly;
-        min-width: 100%;
-
-        animation: 20s slide infinite linear;
-
-        .img {
-          margin-left: 4rem;
-        }
+      to {
+        transform: translateX(-100%);
       }
     }
+    .logos-slide {
+      display: inline-flex;
+      justify-content: space-evenly;
+      min-width: 100%;
+
+      animation: 20s slide infinite linear;
+
+      .img {
+        margin-left: 4rem;
+      }
+    }
+  }
+  section.hero {
+    @include carouselsSection();
   }
   section.call-to-action {
     background-color: $call-to-action-background;
@@ -861,11 +868,8 @@ header {
       }
     }
   }
-  section .content {
-    max-width: 100%;
-    width: $universal-width;
-    margin: auto;
-    overflow-x: hidden;
+  .content {
+    @include mainContent();
   }
   section.stats {
     position: relative;
@@ -992,7 +996,7 @@ header {
   padding: 2rem 2rem 0rem 2rem;
 
   .content {
-    @include singleSectionPageContent();
+    @include mainContent();
     & > .container:last-of-type {
       display: flex;
       flex-wrap: wrap;

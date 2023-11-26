@@ -14,7 +14,7 @@ export default function Kiosko() {
   return (
     <main id="kiosko">
       <div className="content">
-        <h3>#DULCE-TENTACION</h3>
+        <h3>#SNACKS</h3>
         <div className="container">
           <SimpleSlider
             speed={1000}
@@ -31,7 +31,7 @@ export default function Kiosko() {
             <Krachitos />
           </SimpleSlider>
         </div>
-        <h3>#Promos</h3>
+        <h3>#BEBIDAS</h3>
         <div className="container">
           <SimpleSlider
             speed={1000}
