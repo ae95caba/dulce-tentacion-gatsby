@@ -16,6 +16,61 @@ $universal-width: 700px;
   flex-direction: column;
 }
 
+//
+@mixin carouselSection {
+  $spacing: 6rem;
+  padding-bottom: $spacing;
+
+  h3 {
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
+    margin-top: $spacing;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  .slick-slider {
+    width: 800px;
+  }
+  .container {
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  $image-radius: 1.5rem;
+
+  .container:before,
+  .container:after {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    width: 60px;
+    height: 100%;
+
+    content: "";
+    z-index: 2;
+  }
+  .container:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  .container:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+
+  .gatsby-image-wrapper {
+    height: 14rem;
+
+    width: 14rem;
+
+    border-radius: $image-radius;
+    box-shadow: $cool-shadow;
+  }
+}
+//
+
 *,
 *::after,
 *::before {
@@ -707,6 +762,12 @@ header {
   }
 }
 
+#kiosko {
+  & > .content {
+    @include carouselSection();
+  }
+}
+
 #home {
   $motto-background: #9fd3dc;
   $call-to-action-background: #ef5350;
@@ -721,57 +782,7 @@ header {
   }
 
   section.hero {
-    $spacing: 6rem;
-    padding-bottom: $spacing;
-
-    h3 {
-      margin-left: 1rem;
-      margin-bottom: 1.5rem;
-      margin-top: $spacing;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
-    }
-
-    .slick-slider {
-      width: 800px;
-    }
-    .container {
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    $image-radius: 1.5rem;
-
-    .container:before,
-    .container:after {
-      position: absolute;
-      top: 0;
-      pointer-events: none;
-      width: 60px;
-      height: 100%;
-
-      content: "";
-      z-index: 2;
-    }
-    .container:before {
-      left: 0;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-    }
-
-    .container:after {
-      right: 0;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-    }
-
-    .gatsby-image-wrapper {
-      height: 14rem;
-
-      width: 14rem;
-
-      border-radius: $image-radius;
-      box-shadow: $cool-shadow;
-    }
-
+    @include carouselSection();
     .first.carousel {
       overflow: hidden;
       background-color: $accent-color;
@@ -784,6 +795,14 @@ header {
       font-weight: 900;
 
       text-transform: uppercase;
+      @keyframes slide {
+        from {
+          transform: translateX(0%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
       .logos-slide {
         display: inline-flex;
         justify-content: space-evenly;
@@ -794,15 +813,6 @@ header {
         .img {
           margin-left: 4rem;
         }
-      }
-    }
-
-    @keyframes slide {
-      from {
-        transform: translateX(0%);
-      }
-      to {
-        transform: translateX(-100%);
       }
     }
   }
