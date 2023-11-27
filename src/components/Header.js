@@ -6,7 +6,9 @@ import cartIcon from "../images/cart.svg";
 import Logo from "./Images/Logo";
 import animationData from "../animations/hamburger-menu.json";
 import Lottie from "lottie-react";
-const tabsObj = ["Catalogo", "Nosotros", "Galeria", "Testimonios"];
+
+const tabsObj = ["Catalogo", "Kiosko", "Nosotros", "Galeria", "Testimonios"];
+
 export default function Header() {
   const hambugerAnimationRef = useRef(null);
   return (

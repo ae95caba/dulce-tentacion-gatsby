@@ -8,6 +8,16 @@ import {
   Morochitas,
   Mantecadas,
 } from "../components/Images/Snacks";
+import {
+  CocaCola,
+  Baggio,
+  DrLemon,
+  FrizzeBlue,
+  BrahmaChops,
+  Manaos,
+  Smirnoff,
+  SpeedXL,
+} from "../components/Images/Drinks";
 import SimpleSlider from "../components/SlickCarousel";
 
 export default function Kiosko() {
@@ -39,13 +49,14 @@ export default function Kiosko() {
             slidesToShow={3}
             fade={false}
           >
-            <DonSatur />
-            <Morochitas />
-            <Mantecadas />
-            <Marmoladas />
-            <Pitusas />
-            <SurtidasBagley />
-            <Krachitos />
+            <Baggio />
+            <CocaCola />
+            <DrLemon />
+            <FrizzeBlue />
+            <BrahmaChops />
+            <Manaos />
+            <Smirnoff />
+            <SpeedXL />
           </SimpleSlider>
         </div>
       </div>
