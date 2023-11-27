@@ -23,9 +23,11 @@ export default function OpenCloseSign() {
         (currentDay >= 1 &&
           currentDay <= 5 &&
           currentHour >= weekdaysOpeningHour) ||
-        (currentDay >= 6 &&
-          currentDay <= 7 &&
-          currentHour >= weekendsOpeningHour);
+        currentDay === 6 ||
+        (currentDay === 0 && currentHour >= weekendsOpeningHour);
+      /* 
+      console.log(`is open is : ${isStoreOpen}`);
+      console.log(`current day and hour is ${currentDay} , ${currentHour}`); */
 
       setIsOpen(isStoreOpen);
     };
