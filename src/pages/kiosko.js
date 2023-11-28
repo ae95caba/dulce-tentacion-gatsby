@@ -20,7 +20,7 @@ import {
 } from "../components/Images/Drinks";
 import SimpleSlider from "../components/SlickCarousel";
 import { BannerSection } from "../components/BannerSection";
-import { CatalogBanner } from "../components/Images/Banners";
+import { KioskoBanner } from "../components/Images/Banners";
 
 export default function Kiosko() {
   return (
@@ -28,8 +28,8 @@ export default function Kiosko() {
       <div className="content">
         <BannerSection
           h1={"Kiosko"}
-          h2="afasdfas asfd"
-          GatsbyImage={CatalogBanner}
+          h2="Precios por whatsapp"
+          GatsbyImage={KioskoBanner}
         />
         <h3>SNACKS</h3>
         <div className="container">

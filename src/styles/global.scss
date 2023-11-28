@@ -756,23 +756,24 @@ header {
 
   .content {
     @include mainContent();
+    .banner {
+      padding: 0rem 2rem;
+    }
+    h3 {
+      font-family: "Caveat", cursive;
+      color: $primary-color;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
     & > .container {
       @include carouselsContainer();
-    }
-  }
-  .banner {
-    padding: 0rem 2rem;
-  }
-  h3 {
-    font-family: "Caveat", cursive;
-    color: $primary-color;
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  .slick-slider {
-    .gatsby-image-wrapper {
-      box-shadow: none !important;
+      .slick-slider {
+        margin-bottom: 4rem;
+        .gatsby-image-wrapper {
+          box-shadow: none !important;
+        }
+      }
     }
   }
 }
