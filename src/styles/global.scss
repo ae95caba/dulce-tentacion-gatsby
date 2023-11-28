@@ -17,32 +17,27 @@ $universal-width: 700px;
 }
 
 //
-@mixin carouselsSection {
-  $spacing: 6rem;
-  padding-bottom: $spacing;
-  .slick-list {
-    overflow-x: clip;
-    overflow-y: visible;
-    padding-left: 1rem;
-  }
-
-  h3 {
-    margin-left: 1rem;
-    margin-bottom: 1.5rem;
-    margin-top: $spacing;
-    letter-spacing: 0.3rem;
-    text-transform: uppercase;
-  }
-
+@mixin carouselsContainer {
   .slick-slider {
     width: 800px;
-  }
-  .container {
-    position: relative;
-  }
+    .slick-list {
+      overflow-x: clip;
+      overflow-y: visible;
+      padding-left: 1rem;
+      .gatsby-image-wrapper {
+        height: 14rem;
 
-  .container:before,
-  .container:after {
+        width: 14rem;
+
+        border-radius: 1.5rem;
+        box-shadow: $cool-shadow;
+      }
+    }
+  }
+  position: relative;
+
+  &:before,
+  &:after {
     position: absolute;
     top: 0;
     pointer-events: none;
@@ -52,23 +47,14 @@ $universal-width: 700px;
     content: "";
     z-index: 2;
   }
-  .container:before {
+  &:before {
     left: 0;
     background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
   }
 
-  .container:after {
+  &:after {
     right: 0;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-  }
-
-  .gatsby-image-wrapper {
-    height: 14rem;
-
-    width: 14rem;
-
-    border-radius: 1.5rem;
-    box-shadow: $cool-shadow;
   }
 }
 //
@@ -766,12 +752,27 @@ header {
 }
 
 #kiosko {
-  & > .content {
+  padding-top: 2rem;
+
+  .content {
     @include mainContent();
-    @include carouselsSection();
+    & > .container {
+      @include carouselsContainer();
+    }
+  }
+  .banner {
+    padding: 0rem 2rem;
+  }
+  h3 {
+    font-family: "Caveat", cursive;
+    color: $primary-color;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .slick-slider {
     .gatsby-image-wrapper {
-      border-radius: 0px;
-      box-shadow: none;
+      box-shadow: none !important;
     }
   }
 }
@@ -822,7 +823,21 @@ header {
     }
   }
   section.hero {
-    @include carouselsSection();
+    .content {
+      & > .container {
+        @include carouselsContainer();
+      }
+    }
+    $spacing: 6rem;
+    padding-bottom: $spacing;
+
+    h3 {
+      margin-left: 1rem;
+      margin-bottom: 1.5rem;
+      margin-top: $spacing;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+    }
   }
   section.call-to-action {
     background-color: $call-to-action-background;

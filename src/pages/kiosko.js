@@ -19,12 +19,19 @@ import {
   SpeedXL,
 } from "../components/Images/Drinks";
 import SimpleSlider from "../components/SlickCarousel";
+import { BannerSection } from "../components/BannerSection";
+import { CatalogBanner } from "../components/Images/Banners";
 
 export default function Kiosko() {
   return (
     <main id="kiosko">
       <div className="content">
-        <h3>#SNACKS</h3>
+        <BannerSection
+          h1={"Kiosko"}
+          h2="afasdfas asfd"
+          GatsbyImage={CatalogBanner}
+        />
+        <h3>SNACKS</h3>
         <div className="container">
           <SimpleSlider
             speed={1000}
@@ -41,7 +48,7 @@ export default function Kiosko() {
             <Krachitos />
           </SimpleSlider>
         </div>
-        <h3>#BEBIDAS</h3>
+        <h3>BEBIDAS</h3>
         <div className="container">
           <SimpleSlider
             speed={1000}
