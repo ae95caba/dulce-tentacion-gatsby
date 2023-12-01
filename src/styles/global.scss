@@ -1092,6 +1092,8 @@ header {
         gap: 1rem;
         input {
           border-radius: 0.2rem;
+          width: 4rem;
+          accent-color: $accent-color;
         }
       }
     }
