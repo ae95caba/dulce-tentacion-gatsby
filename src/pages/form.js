@@ -123,6 +123,7 @@ export default function IceCreamForm({ data, location }) {
       ) : (
         <form onSubmit={handleSubmit}>
           {<h1>{product.name}</h1>}
+          {product.description && <h2>{product.description}</h2>}
           <h3>
             Sabores
             {<span>{` ${choosenFlavours.length}/${product.flavours}`}</span>}
@@ -167,6 +168,7 @@ export const query = graphql`
           }
           outOfStock
           name
+          description
           imgUrl
           _id
           flavours
