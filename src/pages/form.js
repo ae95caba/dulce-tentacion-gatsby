@@ -122,7 +122,7 @@ export default function IceCreamForm({ data, location }) {
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
-          {<h1>{product.name}</h1>}
+          {<h1>{product.name} 🍨</h1>}
           {product.description && <h2>{product.description}</h2>}
           <h3>
             Sabores
