@@ -1,55 +1,3 @@
-export const barriosMP = [
-  "Sarmiento",
-  "El Hornero",
-  "Rayito de Sol",
-  "La Loma",
-  "Santa Catalina",
-  "El Zorzal",
-  "Bicentenario",
-  "El Lucero",
-  "La Milagrosa",
-  "La Paz",
-  "La Recova",
-  "Los Aromos",
-  "San Patricio",
-  "Don Rolando",
-  "Cuatro Esquinas",
-  "La Capilla",
-  "Santa María",
-  "El Palenque",
-  "Independencia",
-  "Killys",
-  "Sánchez",
-  "Gándara",
-  "El Pinar",
-  "Malvinas",
-  "La Sofia",
-  "La Escondida",
-  "San Eduardo",
-  "La Trocha",
-  "Martín Fierro",
-  "El Prado",
-  "Las Talitas",
-  "El Tonel",
-  "Güemes",
-  "Fonavi",
-];
-
-const zona1 = ["El Hornero", "La Loma", "Rayito de Sol"];
-const zona2 = [
-  "Los Aromos",
-  "San Patricio",
-  "Don Rolando",
-  "Santa Catalina",
-  "Santa Isabel",
-  "Sarmiento",
-  "El Zorzal",
-  "Bicentenario",
-  /* "La Milagrosa(por Paraguay)", */
-  "La Milagrosa",
-  "La Paz",
-];
-
 const zona3 = [
   "El Lucero",
   "Cuatro Esquinas",
@@ -86,28 +34,24 @@ const zona5 = ["Malvinas"];
 export const zones = {
   firstZone: {
     price: 0,
-    neighborhoods: ["El Hornero", "La Loma", "Rayito de Sol"],
+    neighborhoods: ["El Hornero", "La Loma", "Rayito de Sol", "Bicentenario"],
   },
   secondZone: {
     price: 100,
-    neighborhoods: ["Don Rolando", "Santa Catalina", "Bicentenario"],
-  },
-  thirdZone: {
-    price: 200,
     neighborhoods: [
-      "Los Aromos",
-      "San Patricio",
-
+      "Don Rolando",
+      "Santa Catalina",
       "Santa Isabel",
-      "Sarmiento",
+      "San Patricio",
       "El Zorzal",
-
-      "La Milagrosa",
-      "La Paz",
     ],
   },
+  thirdZone: {
+    price: 250,
+    neighborhoods: ["Los Aromos", "Sarmiento", "La Milagrosa", "La Paz"],
+  },
   fourthZone: {
-    price: 300,
+    price: 350,
     neighborhoods: [
       "El Lucero",
 
