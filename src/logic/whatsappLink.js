@@ -52,7 +52,7 @@ function createMessage({
 ${createCartItemsList()}	
 
 *Productos:* $${totalItemsPrice}
-*Envio:* $${deliveryInfo.price}
+*Envio:* $${deliveryInfo.isChecked ? deliveryInfo.price : 0}
 *Descuentos:* $${totalDiscountAmmount}
 *Total:* $${totalPrice}
 
