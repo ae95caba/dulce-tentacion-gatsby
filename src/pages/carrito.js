@@ -15,12 +15,6 @@ export default function Cart() {
   const [deliveryInfo, setDeliveryInfo] = useState({});
   const [paymentMethod, setPaymentMethod] = useState(null);
 
-  function getDeliveryPrice() {
-    return deliveryInfo.isChecked && deliveryInfo.price
-      ? deliveryInfo.price
-      : 0;
-  }
-
   function getAllIceCreamDiscounts() {
     function getDiscountsOf_FlavoursIceCream(flavours) {
       function get_FlavourIceCreamAparitions(flavours) {
@@ -101,9 +95,7 @@ export default function Cart() {
   }
 
   function getTotalPrice() {
-    return (
-      getTotalItemsPrice() + getDeliveryPrice() - getTotalDiscountAmmount()
-    );
+    return getTotalItemsPrice() - getTotalDiscountAmmount();
   }
 
   //get deliveryInfo from localStorage if there is any
@@ -189,7 +181,6 @@ export default function Cart() {
                 />
                 <SummarySection
                   deliveryInfo={deliveryInfo}
-                  getDeliveryPrice={getDeliveryPrice}
                   getTotalPrice={getTotalPrice}
                   getAllIceCreamDiscounts={getAllIceCreamDiscounts}
                 />

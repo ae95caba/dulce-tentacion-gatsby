@@ -50,10 +50,9 @@ function createMessage({
 
   return `*Orden*:		
 ${createCartItemsList()}	
-
-*Productos:* $${totalItemsPrice}
-*Envio:* $${deliveryInfo.isChecked ? deliveryInfo.price : 0}
-*Descuentos:* $${totalDiscountAmmount}
+${totalItemsPrice != totalPrice ? `\n*Productos:* $${totalItemsPrice}` : ""}${
+    totalDiscountAmmount ? `\n*Descuentos:* $${totalDiscountAmmount}` : ""
+  }
 *Total:* $${totalPrice}
 
 *${paymentMethod == "cash" ? "Paga en efectivo" : "Paga con transferencia"}*

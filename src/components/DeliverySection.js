@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { zones } from "../logic/barrios";
+
 export default function DeliverySection({
   handleSubmit,
   setDeliveryInfo,
@@ -14,22 +14,6 @@ export default function DeliverySection({
     } else {
       e.target.classList.remove("invalid");
     }
-  }
-
-  const optionElements = [];
-
-  for (const key in zones) {
-    zones[key].neighborhoods.forEach((neighborhood) => {
-      optionElements.push(
-        <option
-          key={neighborhood}
-          value={neighborhood}
-          data-price={zones[key].price}
-        >
-          {neighborhood}
-        </option>
-      );
-    });
   }
 
   return (
@@ -75,7 +59,7 @@ export default function DeliverySection({
       {deliveryInfo.isChecked && (
         <div id="delivery-details">
           <div className="container">
-            <select
+            <input
               name="Barrio"
               defaultValue={
                 deliveryInfo?.neighborhood ? deliveryInfo.neighborhood : ""
@@ -83,21 +67,13 @@ export default function DeliverySection({
               required
               onChange={(e) => {
                 const selectedValue = e.target.value;
-                const selectedOption = e.target.selectedOptions[0];
-                const priceValue = selectedOption.getAttribute("data-price");
 
                 setDeliveryInfo((prev) => ({
                   ...prev,
                   neighborhood: selectedValue,
-                  price: +priceValue,
                 }));
               }}
-            >
-              <option value="" disabled>
-                Elige un barrio *
-              </option>
-              {optionElements}
-            </select>
+            />
 
             <div className="error">Seleciona un barrio</div>
           </div>

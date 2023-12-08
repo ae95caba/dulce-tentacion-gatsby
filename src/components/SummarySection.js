@@ -4,9 +4,8 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 export default function SummarySection({
-  deliveryInfo,
   getTotalPrice,
-  getDeliveryPrice,
+
   getAllIceCreamDiscounts,
 }) {
   const { getTotalItemsPrice } = useContext(GlobalContext);
@@ -16,15 +15,12 @@ export default function SummarySection({
       <h3>Detalle: </h3>
 
       <div className="container">
-        <p>
-          Productos: <span>$ {getTotalItemsPrice()}</span>
-        </p>
-        {deliveryInfo.isChecked && (
+        {getTotalPrice() !== getTotalItemsPrice() && (
           <p>
-            Envio:
-            <span>$ {getDeliveryPrice()}</span>
+            Productos: <span>$ {getTotalItemsPrice()}</span>
           </p>
         )}
+
         {getAllIceCreamDiscounts().length > 0 &&
           getAllIceCreamDiscounts().map((discount) => (
             <p>
