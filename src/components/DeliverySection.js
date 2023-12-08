@@ -60,11 +60,12 @@ export default function DeliverySection({
         <div id="delivery-details">
           <div className="container">
             <input
-              name="Barrio"
+              placeholder="Barrio"
               defaultValue={
                 deliveryInfo?.neighborhood ? deliveryInfo.neighborhood : ""
               }
               required
+              onBlur={checkValidity}
               onChange={(e) => {
                 const selectedValue = e.target.value;
 
