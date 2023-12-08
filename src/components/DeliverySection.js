@@ -1,10 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-export default function DeliverySection({
-  handleSubmit,
-  setDeliveryInfo,
-  deliveryInfo,
-}) {
+export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
   function checkValidity(e) {
     const isValid = e.target.validity.valid;
 

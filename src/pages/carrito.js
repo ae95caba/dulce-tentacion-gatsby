@@ -139,6 +139,7 @@ export default function Cart() {
       window.open(whatsappLink, "_blank");
 
       dispatch({ type: "reset" });
+      window.scrollTo(0, 0);
     } else {
       const formElements = e.target.elements;
 
