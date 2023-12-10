@@ -141,7 +141,7 @@ export default function Cart() {
 
       Swal.fire({
         title: "Gracias!💗",
-        html: `En caso de no haber podido enviar tu pedido reinténtalo <a href="${whatsappLink}" target="_blank">ACA</a>.`,
+        html: `En caso de no haberse enviado el mensaje con tu pedido reinténtalo <a href="${whatsappLink}" target="_blank">ACA</a>.`,
         icon: "info",
         confirmButtonText: "OK",
       }).then((result) => {
