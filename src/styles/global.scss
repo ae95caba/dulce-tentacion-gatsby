@@ -436,7 +436,9 @@ header {
 }
 
 #cart {
-  padding: 2rem;
+  $cart-padding: 2rem;
+  padding: $cart-padding;
+  padding-bottom: 0rem;
 
   & > .content {
     font-weight: 500;
@@ -472,7 +474,7 @@ header {
       gap: $gap * 3;
       margin-left: auto;
       margin-right: auto;
-      margin-bottom: 2rem;
+      margin-bottom: $cart-padding;
       width: fit-content;
     }
 
@@ -482,6 +484,7 @@ header {
       letter-spacing: 1px;
       word-spacing: 2px;
       text-align: center;
+      margin-bottom: 2rem;
     }
 
     .cart-items {
