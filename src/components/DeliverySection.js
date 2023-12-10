@@ -56,7 +56,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
         <div id="delivery-details">
           <div className="container">
             <input
-              placeholder="Barrio"
+              placeholder="Barrio *"
               defaultValue={
                 deliveryInfo?.neighborhood ? deliveryInfo.neighborhood : ""
               }

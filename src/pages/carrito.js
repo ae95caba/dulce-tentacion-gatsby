@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { CartBanner } from "../components/Images/Banners";
 import { useContext } from "react";
-
+import { navigate } from "gatsby";
+import Swal from "sweetalert2";
 import { createWhatsAppLink } from "../logic/whatsappLink";
 import AnimeGirldThinking from "../components/Images/AnimeGirlThinking";
 import CartItem from "../components/CartItem";
@@ -138,8 +139,16 @@ export default function Cart() {
 
       window.open(whatsappLink, "_blank");
 
-      dispatch({ type: "reset" });
-      window.scrollTo(0, 0);
+      Swal.fire({
+        title: "Gracias!💗",
+        html: `En caso de no haber podido enviar tu pedido reinténtalo <a href="${whatsappLink}" target="_blank">ACA</a>.`,
+        icon: "info",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        dispatch({ type: "reset" });
+
+        window.scrollTo(0, 0);
+      });
     } else {
       const formElements = e.target.elements;
 
@@ -154,7 +163,7 @@ export default function Cart() {
     <main id="cart">
       <div className="content">
         <BannerSection
-          h2="Aca podes finalizar tu compra"
+          h2="Aca podes completar tu pedido"
           h1="Carrito"
           GatsbyImage={CartBanner}
         />

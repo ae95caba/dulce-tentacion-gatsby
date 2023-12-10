@@ -71,6 +71,13 @@ $universal-width: 700px;
   font-family: "Roboto", sans-serif;
 }
 
+.swal2-popup {
+  a {
+    color: $primary-color;
+    font-weight: 900;
+  }
+}
+
 img {
   width: 4.5rem;
 }

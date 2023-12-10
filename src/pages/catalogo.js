@@ -34,7 +34,7 @@ export default function Shop(props) {
         <section className="maid">
           <Maid />
           <div className="container">
-            <p>Finaliza tu pedido</p>
+            <p>Completa tu pedido</p>
             <Link to="/carrito">
               <button>Aca 👇</button>
             </Link>
