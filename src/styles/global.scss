@@ -750,6 +750,7 @@ header {
 }
 
 .open-close-sign {
+  pointer-events: none;
   position: fixed;
   z-index: 9;
   bottom: 5%;
