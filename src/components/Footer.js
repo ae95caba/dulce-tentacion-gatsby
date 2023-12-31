@@ -38,11 +38,10 @@ export default function Footer() {
           </a>
         </div>
         <div className="copyright">
-          <p>Copyright © 2023 | André Espinoza</p>
-          <a href="https://andreespinozadev.netlify.app/">
-            andreespinozadev.netlify.app
-          </a>
-          <p>andre.espinoza@estudiantes.unahur.edu.ar</p>
+          <p>
+            Copyright © 2023 |{" "}
+            <a href="https://andreespinozadev.netlify.app/">André Espinoza</a>
+          </p>
         </div>
       </div>
     </footer>
