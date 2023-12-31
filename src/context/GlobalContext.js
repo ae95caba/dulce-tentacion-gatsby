@@ -20,8 +20,7 @@ export default function GlobalContextProvider({ children }) {
 
     const MultiLineToast = () => (
       <div>
-        <div>Producto agregado</div>
-        <div>con éxito</div>
+        <div>Producto agregado al carrito &rarr;</div>
       </div>
     );
     toast.success(<MultiLineToast />, {

@@ -7,6 +7,7 @@ $secondary-filter: invert(99%) sepia(0%) saturate(7500%) hue-rotate(101deg)
   brightness(108%) contrast(100%);
 $cool-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
 $universal-width: 700px;
+$header-height: 56px;
 @mixin mainContent {
   margin: auto;
   max-width: $universal-width;
@@ -73,6 +74,9 @@ $universal-width: 700px;
 
 .Toastify__toast-container {
   width: fit-content !important;
+  .Toastify__toast {
+    min-height: $header-height;
+  }
 }
 
 .swal2-popup {
