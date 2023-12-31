@@ -5,6 +5,8 @@ import useSiteMetadata from "../hooks/use-sitemMetadata";
 import Footer from "./Footer";
 import "../styles/global.scss"; // Import the global CSS file
 import OpenCloseSign from "./OpenCloseSign";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Layout({ children }) {
   const { title, description } = useSiteMetadata();
@@ -17,6 +19,7 @@ export default function Layout({ children }) {
       </Helmet>
       <Header />
       {children}
+      <ToastContainer />
       <Footer />
       <OpenCloseSign />
     </>

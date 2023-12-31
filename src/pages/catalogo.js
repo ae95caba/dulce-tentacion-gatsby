@@ -56,20 +56,12 @@ function Card({ product }) {
         type: "add-cart-item",
         payload: { id: product._id, product: structuredClone(product) },
       });
-      //
-      Swal.fire(
-        `${product.name} agregado al carrito`,
-        "Ve al carrito para finalizar tu compra",
-        "success"
-      );
-
-      //
     } else {
       const encodedParamValue = encodeURIComponent(product.name);
       navigate(`/form?id=${product._id}`);
     }
   }
-  console.log(`aswdf`);
+
   console.log(`product is : ${product.description}`);
   return (
     <div className="card">

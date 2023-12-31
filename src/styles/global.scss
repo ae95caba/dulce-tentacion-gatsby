@@ -71,6 +71,10 @@ $universal-width: 700px;
   font-family: "Roboto", sans-serif;
 }
 
+.Toastify__toast-container {
+  width: fit-content !important;
+}
+
 .swal2-popup {
   a {
     color: $primary-color;

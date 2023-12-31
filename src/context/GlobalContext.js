@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, useReducer } from "react";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+
 export const GlobalContext = createContext({
   ACTIONS: {},
   dispatch: () => {},
@@ -10,11 +12,29 @@ export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
 
   function triggerAlert(product) {
-    Swal.fire(
+    /*    Swal.fire(
       `${product.name} agregado al carrito`,
       "Ve al carrito para finalizar tu compra",
       "success"
+    ); */
+
+    const MultiLineToast = () => (
+      <div>
+        <div>Producto agregado</div>
+        <div>con éxito</div>
+      </div>
     );
+    toast.success(<MultiLineToast />, {
+      position: "top-left",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeButton: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   const ACTIONS = {
@@ -49,11 +69,11 @@ export default function GlobalContextProvider({ children }) {
             },
           };
         }
-
+        triggerAlert(product);
         if (isIceCream || (!isIceCream && !isProductInCart)) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
-          triggerAlert(product);
+
           return cartItemsCopy;
         } else {
           //increase the count of the item
