@@ -54,6 +54,11 @@ export default function Header() {
 
 function CartButton() {
   const { cartItems } = useContext(GlobalContext);
+  const totalItems = () => {
+    let totalItems = 0;
+    cartItems.forEach((item) => (totalItems += item.count));
+    return totalItems;
+  };
   return (
     <Link
       to="/carrito"
@@ -64,7 +69,7 @@ function CartButton() {
     >
       <img src={cartIcon} alt="shopping cart" />
       <span id="total-items" className="neon-green">
-        {cartItems.length > 0 ? cartItems.length : null}
+        {cartItems.length > 0 ? totalItems() : null}
       </span>
     </Link>
   );
