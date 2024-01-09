@@ -1,7 +1,7 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { Link } from "gatsby";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import cartIcon from "../images/cart.svg";
 import Logo from "./Images/Logo";
 import animationData from "../animations/hamburger-menu.json";
@@ -54,6 +54,18 @@ export default function Header() {
 
 function CartButton() {
   const { cartItems } = useContext(GlobalContext);
+  const [className, setClassName] = useState("as");
+  const [isFirstMount, setIsFirstMount] = useState(true);
+  console.log(`cart itesm is : ${cartItems}`);
+  useEffect(() => {
+    if (isFirstMount) {
+      setIsFirstMount(false);
+      return;
+    }
+
+    setClassName("wobble-hor-bottom");
+  }, [cartItems]);
+
   const totalItems = () => {
     let totalItems = 0;
     cartItems.forEach((item) => (totalItems += item.count));
@@ -62,10 +74,9 @@ function CartButton() {
   return (
     <Link
       to="/carrito"
-      /*  the following could me unnecesary but better keep it */
-
-      className={cartItems.length > 0 ? "" : null}
+      className={className}
       id="cart-button"
+      onAnimationEnd={() => setClassName("as")}
     >
       <img src={cartIcon} alt="shopping cart" />
       <span id="total-items" className="neon-green">
