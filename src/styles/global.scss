@@ -100,8 +100,8 @@ $header-height-on-mobile: 56px;
  */
 
 .wobble-hor-bottom {
-  animation: wobble-hor-bottom 0.8s both;
-  animation-delay: 0.2s;
+  animation: wobble-hor-bottom 1s both;
+
   @keyframes wobble-hor-bottom {
     0%,
     100% {
