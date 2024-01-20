@@ -12,8 +12,8 @@ require("dotenv").config({
  */
 module.exports = {
   siteMetadata: {
-    title: "Dulce Tentacion",
-    description: "Te llevamos el helado artesanal mas rico directo a tu casa",
+    title: "Dulce Tentación",
+    description: "Catalogo online",
     author: "André Espinoza",
     image: `src/images/logo512.png`,
   },
@@ -36,8 +36,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Dulce Tentacion Marcos Paz`,
-        short_name: `Dulce Tentacion`,
+        name: `Dulce Tentación Marcos Paz`,
+        short_name: `Dulce Tentación`,
         start_url: `/`,
         background_color: `#FFFFFF`,
         theme_color: `#e8547e`,
