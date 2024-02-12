@@ -9,6 +9,7 @@ import toCartIcon from "../images/to-cart.svg";
 import { CatalogBanner } from "../components/Images/Banners";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import listIcon from "../images/list.svg";
 
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
@@ -89,9 +90,17 @@ function Card({ product }) {
       <p className="product-price">$ {product.price}</p>
 
       <button onClick={handleClick} className={`to-cart  `}>
-        <span>Añadir</span>
-
-        <img style={{ filter: "invert(1)" }} src={toCartIcon} alt="cart icon" />
+        {product.flavours ? (
+          <>
+            <span>Sabores</span>
+            <img src={listIcon} alt="cart icon" />
+          </>
+        ) : (
+          <>
+            <span>Añadir</span>
+            <img src={toCartIcon} alt="cart icon" />
+          </>
+        )}
       </button>
     </div>
   );

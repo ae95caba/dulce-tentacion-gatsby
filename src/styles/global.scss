@@ -447,7 +447,7 @@ header {
 
         padding: 0.4rem 0rem;
         span {
-          margin-right: 1rem;
+          margin-right: 1.2rem;
         }
 
         img {
@@ -457,6 +457,7 @@ header {
           top: 50%;
           right: 0;
           transform: translate(-50%, -50%);
+          filter: invert(1);
         }
       }
 
