@@ -95,6 +95,8 @@ export default function IceCreamForm({ data, location }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const buttonSubmitter = e.nativeEvent.submitter;
+    const buttonName = buttonSubmitter.name;
     if (choosenFlavours.length > 0) {
       dispatch({
         type: "add-cart-item",
@@ -103,7 +105,11 @@ export default function IceCreamForm({ data, location }) {
           product: { ...product, choosenFlavours },
         },
       });
-      navigate("/catalogo");
+      if (buttonName == "go to cart") {
+        navigate("/carrito");
+      } else {
+        navigate("/catalogo");
+      }
     } else {
       Swal.fire(
         `Elige por lo menos un sabor`,
@@ -148,7 +154,8 @@ export default function IceCreamForm({ data, location }) {
             ))}
           </div>
 
-          <button>Aceptar</button>
+          <button name="go to cart">Comprar ahora</button>
+          <button name="go to catalog">Agregar al carrito</button>
         </form>
       )}
     </main>
