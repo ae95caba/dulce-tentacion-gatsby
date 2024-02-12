@@ -10,6 +10,7 @@ import { CatalogBanner } from "../components/Images/Banners";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import listIcon from "../images/list.svg";
+import handPointingIcon from "../images/hand-pointing.svg";
 
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
@@ -18,7 +19,7 @@ export default function Shop(props) {
     <main id="catalog">
       <div className="content">
         <BannerSection
-          h2="Añade productos a tu carrito"
+          h2="Ve al carrito para finalizar 👆 "
           h1="Catalogo"
           GatsbyImage={CatalogBanner}
         />
