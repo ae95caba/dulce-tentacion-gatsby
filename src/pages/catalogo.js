@@ -11,7 +11,6 @@ import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import listIcon from "../images/list.svg";
 import handPointingIcon from "../images/hand-pointing.svg";
-
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
 
@@ -35,12 +34,6 @@ export default function Shop(props) {
         </section>
         <section className="maid">
           <Maid />
-          <div className="container">
-            <p>Completa tu pedido</p>
-            <Link to="/carrito">
-              <button>Aca 👇</button>
-            </Link>
-          </div>
         </section>
       </div>
     </main>
@@ -98,7 +91,7 @@ function Card({ product }) {
           </>
         ) : (
           <>
-            <span>Añadir</span>
+            <span>Al carrito</span>
             <img src={toCartIcon} alt="cart icon" />
           </>
         )}
