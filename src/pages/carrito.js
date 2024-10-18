@@ -13,6 +13,8 @@ import { BannerSection } from "../components/BannerSection";
 import SadShoppingCart from "../components/Images/SadShoppingCart";
 import { FaCopy } from "react-icons/fa";
 import { TbCopyCheckFilled } from "react-icons/tb";
+import { toast } from "react-toastify";
+import { triggerAlert } from "../context/GlobalContext";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -165,6 +167,7 @@ export default function Cart() {
     try {
       await navigator.clipboard.writeText(text);
       setTextCopied(true);
+      triggerAlert("Alias copiado al portapapeles");
       console.log("Copied to clipboard: " + text); // Optional: Show a confirmation
     } catch (err) {
       console.error("Failed to copy: ", err);

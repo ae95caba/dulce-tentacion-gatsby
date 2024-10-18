@@ -8,33 +8,27 @@ export const GlobalContext = createContext({
   cartItems: [],
 });
 
+export function triggerAlert(message) {
+  const MultiLineToast = () => (
+    <div>
+      <div>{message}</div>
+    </div>
+  );
+  toast.success(<MultiLineToast />, {
+    position: "top-left",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeButton: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+}
+
 export default function GlobalContextProvider({ children }) {
   const [cartItems, dispatch] = useReducer(reducer, []);
-
-  function triggerAlert(product) {
-    /*    Swal.fire(
-      `${product.name} agregado al carrito`,
-      "Ve al carrito para finalizar tu compra",
-      "success"
-    ); */
-
-    const MultiLineToast = () => (
-      <div>
-        <div>Producto agregado al carrito &rarr;</div>
-      </div>
-    );
-    toast.success(<MultiLineToast />, {
-      position: "top-left",
-      autoClose: 2500,
-      hideProgressBar: false,
-      closeButton: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
 
   const ACTIONS = {
     ADD_CART_ITEM: "add-cart-item",
@@ -68,7 +62,7 @@ export default function GlobalContextProvider({ children }) {
             },
           };
         }
-        triggerAlert(product);
+        triggerAlert("Producto agregado al carrito &rarr;");
         if (isIceCream || (!isIceCream && !isProductInCart)) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
