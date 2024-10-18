@@ -11,10 +11,13 @@ import SummarySection from "../components/SummarySection";
 import DeliverySection from "../components/DeliverySection";
 import { BannerSection } from "../components/BannerSection";
 import SadShoppingCart from "../components/Images/SadShoppingCart";
+import { FaCopy } from "react-icons/fa";
+import { TbCopyCheckFilled } from "react-icons/tb";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [textCopied, setTextCopied] = useState(false);
 
   function getAllIceCreamDiscounts() {
     function getDiscountsOf_FlavoursIceCream(flavours) {
@@ -158,6 +161,16 @@ export default function Cart() {
     }
   }
 
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setTextCopied(true);
+      console.log("Copied to clipboard: " + text); // Optional: Show a confirmation
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
+
   ///////////////////////////
   return (
     <main id="cart">
@@ -207,6 +220,7 @@ export default function Cart() {
                       }}
                     />
                   </label>
+
                   <label className="option">
                     <span>Transferencia</span>
                     <input
@@ -219,6 +233,19 @@ export default function Cart() {
                       }}
                     />
                   </label>
+                  {paymentMethod === "transfer" && (
+                    <p
+                      className="alias"
+                      onClick={() => copyToClipboard(process.env.GATSBY_ALIAS)}
+                    >
+                      Alias : <span>{process.env.GATSBY_ALIAS}</span>
+                      {textCopied ? (
+                        <TbCopyCheckFilled size={"1.3rem"} />
+                      ) : (
+                        <FaCopy size={"1.3rem"} />
+                      )}
+                    </p>
+                  )}
                 </section>
                 <button type="submit" form="checkout-form">
                   Comprar

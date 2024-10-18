@@ -705,6 +705,13 @@ header {
         padding: 0.8rem;
       }
     }
+    .payment.options {
+      .alias {
+        display: flex;
+
+        justify-content: space-between;
+      }
+    }
   }
 }
 

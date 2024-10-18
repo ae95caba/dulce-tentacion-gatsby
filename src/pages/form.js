@@ -163,7 +163,7 @@ export default function IceCreamForm({ data, location }) {
 }
 
 export const query = graphql`
-  query MyQuery {
+  query MyQueryTwo {
     allProduct {
       edges {
         node {

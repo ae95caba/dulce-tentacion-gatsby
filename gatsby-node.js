@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+require("dotenv").config();
 
 exports.sourceNodes = async ({ actions }) => {
   const { createNode } = actions;
