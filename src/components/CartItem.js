@@ -31,7 +31,7 @@ export default function CartItem({ cartItem }) {
           <p>$ {cartItem.getTotalPrice()}</p>
         </div>
 
-        {!product.flavours ? (
+        {!product.apiRoute ? (
           <div className="quantity">
             <button
               onClick={() => {
@@ -66,7 +66,7 @@ export default function CartItem({ cartItem }) {
       </div>
       {showDetails && (
         <div className="details">
-          <h3>Sabores</h3>
+          <h3>{product.choosenFlavours.length > 1 ? "Sabores" : "Sabor"}</h3>
           <ul>
             {product.choosenFlavours.map((flavour) => {
               return <li key={uniqid()}>{flavour}</li>;

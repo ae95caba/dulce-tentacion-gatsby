@@ -46,7 +46,7 @@ function Card({ product }) {
   const image = getImage(product.localImage);
 
   function handleClick() {
-    if (!product.flavours) {
+    if (!product.apiRoute) {
       dispatch({
         type: "add-cart-item",
         payload: { id: product._id, product: structuredClone(product) },
@@ -115,6 +115,7 @@ export const query = graphql`
           description
           name
           imgUrl
+          apiRoute
           _id
           flavours
         }

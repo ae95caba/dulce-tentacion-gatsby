@@ -17,60 +17,9 @@ export default function IceCreamForm({ data, location }) {
   const products = data.allProduct.edges;
   const [choosenFlavours, setChoosenFlavours] = useState([]);
 
-  //fetch catalog from api
-  useEffect(() => {
-    const MAX_REFRESHES = 3; // Maximum number of refresh attempts
-    const REFRESH_DELAY = 1000; // Delay in milliseconds before each refresh
-    let refreshCount = 0;
+  const maxSelections = product && (product.flavours || 1);
 
-    async function fetchFlavorsAndSetState() {
-      const requestOptions = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      try {
-        const apiUrl = process.env.GATSBY_API_URL;
-
-        const response = await fetch(`${apiUrl}/flavours`, requestOptions);
-
-        if (!response.ok) {
-          throw new Error("Request failed");
-        }
-
-        const flavours = await response.json();
-
-        const availableFlavours = flavours
-          .filter((obj) => obj.outOfStock === false)
-          .map((obj) => obj.name);
-        console.log(availableFlavours);
-        setFlavourList(availableFlavours);
-
-        // Process the data or perform other operations
-      } catch (error) {
-        if (refreshCount < MAX_REFRESHES) {
-          refreshCount++;
-          setTimeout(() => {
-            window.location.reload();
-          }, REFRESH_DELAY);
-        } else {
-          // Handle the maximum refresh attempts reached
-          console.log(
-            "Maximum refresh attempts reached. Please try again later."
-          );
-          alert("Estamos teniendo problemas. Por favor intenta mas tarde");
-        }
-      }
-    }
-    fetchFlavorsAndSetState();
-  }, []);
-
-  useEffect(() => {
-    if (flavourList) {
-      setIsLoading(false);
-    }
-  }, [flavourList]);
-
+  //get product from param to fetch corresponding options
   useEffect(() => {
     const foundProduct = products.find((product) => {
       return product.node._id === productIdParam;
@@ -78,6 +27,55 @@ export default function IceCreamForm({ data, location }) {
 
     setProduct(foundProduct.node);
   }, []);
+
+  //fetch options from api
+  useEffect(() => {
+    if (product) {
+      async function setFlavoursState() {
+        async function fetchFlavors() {
+          const requestOptions = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          try {
+            const apiUrl = process.env.GATSBY_API_URL;
+
+            const response = await fetch(
+              `${apiUrl}/${product.apiRoute}`,
+              requestOptions
+            );
+
+            if (!response.ok) {
+              throw new Error("Request failed");
+            }
+
+            const flavours = await response.json();
+
+            const availableFlavours = flavours
+              .filter((obj) => obj.outOfStock === false)
+              .map((obj) => obj.name);
+            return availableFlavours;
+
+            // Process the data or perform other operations
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        const flavours = await fetchFlavors();
+        setFlavourList(flavours);
+      }
+
+      setFlavoursState();
+    }
+  }, [product]);
+
+  //after fetching the option stop loading animation
+  useEffect(() => {
+    if (flavourList) {
+      setIsLoading(false);
+    }
+  }, [flavourList]);
 
   function handleChange(e) {
     const { value, checked } = e.target;
@@ -132,7 +130,7 @@ export default function IceCreamForm({ data, location }) {
           {product.description && <h2>{product.description}</h2>}
           <h3>
             Sabores
-            {<span>{` ${choosenFlavours.length}/${product.flavours}`}</span>}
+            {<span>{` ${choosenFlavours.length}/${maxSelections}`}</span>}
           </h3>
           <div className="container">
             {flavourList.map((flavourValue) => (
@@ -144,7 +142,7 @@ export default function IceCreamForm({ data, location }) {
                   type="checkbox"
                   disabled={
                     !choosenFlavours.includes(flavourValue) &&
-                    choosenFlavours.length >= product.flavours
+                    choosenFlavours.length >= maxSelections
                   }
                   name="flavour"
                   value={flavourValue}
@@ -179,6 +177,7 @@ export const query = graphql`
           imgUrl
           _id
           flavours
+          apiRoute
         }
       }
     }

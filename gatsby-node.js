@@ -48,6 +48,7 @@ exports.sourceNodes = async ({ actions }) => {
         imgUrl: product.imgUrl,
         outOfStock: product.outOfStock,
         flavours: product.flavours,
+        apiRoute: product.apiRoute,
         // etc...
       };
 

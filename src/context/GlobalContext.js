@@ -39,14 +39,14 @@ export default function GlobalContextProvider({ children }) {
     let product;
     let indexOfProductInCart;
     let isProductInCart;
-    let isIceCream;
+    let isUnique;
     if (action.payload && action.payload.product) {
       product = action.payload.product;
       indexOfProductInCart = cartItems.findIndex((obj) => {
         return obj.product._id === product._id;
       });
       isProductInCart = indexOfProductInCart >= 0;
-      isIceCream = product.flavours !== null;
+      isUnique = product.apiRoute !== null;
     }
 
     const cartItemsCopy = [...cartItems];
@@ -63,7 +63,7 @@ export default function GlobalContextProvider({ children }) {
           };
         }
         triggerAlert("Producto agregado al carrito &rarr;");
-        if (isIceCream || (!isIceCream && !isProductInCart)) {
+        if (isUnique || (!isUnique && !isProductInCart)) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
 
