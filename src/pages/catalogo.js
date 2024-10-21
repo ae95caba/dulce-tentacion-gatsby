@@ -84,7 +84,7 @@ function Card({ product }) {
       <p className="product-price">$ {product.price}</p>
 
       <button onClick={handleClick} className={`to-cart  `}>
-        {product.flavours ? (
+        {product.apiRoute ? (
           <>
             <span>Sabores</span>
             <img src={listIcon} alt="cart icon" />
