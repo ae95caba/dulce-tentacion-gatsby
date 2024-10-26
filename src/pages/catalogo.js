@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import { BannerSection } from "../components/BannerSection";
@@ -25,13 +25,7 @@ export default function Shop(props) {
         <section className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;
-            console.log(
-              `-------------------------------------------------------------`
-            );
-            console.log(productData.name);
-            console.log(
-              `------------------------------------------------------------`
-            );
+
             return productData.outOfStock ? (
               ""
             ) : (
@@ -64,7 +58,6 @@ function Card({ product }) {
     }
   }
 
-  console.log(`product is : ${product.description}`);
   return (
     <div className="card">
       <GatsbyImage image={image} alt={product.name} />
@@ -90,20 +83,38 @@ function Card({ product }) {
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
 
-      <button onClick={handleClick} className={`to-cart  `}>
-        {product.apiRoute ? (
-          <>
-            <span>Sabores</span>
-            <img src={listIcon} alt="cart icon" />
-          </>
-        ) : (
-          <>
-            <span>Al carrito</span>
-            <img src={toCartIcon} alt="cart icon" />
-          </>
-        )}
-      </button>
+      <Button handleClick={handleClick} apiRoute={product.apiRoute} />
     </div>
+  );
+}
+
+function Button({ handleClick, apiRoute }) {
+  const buttonRef = useRef(null);
+
+  return (
+    <button
+      ref={buttonRef}
+      onClick={() => {
+        handleClick();
+        buttonRef.current.classList.add("active");
+      }}
+      className="to-cart"
+      onAnimationEnd={() => {
+        buttonRef.current.classList.remove("active");
+      }}
+    >
+      {apiRoute ? (
+        <>
+          <span>Sabores</span>
+          <img src={listIcon} alt="cart icon" />
+        </>
+      ) : (
+        <>
+          <span>Al carrito</span>
+          <img src={toCartIcon} alt="cart icon" />
+        </>
+      )}
+    </button>
   );
 }
 
