@@ -28,6 +28,9 @@ exports.sourceNodes = async ({ actions }) => {
 
     // Map into these results and create nodes
     products.forEach((product) => {
+      console.log(`------------------------------------------------------`);
+      console.log(product.name);
+      console.log(`------------------------------------------------------`);
       // Create your node object
       const productNode = {
         // Required fields

@@ -25,6 +25,13 @@ export default function Shop(props) {
         <section className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;
+            console.log(
+              `-------------------------------------------------------------`
+            );
+            console.log(productData.name);
+            console.log(
+              `------------------------------------------------------------`
+            );
             return productData.outOfStock ? (
               ""
             ) : (

@@ -418,6 +418,9 @@ header {
       border-radius: 1rem;
       gap: 0.4rem;
       grid-template-rows: min-content min-content min-content;
+      .gatsby-image-wrapper {
+        background-color: white;
+      }
       .info {
         position: absolute;
         right: 0%;
@@ -460,7 +463,7 @@ header {
           filter: invert(1);
         }
       }
-
+      //this doesnt trigger
       .active:after {
         animation: animate 0.5s;
         position: absolute;
