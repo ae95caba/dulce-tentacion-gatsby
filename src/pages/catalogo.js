@@ -68,7 +68,7 @@ function Card({ product }) {
   return (
     <div className="card">
       <GatsbyImage image={image} alt={product.name} />
-      {product.description && (
+      {/*  {product.description && (
         <button
           className="info"
           onClick={() => {
@@ -85,7 +85,7 @@ function Card({ product }) {
         >
           ?
         </button>
-      )}
+      )} */}
 
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>
