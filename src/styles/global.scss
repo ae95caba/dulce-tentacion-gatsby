@@ -374,6 +374,7 @@ header {
 
   .content {
     @include mainContent();
+    overflow-x: visible;
   }
 
   .maid {
