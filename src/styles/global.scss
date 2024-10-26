@@ -408,12 +408,12 @@ header {
     gap: 2rem;
     justify-content: space-between;
     grid-template-columns: repeat(auto-fit, 8rem);
-
+    $card-image-size: 8rem;
     .card {
       position: relative;
       box-shadow: $cool-shadow;
       overflow: hidden;
-      width: 8rem;
+      width: $card-image-size;
       background-color: #e8547e;
       display: grid;
       border-radius: 1rem;
@@ -421,6 +421,7 @@ header {
       grid-template-rows: min-content min-content min-content;
       .gatsby-image-wrapper {
         background-color: white;
+        height: $card-image-size;
       }
       .info {
         position: absolute;
