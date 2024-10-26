@@ -15,12 +15,23 @@ import {
   UnKilo,
   Todos,
 } from "../components/Images/Promotional";
+import Carousel from "../components/Carousel";
 import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
+
+const stringsArray = [
+  "Helado Artesanal de la mejor calidad",
+  "Aceptamos Mercado Pago",
+  "Delivery Sin Cargo por la zona",
+  "El sabor de la felicidad",
+  "Somos calidad a precio accesible",
+];
+
 export default function Home() {
   const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
-      <FirstCarousel />
+      <Carousel slides={stringsArray} />
+
       <section className="hero">
         <div className="content">
           <h3>#DULCE-TENTACION</h3>

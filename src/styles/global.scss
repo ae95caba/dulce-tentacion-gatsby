@@ -872,12 +872,44 @@ header {
     }
   }
 
+  .swiper {
+    height: 100px;
+
+    background-color: $accent-color;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $accent-color;
+    color: $contras-color;
+    font-size: 1.2rem;
+    letter-spacing: 0.2rem;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .first.carousel {
     overflow: hidden;
     background-color: $accent-color;
+    color: $contras-color;
     white-space: nowrap;
     padding: 1rem 0rem;
-    color: $contras-color;
     font-size: 1.2rem;
     letter-spacing: 0.2rem;
 
