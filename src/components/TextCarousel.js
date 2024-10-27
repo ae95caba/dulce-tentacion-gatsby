@@ -53,7 +53,7 @@ export default function TextCarousel({ slides }) {
       }}
       breakpoints={breakpoints}
       modules={[Pagination, Autoplay]}
-      className="first-carousel"
+      className="text-carousel"
     >
       {slides.map((slide) => (
         <SwiperSlide>{slide}</SwiperSlide>

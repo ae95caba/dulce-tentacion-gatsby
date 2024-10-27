@@ -21,7 +21,7 @@ export default function ImagesCarousel({ slides }) {
       }}
       slidesPerView={3}
       modules={[Pagination, Autoplay]}
-      className="second-carousel"
+      className="image-carousel"
     >
       {slides.map((slide) => (
         <SwiperSlide>{slide}</SwiperSlide>

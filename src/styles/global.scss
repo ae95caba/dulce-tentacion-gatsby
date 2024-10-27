@@ -17,48 +17,8 @@ $header-height-on-mobile: 56px;
   flex-direction: column;
 }
 
-//
-@mixin carouselsContainer {
-  .slick-slider {
-    width: 800px;
-    .slick-list {
-      overflow-x: clip;
-      overflow-y: visible;
-      padding-left: 1rem;
-      .gatsby-image-wrapper {
-        height: 14rem;
-
-        width: 14rem;
-
-        border-radius: 1.5rem;
-        box-shadow: $cool-shadow;
-      }
-    }
-  }
+@mixin imageCarouselContainer($includeImageWrapperStyles: true) {
   position: relative;
-
-  &:before,
-  &:after {
-    position: absolute;
-    top: 0;
-    pointer-events: none;
-    width: 60px;
-    height: 100%;
-
-    content: "";
-    z-index: 2;
-  }
-  &:before {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-  }
-
-  &:after {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-  }
-}
-@mixin secondC($includeImageWrapperStyles: true) {
   .swiper {
     width: 800px;
     overflow-x: clip;
@@ -81,8 +41,6 @@ $header-height-on-mobile: 56px;
       }
     }
   }
-
-  position: relative;
 
   &:before,
   &:after {
@@ -898,8 +856,7 @@ header {
     }
 
     & > .container {
-      /*     @include carouselsContainer(); */
-      @include secondC(false);
+      @include imageCarouselContainer(false);
       margin-bottom: 4rem;
     }
   }
@@ -918,9 +875,8 @@ header {
     }
   }
 
-  .first-carousel {
+  .text-carousel {
     height: 100px;
-
     background-color: $accent-color;
     .swiper-slide {
       font-size: 18px;
@@ -946,7 +902,7 @@ header {
     object-fit: cover;
   } */
   }
-  .second-carousel {
+  .image-carousel {
     height: 200px;
     width: 800px;
   }
@@ -954,7 +910,7 @@ header {
   section.hero {
     .content {
       & > .container {
-        @include secondC();
+        @include imageCarouselContainer();
       }
     }
     $spacing: 6rem;
