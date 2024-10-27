@@ -42,7 +42,7 @@ const breakpoints = {
   },
 };
 
-export default function Carousel({ slides }) {
+export default function TextCarousel({ slides }) {
   return (
     <Swiper
       spaceBetween={30}

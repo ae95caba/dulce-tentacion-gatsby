@@ -58,25 +58,30 @@ $header-height-on-mobile: 56px;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
   }
 }
-@mixin secondC {
+@mixin secondC($includeImageWrapperStyles: true) {
   .swiper {
     width: 800px;
-
     overflow-x: clip;
     overflow-y: visible;
     padding-left: 1rem;
+
     .swiper-slide {
       display: flex;
       justify-content: center;
       align-items: center;
-      .gatsby-image-wrapper {
-        border-radius: 1.5rem;
-        box-shadow: $cool-shadow;
-        height: 100%;
-        aspect-ratio: 1/1;
+
+      // Conditionally include .gatsby-image-wrapper styles
+      @if $includeImageWrapperStyles {
+        .gatsby-image-wrapper {
+          border-radius: 1.5rem;
+          box-shadow: $cool-shadow;
+          height: 100%;
+          aspect-ratio: 1/1;
+        }
       }
     }
   }
+
   position: relative;
 
   &:before,
@@ -86,10 +91,10 @@ $header-height-on-mobile: 56px;
     pointer-events: none;
     width: 60px;
     height: 100%;
-
     content: "";
     z-index: 2;
   }
+
   &:before {
     left: 0;
     background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
@@ -880,6 +885,7 @@ header {
 
   .content {
     @include mainContent();
+
     .banner {
       padding: 0rem 2rem;
     }
@@ -890,14 +896,11 @@ header {
       font-size: 2rem;
       margin-bottom: 2rem;
     }
+
     & > .container {
-      @include carouselsContainer();
-      .slick-slider {
-        margin-bottom: 4rem;
-        .gatsby-image-wrapper {
-          box-shadow: none !important;
-        }
-      }
+      /*     @include carouselsContainer(); */
+      @include secondC(false);
+      margin-bottom: 4rem;
     }
   }
 }

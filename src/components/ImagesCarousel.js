@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
 
-export default function SecondCarousel({ slides }) {
+export default function ImagesCarousel({ slides }) {
   return (
     <Swiper
       spaceBetween={30}

@@ -15,8 +15,8 @@ import {
   UnKilo,
   Todos,
 } from "../components/Images/Promotional";
-import Carousel from "../components/Carousel";
-import SecondCarousel from "../components/SecondCarouse";
+import TextCarousel from "../components/TextCarousel";
+import ImagesCarousel from "../components/ImagesCarousel";
 import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
 
 const stringsArray = [
@@ -31,19 +31,19 @@ export default function Home() {
   const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
-      <Carousel slides={stringsArray} />
+      <TextCarousel slides={stringsArray} />
 
       <section className="hero">
         <div className="content">
           <h3>#DULCE-TENTACION</h3>
           <div className="container">
-            <SecondCarousel
+            <ImagesCarousel
               slides={[<UnCuarto />, <UnCuarto2 />, <UnKilo />, <Todos />]}
             />
           </div>
           <h3>#Promos</h3>
           <div className="container">
-            <SecondCarousel
+            <ImagesCarousel
               slides={[<Kilo />, <Medio />, <Cuarto />, <Deals />]}
             />
           </div>

@@ -21,7 +21,7 @@ import {
 import SimpleSlider from "../components/SlickCarousel";
 import { BannerSection } from "../components/BannerSection";
 import { KioskoBanner } from "../components/Images/Banners";
-
+import ImagesCarousel from "../components/ImagesCarousel";
 export default function Kiosko() {
   return (
     <main id="kiosko">
@@ -33,38 +33,32 @@ export default function Kiosko() {
         />
         <h3>SNACKS</h3>
         <div className="container">
-          <SimpleSlider
-            speed={1000}
-            autoplaySpeed={3000}
-            slidesToShow={3}
-            fade={false}
-          >
-            <DonSatur />
-            <Morochitas />
-            <Mantecadas />
-            <Marmoladas />
-            <Pitusas />
-            <SurtidasBagley />
-            <Krachitos />
-          </SimpleSlider>
+          <ImagesCarousel
+            slides={[
+              <DonSatur />,
+              <Morochitas />,
+              <Mantecadas />,
+              <Marmoladas />,
+              <Pitusas />,
+              <SurtidasBagley />,
+              <Krachitos />,
+            ]}
+          />
         </div>
         <h3>BEBIDAS</h3>
         <div className="container">
-          <SimpleSlider
-            speed={1000}
-            autoplaySpeed={3500}
-            slidesToShow={3}
-            fade={false}
-          >
-            <Baggio />
-            <CocaCola />
-            <DrLemon />
-            <FrizzeBlue />
-            <BrahmaChops />
-            <Manaos />
-            <Smirnoff />
-            <SpeedXL />
-          </SimpleSlider>
+          <ImagesCarousel
+            slides={[
+              <Baggio />,
+              <CocaCola />,
+              <DrLemon />,
+              <FrizzeBlue />,
+              <BrahmaChops />,
+              <Manaos />,
+              <Smirnoff />,
+              <SpeedXL />,
+            ]}
+          />
         </div>
       </div>
     </main>
