@@ -16,6 +16,7 @@ import {
   Todos,
 } from "../components/Images/Promotional";
 import Carousel from "../components/Carousel";
+import SecondCarousel from "../components/SecondCarouse";
 import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
 
 const stringsArray = [
@@ -36,30 +37,15 @@ export default function Home() {
         <div className="content">
           <h3>#DULCE-TENTACION</h3>
           <div className="container">
-            <SimpleSlider
-              speed={1000}
-              autoplaySpeed={3000}
-              slidesToShow={3}
-              fade={false}
-            >
-              <UnCuarto />
-              <UnCuarto2 />
-              <UnKilo />
-              <Todos />
-            </SimpleSlider>
+            <SecondCarousel
+              slides={[<UnCuarto />, <UnCuarto2 />, <UnKilo />, <Todos />]}
+            />
           </div>
           <h3>#Promos</h3>
           <div className="container">
-            <SimpleSlider
-              speed={1000}
-              autoplaySpeed={3500}
-              slidesToShow={3}
-              fade={false}
-            >
-              <Kilo />
-              <Medio />
-              <Cuarto /> <Deals />
-            </SimpleSlider>
+            <SecondCarousel
+              slides={[<Kilo />, <Medio />, <Cuarto />, <Deals />]}
+            />
           </div>
         </div>
       </section>

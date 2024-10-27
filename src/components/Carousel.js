@@ -53,7 +53,7 @@ export default function Carousel({ slides }) {
       }}
       breakpoints={breakpoints}
       modules={[Pagination, Autoplay]}
-      className="mySwiper"
+      className="first-carousel"
     >
       {slides.map((slide) => (
         <SwiperSlide>{slide}</SwiperSlide>

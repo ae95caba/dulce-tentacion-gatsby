@@ -58,6 +58,49 @@ $header-height-on-mobile: 56px;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
   }
 }
+@mixin secondC {
+  .swiper {
+    width: 800px;
+
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-left: 1rem;
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .gatsby-image-wrapper {
+        border-radius: 1.5rem;
+        box-shadow: $cool-shadow;
+        height: 100%;
+        aspect-ratio: 1/1;
+      }
+    }
+  }
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    width: 60px;
+    height: 100%;
+
+    content: "";
+    z-index: 2;
+  }
+  &:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  &:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+}
+
 //
 
 *,
@@ -872,74 +915,42 @@ header {
     }
   }
 
-  .swiper {
+  .first-carousel {
     height: 100px;
 
     background-color: $accent-color;
-  }
+    .swiper-slide {
+      font-size: 18px;
 
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
+      /* Center slide text vertically */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $accent-color;
+      color: $contras-color;
+      font-size: 1.2rem;
+      letter-spacing: 0.2rem;
 
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $accent-color;
-    color: $contras-color;
-    font-size: 1.2rem;
-    letter-spacing: 0.2rem;
+      font-weight: 900;
 
-    font-weight: 900;
-
-    text-transform: uppercase;
-  }
-
-  .swiper-slide img {
+      text-transform: uppercase;
+    }
+    /*   .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  } */
+  }
+  .second-carousel {
+    height: 200px;
+    width: 800px;
   }
 
-  .first.carousel {
-    overflow: hidden;
-    background-color: $accent-color;
-    color: $contras-color;
-    white-space: nowrap;
-    padding: 1rem 0rem;
-    font-size: 1.2rem;
-    letter-spacing: 0.2rem;
-
-    font-weight: 900;
-
-    text-transform: uppercase;
-    @keyframes slide {
-      from {
-        transform: translateX(0%);
-      }
-      to {
-        transform: translateX(-100%);
-      }
-    }
-    .logos-slide {
-      display: inline-flex;
-      justify-content: space-evenly;
-      min-width: 100%;
-
-      animation: 20s slide infinite linear;
-
-      .img {
-        margin-left: 4rem;
-      }
-    }
-  }
   section.hero {
     .content {
       & > .container {
-        @include carouselsContainer();
+        @include secondC();
       }
     }
     $spacing: 6rem;
