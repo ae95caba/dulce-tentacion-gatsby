@@ -5,7 +5,6 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
     console.log(deliveryInfo);
   }, [deliveryInfo]);
 
-  const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
   const [isTakeAwayChecked, setIsTakeAwayChecked] = useState(false);
 
   function checkValidity(e) {
@@ -32,24 +31,28 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
             name="fullfillment-method"
             value="pickup"
             id="pickup"
+            checked={deliveryInfo.isChecked === false}
             required
             onChange={() => {
-              setIsDeliveryChecked(false);
+              setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
+
               setIsTakeAwayChecked(true);
             }}
           />
         </label>
 
         <label
-          className={`option ${isDeliveryChecked && "checked"}`}
+          className={`option ${deliveryInfo.isChecked && "checked"}`}
           htmlFor="delivery"
         >
           <span>Delivery 🛵</span>
           <input
             onChange={() => {
-              setIsDeliveryChecked(true);
+              setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
+
               setIsTakeAwayChecked(false);
             }}
+            checked={deliveryInfo.isChecked === true}
             type="radio"
             name="fullfillment-method"
             value="delivery"
@@ -59,7 +62,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
         </label>
       </section>
 
-      {isDeliveryChecked && (
+      {deliveryInfo.isChecked && (
         <div id="delivery-details">
           <div className="container">
             <input
