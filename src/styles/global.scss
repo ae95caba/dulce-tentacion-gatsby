@@ -645,6 +645,9 @@ header {
         border: 2px solid transparent;
         &:hover {
           background-color: #e8547e;
+        }
+        &.checked {
+          background-color: #e8547e;
           border-color: black;
         }
         input {

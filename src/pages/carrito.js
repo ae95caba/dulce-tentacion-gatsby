@@ -211,7 +211,11 @@ export default function Cart() {
                   getAllIceCreamDiscounts={getAllIceCreamDiscounts}
                 />
                 <section className="payment options">
-                  <label className="option">
+                  <label
+                    className={`option ${
+                      paymentMethod === "cash" && "checked"
+                    }`}
+                  >
                     <span>Efectivo 💸</span>
                     <input
                       type="radio"
@@ -224,7 +228,11 @@ export default function Cart() {
                     />
                   </label>
 
-                  <label className="option">
+                  <label
+                    className={`option ${
+                      paymentMethod === "transfer" && "checked"
+                    }`}
+                  >
                     <span>Transferencia 📱</span>
                     <input
                       type="radio"
