@@ -71,17 +71,17 @@ export default function Cart() {
         return name;
       }
 
-      let disccounts = [];
+      let discounts = [];
       const numberOfCombos = Math.floor(
         get_FlavourIceCreamAparitions(flavours) / 2
       );
       for (let index = 0; index < numberOfCombos; index++) {
-        disccounts.push({
+        discounts.push({
           name: `Combo 2 x ${getIceCreamNameFrom_(flavours)}`,
           ammount: getDiscountAmount(),
         });
       }
-      return disccounts;
+      return discounts;
     }
 
     let discounts = [];

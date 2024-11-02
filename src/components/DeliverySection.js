@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
+  useEffect(() => {
+    console.log(deliveryInfo);
+  }, [deliveryInfo]);
+
+  const deliveryRadioButtonRef = useRef(null);
+
   function checkValidity(e) {
     const isValid = e.target.validity.valid;
 
@@ -15,44 +21,31 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
   return (
     <>
       <section className="fullfillment-method options">
-        <label
-          onClick={() => {
-            setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
-          }}
-          className="option"
-          htmlFor="pickup"
-        >
+        <label className="option" htmlFor="pickup">
           <span>Retiro en el local</span>
           <input
             type="radio"
             name="fullfillment-method"
             value="pickup"
-            defaultChecked={!deliveryInfo.isChecked}
             id="pickup"
             required
           />
         </label>
 
-        <label
-          className="option"
-          htmlFor="delivery"
-          onClick={() => {
-            setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
-          }}
-        >
+        <label className="option" htmlFor="delivery">
           <span>Delivery 🛵</span>
           <input
             type="radio"
             name="fullfillment-method"
             value="delivery"
-            defaultChecked={deliveryInfo.isChecked}
             id="delivery"
             required
+            ref={deliveryRadioButtonRef}
           />
         </label>
       </section>
 
-      {deliveryInfo.isChecked && (
+      {deliveryRadioButtonRef.current?.checked && (
         <div id="delivery-details">
           <div className="container">
             <input
