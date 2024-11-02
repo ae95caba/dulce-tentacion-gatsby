@@ -40,7 +40,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
             setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
           }}
         >
-          <span>Envio a domicilio</span>
+          <span>Delivery 🛵</span>
           <input
             type="radio"
             name="fullfillment-method"

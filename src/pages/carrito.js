@@ -212,7 +212,7 @@ export default function Cart() {
                 />
                 <section className="payment options">
                   <label className="option">
-                    <span>Efectivo</span>
+                    <span>Efectivo 💸</span>
                     <input
                       type="radio"
                       name="payment"
@@ -225,7 +225,7 @@ export default function Cart() {
                   </label>
 
                   <label className="option">
-                    <span>Transferencia</span>
+                    <span>Transferencia 📱</span>
                     <input
                       type="radio"
                       name="payment"
