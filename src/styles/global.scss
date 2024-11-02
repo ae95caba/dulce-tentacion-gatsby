@@ -638,6 +638,15 @@ header {
         display: flex;
         justify-content: space-between;
         gap: $gap;
+
+        padding: 1rem;
+        border-radius: 0.2rem;
+        background-color: #ddd;
+        border: 2px solid transparent;
+        &:hover {
+          background-color: #e8547e;
+          border-color: black;
+        }
         input {
           margin-right: 0.5rem;
         }

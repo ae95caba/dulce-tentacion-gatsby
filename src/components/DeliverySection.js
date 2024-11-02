@@ -6,6 +6,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
   }, [deliveryInfo]);
 
   const deliveryRadioButtonRef = useRef(null);
+  const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
 
   function checkValidity(e) {
     const isValid = e.target.validity.valid;
@@ -29,23 +30,28 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
             value="pickup"
             id="pickup"
             required
+            onChange={() => {
+              setIsDeliveryChecked(false);
+            }}
           />
         </label>
 
         <label className="option" htmlFor="delivery">
           <span>Delivery 🛵</span>
           <input
+            onChange={() => {
+              setIsDeliveryChecked(true);
+            }}
             type="radio"
             name="fullfillment-method"
             value="delivery"
             id="delivery"
             required
-            ref={deliveryRadioButtonRef}
           />
         </label>
       </section>
 
-      {deliveryRadioButtonRef.current?.checked && (
+      {isDeliveryChecked && (
         <div id="delivery-details">
           <div className="container">
             <input
