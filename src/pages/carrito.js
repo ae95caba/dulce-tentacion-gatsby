@@ -245,17 +245,25 @@ export default function Cart() {
                     />
                   </label>
                   {paymentMethod === "transfer" && (
-                    <p
-                      className="alias"
-                      onClick={() => copyToClipboard(process.env.GATSBY_ALIAS)}
-                    >
-                      Alias : <span>{process.env.GATSBY_ALIAS}</span>
-                      {textCopied ? (
-                        <TbCopyCheckFilled size={"1.3rem"} />
-                      ) : (
-                        <FaCopy size={"1.3rem"} />
-                      )}
-                    </p>
+                    <>
+                      <p
+                        className="alias"
+                        onClick={() =>
+                          copyToClipboard(process.env.GATSBY_ALIAS)
+                        }
+                      >
+                        Alias :{" "}
+                        <span style={{ color: "blue" }}>
+                          {process.env.GATSBY_ALIAS}
+                        </span>
+                        {textCopied ? (
+                          <TbCopyCheckFilled size={"1.3rem"} />
+                        ) : (
+                          <FaCopy size={"1.3rem"} />
+                        )}
+                      </p>
+                      <p>A nombre de {process.env.GATSBY_OWNER}</p>
+                    </>
                   )}
                 </section>
                 <button type="submit" form="checkout-form">
