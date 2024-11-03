@@ -1325,18 +1325,10 @@ footer {
   }
 }
 
-@media (hover: hover) {
-  //targets only devices that can hover
-
-  .first.carousel:hover .logos-slide {
-    animation-play-state: paused !important;
-  }
-}
-
 @media (hover: none) {
   //targets only devices that can hover
 
-  .first.carousel:active .logos-slide {
-    animation-play-state: paused !important;
+  .option:hover:not(.checked) {
+    background-color: #ddd !important;
   }
 }
