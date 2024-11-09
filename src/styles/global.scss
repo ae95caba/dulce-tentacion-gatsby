@@ -638,6 +638,18 @@ header {
         display: flex;
         justify-content: space-between;
         gap: $gap;
+
+        padding: 1rem;
+        border-radius: 0.2rem;
+        background-color: #ddd;
+        border: 2px solid transparent;
+        &:hover {
+          background-color: #e8547e;
+        }
+        &.checked {
+          background-color: #e8547e;
+          border-color: black;
+        }
         input {
           margin-right: 0.5rem;
         }
@@ -1312,18 +1324,10 @@ footer {
   }
 }
 
-@media (hover: hover) {
-  //targets only devices that can hover
-
-  .first.carousel:hover .logos-slide {
-    animation-play-state: paused !important;
-  }
-}
-
 @media (hover: none) {
   //targets only devices that can hover
 
-  .first.carousel:active .logos-slide {
-    animation-play-state: paused !important;
+  .option:hover:not(.checked) {
+    background-color: #ddd !important;
   }
 }

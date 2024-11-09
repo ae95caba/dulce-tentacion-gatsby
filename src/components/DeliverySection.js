@@ -1,6 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 
 export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
+  useEffect(() => {
+    console.log(deliveryInfo);
+  }, [deliveryInfo]);
+
+  const [isTakeAwayChecked, setIsTakeAwayChecked] = useState(false);
+
   function checkValidity(e) {
     const isValid = e.target.validity.valid;
 
@@ -16,10 +22,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
     <>
       <section className="fullfillment-method options">
         <label
-          onClick={() => {
-            setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
-          }}
-          className="option"
+          className={`option ${isTakeAwayChecked && "checked"}`}
           htmlFor="pickup"
         >
           <span>Retiro en el local</span>
@@ -27,25 +30,32 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
             type="radio"
             name="fullfillment-method"
             value="pickup"
-            defaultChecked={!deliveryInfo.isChecked}
             id="pickup"
+            checked={deliveryInfo.isChecked === false}
             required
+            onChange={() => {
+              setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
+
+              setIsTakeAwayChecked(true);
+            }}
           />
         </label>
 
         <label
-          className="option"
+          className={`option ${deliveryInfo.isChecked && "checked"}`}
           htmlFor="delivery"
-          onClick={() => {
-            setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
-          }}
         >
-          <span>Envio a domicilio</span>
+          <span>Delivery 🛵</span>
           <input
+            onChange={() => {
+              setDeliveryInfo((prev) => ({ ...prev, isChecked: true }));
+
+              setIsTakeAwayChecked(false);
+            }}
+            checked={deliveryInfo.isChecked === true}
             type="radio"
             name="fullfillment-method"
             value="delivery"
-            defaultChecked={deliveryInfo.isChecked}
             id="delivery"
             required
           />

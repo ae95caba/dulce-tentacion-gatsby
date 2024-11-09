@@ -71,17 +71,17 @@ export default function Cart() {
         return name;
       }
 
-      let disccounts = [];
+      let discounts = [];
       const numberOfCombos = Math.floor(
         get_FlavourIceCreamAparitions(flavours) / 2
       );
       for (let index = 0; index < numberOfCombos; index++) {
-        disccounts.push({
+        discounts.push({
           name: `Combo 2 x ${getIceCreamNameFrom_(flavours)}`,
           ammount: getDiscountAmount(),
         });
       }
-      return disccounts;
+      return discounts;
     }
 
     let discounts = [];
@@ -211,8 +211,12 @@ export default function Cart() {
                   getAllIceCreamDiscounts={getAllIceCreamDiscounts}
                 />
                 <section className="payment options">
-                  <label className="option">
-                    <span>Efectivo</span>
+                  <label
+                    className={`option ${
+                      paymentMethod === "cash" && "checked"
+                    }`}
+                  >
+                    <span>Efectivo 💸</span>
                     <input
                       type="radio"
                       name="payment"
@@ -224,8 +228,12 @@ export default function Cart() {
                     />
                   </label>
 
-                  <label className="option">
-                    <span>Transferencia</span>
+                  <label
+                    className={`option ${
+                      paymentMethod === "transfer" && "checked"
+                    }`}
+                  >
+                    <span>Transferencia 📱</span>
                     <input
                       type="radio"
                       name="payment"
@@ -237,17 +245,25 @@ export default function Cart() {
                     />
                   </label>
                   {paymentMethod === "transfer" && (
-                    <p
-                      className="alias"
-                      onClick={() => copyToClipboard(process.env.GATSBY_ALIAS)}
-                    >
-                      Alias : <span>{process.env.GATSBY_ALIAS}</span>
-                      {textCopied ? (
-                        <TbCopyCheckFilled size={"1.3rem"} />
-                      ) : (
-                        <FaCopy size={"1.3rem"} />
-                      )}
-                    </p>
+                    <>
+                      <p
+                        className="alias"
+                        onClick={() =>
+                          copyToClipboard(process.env.GATSBY_ALIAS)
+                        }
+                      >
+                        Alias :{" "}
+                        <span style={{ color: "blue" }}>
+                          {process.env.GATSBY_ALIAS}
+                        </span>
+                        {textCopied ? (
+                          <TbCopyCheckFilled size={"1.3rem"} />
+                        ) : (
+                          <FaCopy size={"1.3rem"} />
+                        )}
+                      </p>
+                      <p>A nombre de {process.env.GATSBY_OWNER}</p>
+                    </>
                   )}
                 </section>
                 <button type="submit" form="checkout-form">
