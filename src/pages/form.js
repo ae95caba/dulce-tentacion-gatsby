@@ -6,10 +6,12 @@ import React from "react";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
 import cone from "../images/ice-cream-cone.svg";
+import fetchRetry from "fetch-retry";
+
 export default function IceCreamForm({ data, location }) {
   const [isLoading, setIsLoading] = useState(true);
   const [flavourList, setFlavourList] = useState(null);
-
+  const fetchWithRetry = fetchRetry(fetch);
   const [product, setProduct] = useState(null);
   const { dispatch } = useContext(GlobalContext);
   const allParams = new URLSearchParams(location.search);
@@ -41,7 +43,7 @@ export default function IceCreamForm({ data, location }) {
           try {
             const apiUrl = process.env.GATSBY_API_URL;
 
-            const response = await fetch(
+            const response = await fetchWithRetry(
               `${apiUrl}/${product.apiRoute}`,
               requestOptions
             );
