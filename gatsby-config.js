@@ -63,5 +63,13 @@ module.exports = {
         imagePath: "imgUrl", // Replace with your actual image path
       },
     },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`webp`],
+        },
+      },
+    },
   ],
 };
