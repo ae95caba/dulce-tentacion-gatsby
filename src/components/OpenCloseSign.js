@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment-timezone";
+import { toZonedTime } from "date-fns-tz";
 
 export default function OpenCloseSign() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +7,8 @@ export default function OpenCloseSign() {
   useEffect(() => {
     const updateStatus = () => {
       // Set the time zone to Argentina
-      const argentinaTime = moment().tz("America/Argentina/Buenos_Aires");
+      const timeZone = "America/Argentina/Buenos_Aires";
+      const argentinaTime = toZonedTime(new Date(), timeZone); // Current time in Argentina
 
       // Define your store's opening hours
       const weekdaysOpeningHour = 20; // Monday to Friday opening hour
@@ -15,19 +16,22 @@ export default function OpenCloseSign() {
       const closingHour = 24; // Closing hour for both weekdays and weekends
 
       // Get the current day and hour
-      const currentDay = argentinaTime.day();
-      const currentHour = argentinaTime.hour();
+      const currentDay = argentinaTime.getDay(); // Returns day index (0: Sunday, 6: Saturday)
+      const currentHour = argentinaTime.getHours(); // Current hour
 
       // Determine if the store is open based on the current time and day
       const isStoreOpen =
         (currentDay >= 1 &&
           currentDay <= 5 &&
           currentHour >= weekdaysOpeningHour) ||
-        currentDay === 6 ||
-        (currentDay === 0 && currentHour >= weekendsOpeningHour);
+        ((currentDay === 6 || currentDay === 0) &&
+          currentHour >= weekendsOpeningHour);
+
+      // Log the results for debugging
       /* 
       console.log(`is open is : ${isStoreOpen}`);
-      console.log(`current day and hour is ${currentDay} , ${currentHour}`); */
+      console.log(`current day and hour is ${currentDay} , ${currentHour}`);
+      */
 
       setIsOpen(isStoreOpen);
     };
