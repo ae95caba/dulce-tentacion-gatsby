@@ -21,17 +21,16 @@ import {
 } from "../components/Images/Drinks";
 
 import { BannerSection } from "../components/BannerSection";
-import { KioskoBanner } from "../components/Images/Banners";
+
 import ImagesCarousel from "../components/ImagesCarousel";
+import { StaticImage } from "gatsby-plugin-image";
 export default function Kiosko() {
   return (
     <main id="kiosko">
       <div className="content">
-        <BannerSection
-          h1={"Kiosko"}
-          h2="Precios por whatsapp"
-          GatsbyImage={KioskoBanner}
-        />
+        <BannerSection h1={"Kiosko"} h2="Precios por whatsapp">
+          <StaticImage src="../images/kiosko-banner.jpg" />
+        </BannerSection>
         <h3>SNACKS</h3>
         <div className="container">
           <ImagesCarousel

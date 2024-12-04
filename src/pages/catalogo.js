@@ -1,28 +1,26 @@
 import "../assets/scss/catalogo.scss";
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import { BannerSection } from "../components/BannerSection";
-import { Link } from "gatsby";
+
 import Maid from "../components/Images/Maid";
-import Swal from "sweetalert2";
+
 import toCartIcon from "../images/to-cart.svg";
-import { CatalogBanner } from "../components/Images/Banners";
+
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import listIcon from "../images/list.svg";
-import handPointingIcon from "../images/hand-pointing.svg";
+
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
 
   return (
     <main id="catalog">
       <div className="content">
-        <BannerSection
-          h2="Ve al carrito para finalizar 👆 "
-          h1="Catalogo"
-          GatsbyImage={CatalogBanner}
-        />
+        <BannerSection h2="Ve al carrito para finalizar 👆 " h1="Catalogo">
+          <StaticImage src="../images/catalog-banner.jpg" />
+        </BannerSection>
         <section className="cards-container">
           {products.map((product, index) => {
             const productData = product.node;

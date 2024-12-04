@@ -1,18 +1,18 @@
 import "../assets/scss/nosotros.scss";
 import React from "react";
 import { BannerSection } from "../components/BannerSection";
-import { AboutUsBanner } from "../components/Images/Banners";
+
 import CuteAnimeGirl from "../components/Images/CuteAnimeGirl";
+import { StaticImage } from "gatsby-plugin-image";
 
 export default function We() {
   return (
     <main id="we">
       <div className="content">
-        <BannerSection
-          h1={"Nosotros"}
-          h2="El mejor helado artesanal"
-          GatsbyImage={AboutUsBanner}
-        />
+        <BannerSection h1={"Nosotros"} h2="El mejor helado artesanal">
+          <StaticImage src="../images/about-us-banner.jpg" />
+        </BannerSection>
+
         <h2>El helado Artesanal 👍 </h2>
         <p>
           Es sinónimo de <strong>calidad</strong>. Los helados artesanales se

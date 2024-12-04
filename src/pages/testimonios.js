@@ -8,7 +8,7 @@ import {
   FourthAvatar,
 } from "../components/Images/Avatars";
 import { BannerSection } from "../components/BannerSection";
-import { ReviewsBanner } from "../components/Images/Banners";
+import { StaticImage } from "gatsby-plugin-image";
 
 const reviewsArr = [
   {
@@ -43,11 +43,9 @@ export default function Reviews() {
   return (
     <main id="reviews">
       <div className="content">
-        <BannerSection
-          h1={"Testimonios"}
-          h2="de algunos de nuestros clientes"
-          GatsbyImage={ReviewsBanner}
-        />
+        <BannerSection h1={"Testimonios"} h2="de algunos de nuestros clientes">
+          <StaticImage src="../images/reviews-banner.jpeg" />
+        </BannerSection>
 
         <div className="container">
           {reviewsArr.map((review) => (

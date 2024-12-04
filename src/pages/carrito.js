@@ -1,9 +1,9 @@
 import "../assets/scss/carrito.scss";
 import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { CartBanner } from "../components/Images/Banners";
+
 import { useContext } from "react";
-import { navigate } from "gatsby";
+
 import Swal from "sweetalert2";
 import { createWhatsAppLink } from "../logic/whatsappLink";
 import AnimeGirldThinking from "../components/Images/AnimeGirlThinking";
@@ -14,8 +14,9 @@ import { BannerSection } from "../components/BannerSection";
 import SadShoppingCart from "../components/Images/SadShoppingCart";
 import { FaCopy } from "react-icons/fa";
 import { TbCopyCheckFilled } from "react-icons/tb";
-import { toast } from "react-toastify";
+
 import { triggerAlert } from "../context/GlobalContext";
+import { StaticImage } from "gatsby-plugin-image";
 export default function Cart() {
   const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
@@ -179,11 +180,9 @@ export default function Cart() {
   return (
     <main id="cart">
       <div className="content">
-        <BannerSection
-          h2="Aca podes completar tu pedido"
-          h1="Carrito"
-          GatsbyImage={CartBanner}
-        />
+        <BannerSection h2="Aca podes completar tu pedido" h1="Carrito">
+          <StaticImage src="../images/cart-banner.jpg" />
+        </BannerSection>
 
         {cartItems.length > 0 ? (
           <>
