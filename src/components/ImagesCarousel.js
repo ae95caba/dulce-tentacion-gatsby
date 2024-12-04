@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination, Autoplay } from "swiper/modules";
 
-export default function ImagesCarousel({ slides }) {
+export default function ImagesCarousel({ slides, slidesPerView = 3 }) {
   return (
     <Swiper
       spaceBetween={30}
@@ -19,7 +19,7 @@ export default function ImagesCarousel({ slides }) {
         delay: 2500,
         disableOnInteraction: false,
       }}
-      slidesPerView={3}
+      slidesPerView={slidesPerView}
       modules={[Pagination, Autoplay]}
       className="image-carousel"
     >

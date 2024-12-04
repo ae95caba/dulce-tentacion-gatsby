@@ -19,7 +19,7 @@ import {
   Smirnoff,
   SpeedXL,
 } from "../components/Images/Drinks";
-import SimpleSlider from "../components/SlickCarousel";
+
 import { BannerSection } from "../components/BannerSection";
 import { KioskoBanner } from "../components/Images/Banners";
 import ImagesCarousel from "../components/ImagesCarousel";

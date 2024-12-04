@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 import { Link } from "gatsby";
 
 import ScrollTrigger from "react-scroll-trigger";
-import SimpleSlider from "../components/SlickCarousel";
+
 import ShoppingCart from "../components/Images/ShoppingCart";
 import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
 import {
@@ -28,7 +28,6 @@ const stringsArray = [
 ];
 
 export default function Home() {
-  const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
       <TextCarousel slides={stringsArray} />
@@ -55,15 +54,18 @@ export default function Home() {
             No podes comprar felicidad, pero si podes comprar helado, lo que es
             casi lo mismo! 😎
           </p>
-          <SimpleSlider
-            speed={1000}
-            autoplaySpeed={3500}
-            slidesToShow={1}
-            fade={true}
-          >
-            <Kid1 />
-            <Kid2 /> <Kid3 /> <Kid4 /> <Kid5 /> <Kid6 />
-          </SimpleSlider>
+
+          <ImagesCarousel
+            slides={[
+              <Kid1 />,
+              <Kid2 />,
+              <Kid3 />,
+              <Kid4 />,
+              <Kid5 />,
+              <Kid6 />,
+            ]}
+            slidesPerView={1}
+          />
         </div>
       </section>
       <section class="stats">
