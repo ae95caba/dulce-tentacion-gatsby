@@ -234,13 +234,15 @@ header {
   }
 
   .hamburger-menu {
-    width: 2.5rem;
-    height: 2.5rem;
-    svg {
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+    /*  svg {
       path {
         stroke: black;
       }
-    }
+    } */
   }
   a {
     &:hover,

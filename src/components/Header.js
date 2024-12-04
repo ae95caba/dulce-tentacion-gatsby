@@ -4,13 +4,14 @@ import { Link } from "gatsby";
 import { useContext, useRef, useEffect, useState } from "react";
 import cartIcon from "../images/cart.svg";
 import Logo from "./Images/Logo";
-import animationData from "../animations/hamburger-menu.json";
-import Lottie from "lottie-react";
+import hamburgerMenuIcon from "../images/hamburger-menu.svg";
+/* import animationData from "../animations/hamburger-menu.json";
+import Lottie from "lottie-react"; */
 
 const tabsObj = ["Catalogo", "Kiosko", "Nosotros", "Galeria", "Testimonios"];
 
 export default function Header() {
-  const hambugerAnimationRef = useRef(null);
+  /*   const hambugerAnimationRef = useRef(null); */
   return (
     <header>
       <div className="content">
@@ -29,21 +30,22 @@ export default function Header() {
               const isChecked = e.target.checked;
               console.log(isChecked);
               if (isChecked) {
-                hambugerAnimationRef.current?.playSegments([0, 50], true);
+                /*   hambugerAnimationRef.current?.playSegments([0, 50], true); */
               } else {
-                hambugerAnimationRef.current?.playSegments([75, 150], false);
+                /*  hambugerAnimationRef.current?.playSegments([75, 150], false); */
               }
             }}
           />
           <label for="checkbox" class="overlay"></label>
           <Sidebar />
           <label className="hamburger-menu" htmlFor="checkbox">
-            <Lottie
+            <img src={hamburgerMenuIcon} alt="" />
+            {/*   <Lottie
               lottieRef={hambugerAnimationRef}
               animationData={animationData}
               autoplay={false}
               loop={0}
-            />
+            /> */}
           </label>
           <CartButton />
         </div>
