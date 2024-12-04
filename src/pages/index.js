@@ -1,10 +1,9 @@
 ////////////
-
+import "../assets/scss/index.scss";
 import React, { useState, useRef } from "react";
 import CountUp from "react-countup";
 import { Link } from "gatsby";
-import animationData from "../animations/delivery.json";
-import Lottie from "lottie-react";
+
 import ScrollTrigger from "react-scroll-trigger";
 import SimpleSlider from "../components/SlickCarousel";
 import ShoppingCart from "../components/Images/ShoppingCart";
@@ -18,6 +17,7 @@ import {
 import TextCarousel from "../components/TextCarousel";
 import ImagesCarousel from "../components/ImagesCarousel";
 import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
+import { StaticImage } from "gatsby-plugin-image";
 
 const stringsArray = [
   "Helado Artesanal de la mejor calidad",
@@ -78,12 +78,7 @@ export default function Home() {
           <h2>Envios a Marcos Paz y Mariano Acosta</h2>
           <div className="container">
             <ShoppingCart />
-            <Lottie
-              lottieRef={deliveryAnimationRef}
-              animationData={animationData}
-              autoplay={true}
-              loop={true}
-            />
+            <StaticImage src="../images/delivery.png" />
           </div>
           <Link to="/catalogo">
             <button>Pedi ya! 😋🍦</button>
@@ -107,23 +102,5 @@ function Counter({ value, duration, text }) {
       </p>
       <p>{text}</p>
     </ScrollTrigger>
-  );
-}
-
-function FirstCarousel() {
-  const slide = (
-    <div className="logos-slide">
-      <span className="img">Helado Artesanal de la mejor calidad</span>
-      <span className="img">Aceptamos Mercado Pago</span>
-      <span className="img">Delivery Sin Cargo por la zona</span>
-      <span className="img">El sabor de la felicidad</span>
-      <span className="img">Somos calidad a precio accesible</span>
-    </div>
-  );
-  return (
-    <div className="first carousel">
-      {slide}
-      {slide}
-    </div>
   );
 }

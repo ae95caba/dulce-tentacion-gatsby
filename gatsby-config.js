@@ -25,7 +25,11 @@ module.exports = {
         trackingIds: [
           "G-784HFDBC5Z", // Google Analytics / GA
         ],
-
+        gtagConfig: {
+          anonymize_ip: true, // Anonymize IP addresses
+          allow_ad_personalization_signals: false, // Disable advertising signals
+          send_page_view: true, // Send initial pageview
+        },
         // This object is used for configuration specific to this plugin
         pluginConfig: {
           // Puts tracking script in the head instead of the body

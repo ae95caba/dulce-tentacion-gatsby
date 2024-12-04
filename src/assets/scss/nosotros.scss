@@ -1,0 +1,42 @@
+@use "./utils/_mixins" as *;
+#we {
+  padding: 2rem 2rem 0rem 2rem;
+
+  .content {
+    @include mainContent();
+    & > .container:last-of-type {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-weight: 900;
+        width: 15rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        line-height: 1.8rem;
+      }
+      .gatsby-image-wrapper {
+        width: 15rem;
+      }
+    }
+    h1 {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    p {
+      margin-bottom: 2rem;
+      line-height: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      strong {
+        font-weight: 900;
+      }
+    }
+  }
+}

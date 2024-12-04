@@ -1,3 +1,4 @@
+import "../assets/scss/form.scss";
 import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";

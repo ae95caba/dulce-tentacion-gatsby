@@ -1,3 +1,4 @@
+import "../assets/scss/testimonios.scss";
 import React from "react";
 import Quotes from "../components/Images/Quotes";
 import {

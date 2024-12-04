@@ -1,0 +1,25 @@
+@use "./utils/_mixins" as *;
+#gallery {
+  padding: 2rem 2rem 4rem 2rem;
+  .content {
+    @include mainContent();
+  }
+  h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .gallery-container {
+    display: flex;
+    justify-content: center;
+    margin: 0rem auto;
+    gap: 2rem;
+    max-width: 100%;
+    width: var(--universal-width);
+
+    flex-wrap: wrap;
+
+    .gatsby-image-wrapper {
+      width: 10rem;
+    }
+  }
+}

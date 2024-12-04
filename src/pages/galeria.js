@@ -1,3 +1,4 @@
+import "../assets/scss/galeria.scss";
 import React from "react";
 import { GalleryBanner } from "../components/Images/Banners";
 import {

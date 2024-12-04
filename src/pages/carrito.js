@@ -1,3 +1,4 @@
+import "../assets/scss/carrito.scss";
 import React, { useEffect, useState, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { CartBanner } from "../components/Images/Banners";

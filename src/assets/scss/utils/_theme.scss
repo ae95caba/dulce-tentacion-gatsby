@@ -1,0 +1,10 @@
+:root {
+  --universal-width: 700px;
+  --primary-color: #e8547e;
+  --secondary-color: black;
+  --contrast-color: white;
+  --accent-color: #000000;
+  --secondary-color-filter: invert(99%) sepia(0%) saturate(7500%)
+    hue-rotate(101deg) brightness(108%) contrast(100%);
+  --cool-shadow: 0 0 5px rgba(0, 0, 0, 0.5019607843);
+}

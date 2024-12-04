@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "@fontsource-variable/caveat";
 import "@fontsource/roboto";
 import "@fontsource/sofia";
+import "../assets/scss/utils/_theme.scss";
 export default function Layout({ children }) {
   const { title, description } = useSiteMetadata();
   return (

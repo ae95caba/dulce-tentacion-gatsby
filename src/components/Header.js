@@ -1,3 +1,4 @@
+import "../assets/scss/header.scss";
 import React from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { Link } from "gatsby";
@@ -5,8 +6,6 @@ import { useContext, useRef, useEffect, useState } from "react";
 import cartIcon from "../images/cart.svg";
 import Logo from "./Images/Logo";
 import hamburgerMenuIcon from "../images/hamburger-menu.svg";
-/* import animationData from "../animations/hamburger-menu.json";
-import Lottie from "lottie-react"; */
 
 const tabsObj = ["Catalogo", "Kiosko", "Nosotros", "Galeria", "Testimonios"];
 

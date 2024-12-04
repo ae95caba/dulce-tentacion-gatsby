@@ -1,0 +1,55 @@
+@mixin mainContent {
+  margin: auto;
+  max-width: var(--universal-width);
+  overflow-x: hidden;
+  display: flex;
+
+  flex-direction: column;
+}
+
+@mixin imageCarouselContainer($includeImageWrapperStyles: true) {
+  position: relative;
+  .swiper {
+    width: 800px;
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-left: 1rem;
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // Conditionally include .gatsby-image-wrapper styles
+      @if $includeImageWrapperStyles {
+        .gatsby-image-wrapper {
+          border-radius: 1.5rem;
+          box-shadow: var(--cool-shadow);
+          height: 100%;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    pointer-events: none;
+    width: 60px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+
+  &:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+
+  &:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+}

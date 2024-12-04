@@ -1,3 +1,4 @@
+import "../assets/scss/footer.scss";
 import React from "react";
 import instagram from "../images/instagram.svg";
 import whatsapp from "../images/whatsapp.svg";

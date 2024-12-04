@@ -1,3 +1,4 @@
+import "../assets/scss/nosotros.scss";
 import React from "react";
 import { BannerSection } from "../components/BannerSection";
 import { AboutUsBanner } from "../components/Images/Banners";

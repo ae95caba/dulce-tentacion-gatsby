@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useReducer } from "react";
-import Swal from "sweetalert2";
+
 import { toast } from "react-toastify";
 
 export const GlobalContext = createContext({

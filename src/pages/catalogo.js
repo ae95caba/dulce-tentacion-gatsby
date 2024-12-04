@@ -1,3 +1,4 @@
+import "../assets/scss/catalogo.scss";
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
@@ -61,24 +62,6 @@ function Card({ product }) {
   return (
     <div className="card">
       <GatsbyImage image={image} alt={product.name} />
-      {/*  {product.description && (
-        <button
-          className="info"
-          onClick={() => {
-            Swal.fire(
-              `${product.name} :`,
-              `${
-                product.description
-                  ? product.description
-                  : "No hay mas informacion acerca de este producto"
-              }`,
-              "info"
-            );
-          }}
-        >
-          ?
-        </button>
-      )} */}
 
       <p className="product-name">{product.name}</p>
       <p className="product-price">$ {product.price}</p>

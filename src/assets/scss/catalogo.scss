@@ -1,0 +1,126 @@
+@use "./utils/_mixins" as *;
+#catalog {
+  padding: 2rem 2rem 0rem 2rem;
+
+  .content {
+    @include mainContent();
+    overflow-x: visible;
+  }
+
+  .maid {
+    margin-top: 5rem;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    .gatsby-image-wrapper {
+      width: 250px;
+    }
+    .container {
+      display: flex;
+      padding-bottom: 1rem;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 900;
+      button {
+        font-size: inherit;
+        border-radius: 1rem;
+      }
+    }
+  }
+  .cards-container {
+    display: grid;
+
+    gap: 2rem;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, 8rem);
+    $card-image-size: 8rem;
+    .card {
+      position: relative;
+      box-shadow: var(--cool-shadow);
+      overflow: hidden;
+      width: $card-image-size;
+      background-color: #e8547e;
+      display: grid;
+      border-radius: 1rem;
+      gap: 0.4rem;
+      grid-template-rows: min-content min-content min-content;
+      .gatsby-image-wrapper {
+        background-color: white;
+        height: $card-image-size;
+      }
+      .info {
+        position: absolute;
+        right: 0%;
+        font-size: 1.2rem;
+        font-weight: 500;
+        top: 0%;
+        background-color: transparent;
+        border-radius: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        color: black;
+      }
+      p {
+        padding: 0rem 0.5rem;
+
+        font-weight: 700;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      button.to-cart {
+        position: relative;
+
+        padding: 0.4rem 0rem;
+        span {
+          margin-right: 1.2rem;
+        }
+
+        img {
+          aspect-ratio: 1/1;
+          position: absolute;
+          width: 2rem;
+          top: 50%;
+          right: 0;
+          transform: translate(-50%, -50%);
+          filter: invert(1);
+        }
+      }
+      //this doesnt trigger
+      .active:after {
+        animation: animate 0.5s;
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+        @keyframes animate {
+          0% {
+            box-shadow: 0 0 0 0 black;
+          }
+          100% {
+            box-shadow: 0 0 10px 30px black;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .cards-container {
+    justify-content: center !important;
+  }
+}

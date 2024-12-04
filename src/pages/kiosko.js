@@ -1,3 +1,4 @@
+import "../assets/scss/kiosko.scss";
 import React from "react";
 import {
   Marmoladas,
