@@ -25,7 +25,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
           className={`option ${isTakeAwayChecked && "checked"}`}
           htmlFor="pickup"
         >
-          <span>Retiro en el local</span>
+          <span>Retiro en el local 🏪</span>
           <input
             type="radio"
             name="fullfillment-method"
