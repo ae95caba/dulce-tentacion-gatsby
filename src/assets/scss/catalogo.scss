@@ -1,5 +1,5 @@
 @use "./utils/_mixins" as *;
-@import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
+
 #catalog {
   padding: 2rem 2rem 0rem 2rem;
 
@@ -69,7 +69,6 @@
           color: black;
           font-weight: 500;
           text-align: center;
-          font-family: "Parkinsans", sans-serif;
         }
         .product-price {
           font-size: 13px;
