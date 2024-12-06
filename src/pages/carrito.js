@@ -6,12 +6,12 @@ import { useContext } from "react";
 
 import Swal from "sweetalert2";
 import { createWhatsAppLink } from "../logic/whatsappLink";
-import AnimeGirldThinking from "../components/Images/AnimeGirlThinking";
+
 import CartItem from "../components/CartItem";
 import SummarySection from "../components/SummarySection";
 import DeliverySection from "../components/DeliverySection";
 import { BannerSection } from "../components/BannerSection";
-import SadShoppingCart from "../components/Images/SadShoppingCart";
+
 import { FaCopy } from "react-icons/fa";
 import { TbCopyCheckFilled } from "react-icons/tb";
 
@@ -279,9 +279,17 @@ export default function Cart() {
           </>
         ) : (
           <div className="empty">
-            <SadShoppingCart />
+            <StaticImage
+              src="../images/sad-shopping-cart.png"
+              alt="Logo"
+              placeholder="blurred"
+              class="sad-shopping-cart"
+            />
             <p>No hay nada aca, porque no agregas algo?</p>
-            <AnimeGirldThinking />
+            <StaticImage
+              src="../images/anime-girl-thinking.png"
+              placeholder="blurred"
+            />
           </div>
         )}
       </div>

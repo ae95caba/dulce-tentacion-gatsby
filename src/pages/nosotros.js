@@ -2,7 +2,6 @@ import "../assets/scss/nosotros.scss";
 import React from "react";
 import { BannerSection } from "../components/BannerSection";
 
-import CuteAnimeGirl from "../components/Images/CuteAnimeGirl";
 import { StaticImage } from "gatsby-plugin-image";
 
 export default function We() {
@@ -51,7 +50,11 @@ export default function We() {
         </p>
         <div className="container">
           <p>Por eso nosotros apostamos por la calidad del helado artesanal.</p>
-          <CuteAnimeGirl />
+          <StaticImage
+            src="../../images/cute-anime-girl.png"
+            alt="cute anime girl"
+            placeholder="blurred"
+          />
         </div>
       </div>
     </main>

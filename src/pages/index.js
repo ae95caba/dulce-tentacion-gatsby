@@ -6,7 +6,6 @@ import { Link } from "gatsby";
 
 import ScrollTrigger from "react-scroll-trigger";
 
-import ShoppingCart from "../components/Images/ShoppingCart";
 import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
 import {
   UnCuarto,
@@ -79,7 +78,11 @@ export default function Home() {
         <div className="content">
           <h2>Envios a Marcos Paz y Mariano Acosta</h2>
           <div className="container">
-            <ShoppingCart />
+            <StaticImage
+              src="../images/online-shop.png"
+              alt="shopping-cart"
+              placeholder="blurred"
+            />
             <StaticImage src="../images/delivery.png" />
           </div>
           <Link to="/catalogo">

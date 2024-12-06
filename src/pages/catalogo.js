@@ -4,8 +4,6 @@ import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import { BannerSection } from "../components/BannerSection";
 
-import Maid from "../components/Images/Maid";
-
 import toCartIcon from "../images/to-cart.svg";
 
 import { graphql } from "gatsby";
@@ -33,7 +31,11 @@ export default function Shop(props) {
           })}
         </section>
         <section className="maid">
-          <Maid />
+          <StaticImage
+            src="../images/maid.png"
+            alt="maid"
+            placeholder="blurred"
+          />
         </section>
       </div>
     </main>

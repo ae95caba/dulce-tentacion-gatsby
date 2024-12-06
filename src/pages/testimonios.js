@@ -1,6 +1,6 @@
 import "../assets/scss/testimonios.scss";
 import React from "react";
-import Quotes from "../components/Images/Quotes";
+
 import {
   FirstAvatar,
   SecondAvatar,
@@ -67,7 +67,12 @@ function Review({ review }) {
           <h4>{review.author}</h4>
           <p>{review.dateString}</p>
         </div>
-        <Quotes />
+        <StaticImage
+          src="../../images/quotes.png"
+          alt="comillas"
+          placeholder="blurred"
+          className="quotes"
+        />
       </section>
     </div>
   );
