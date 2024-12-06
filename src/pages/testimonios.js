@@ -68,7 +68,7 @@ function Review({ review }) {
           <p>{review.dateString}</p>
         </div>
         <StaticImage
-          src="../../images/quotes.png"
+          src="../images/quotes.png"
           alt="comillas"
           placeholder="blurred"
           className="quotes"
