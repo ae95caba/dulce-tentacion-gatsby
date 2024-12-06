@@ -89,15 +89,9 @@ function Button({ handleClick, apiRoute }) {
       }}
     >
       {apiRoute ? (
-        <>
-          <span>Sabores</span>
-          <img src={listIcon} alt="cart icon" />
-        </>
+        <img src={listIcon} alt="cart icon" />
       ) : (
-        <>
-          <span>Al carrito</span>
-          <img src={toCartIcon} alt="cart icon" />
-        </>
+        <img src={toCartIcon} alt="cart icon" />
       )}
     </button>
   );
