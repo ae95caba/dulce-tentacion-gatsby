@@ -171,20 +171,3 @@ a {
     letter-spacing: 2px;
   }
 }
-
-@media (max-width: 650px) {
-  section.stats {
-    .content {
-      justify-content: center !important;
-    }
-  }
-
-  footer {
-    .container {
-      grid-template-columns: 1fr !important;
-      .location {
-        text-align: left !important;
-      }
-    }
-  }
-}

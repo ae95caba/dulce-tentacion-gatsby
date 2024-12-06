@@ -18,7 +18,8 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
-
+    column-gap: 4rem;
+    row-gap: 2rem;
     .subcontainer {
       width: 240px;
 
@@ -65,9 +66,20 @@ footer {
   footer {
     .container {
       grid-template-columns: 1fr 1fr !important;
-      gap: 2rem;
+
       .location {
         text-align: right !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  footer {
+    .container {
+      grid-template-columns: 1fr !important;
+      .location {
+        text-align: left !important;
       }
     }
   }
