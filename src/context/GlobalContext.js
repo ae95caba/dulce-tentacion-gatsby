@@ -62,7 +62,7 @@ export default function GlobalContextProvider({ children }) {
             },
           };
         }
-        triggerAlert("Producto agregado al carrito &rarr;");
+        triggerAlert("Producto agregado al carrito →");
         if (isUnique || (!isUnique && !isProductInCart)) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
