@@ -1,4 +1,5 @@
 @use "./utils/_mixins" as *;
+@import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
 #catalog {
   padding: 2rem 2rem 0rem 2rem;
 
@@ -48,33 +49,30 @@
       display: grid;
       border-radius: 1rem;
       gap: 0.4rem;
-      grid-template-rows: min-content min-content min-content;
+      align-items: center;
+
+      grid-template-rows: min-content 75px min-content;
       .gatsby-image-wrapper {
         background-color: white;
         height: $card-image-size;
       }
-      .info {
-        position: absolute;
-        right: 0%;
-        font-size: 1.2rem;
-        font-weight: 500;
-        top: 0%;
-        background-color: transparent;
-        border-radius: 0.5rem;
-        width: 2rem;
-        height: 2rem;
-        display: flex;
-        align-items: center;
-        color: black;
-      }
-      p {
-        padding: 0rem 0.5rem;
 
-        font-weight: 700;
-        text-align: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .container {
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+          font-size: 14px;
+          color: black;
+          font-weight: 500;
+          text-align: center;
+          font-family: "Parkinsans", sans-serif;
+        }
+        .product-price {
+          font-size: 13px;
+        }
       }
 
       button.to-cart {

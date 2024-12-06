@@ -63,8 +63,10 @@ function Card({ product }) {
     <div className="card">
       <GatsbyImage image={image} alt={product.name} />
 
-      <p className="product-name">{product.name}</p>
-      <p className="product-price">$ {product.price}</p>
+      <div className="container">
+        <p className="product-name">{product.name}</p>
+        <p className="product-price">$ {product.price}</p>
+      </div>
 
       <Button handleClick={handleClick} apiRoute={product.apiRoute} />
     </div>
