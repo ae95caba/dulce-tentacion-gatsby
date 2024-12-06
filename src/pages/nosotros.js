@@ -51,7 +51,7 @@ export default function We() {
         <div className="container">
           <p>Por eso nosotros apostamos por la calidad del helado artesanal.</p>
           <StaticImage
-            src="../../images/cute-anime-girl.png"
+            src="../images/cute-anime-girl.png"
             alt="cute anime girl"
             placeholder="blurred"
           />
