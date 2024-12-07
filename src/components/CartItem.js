@@ -27,44 +27,36 @@ export default function CartItem({ cartItem }) {
       </div>
       <div className="right">
         <div className="description">
-          <p>{product.name}</p>
-          <p>$ {cartItem.getTotalPrice()}</p>
+          <p className="name">{product.name}</p>
+          <p className="price">$ {cartItem.getTotalPrice()}</p>
         </div>
 
-        {!product.apiRoute ? (
-          <div className="quantity">
-            <button
-              onClick={() => {
-                dispatch({
-                  type: "remove-cart-item",
-                  payload: { product: product },
-                });
-              }}
-            >
-              -
-            </button>
-            <span>unidades: {cartItem.count}</span>
-            <button
-              onClick={() => {
-                dispatch({
-                  type: "add-cart-item",
-                  payload: { product: product },
-                });
-              }}
-            >
-              +
-            </button>
-          </div>
-        ) : (
+        <div className="quantity">
           <button
-            className="details-button"
-            onClick={() => setShowDetails((prev) => !prev)}
+            onClick={() => {
+              dispatch({
+                type: "remove-cart-item",
+                payload: { product: product },
+              });
+            }}
           >
-            Detalle
+            -
           </button>
-        )}
+          <span>{cartItem.count}</span>
+          <button
+            onClick={() => {
+              dispatch({
+                type: "add-cart-item",
+                payload: { product: product },
+              });
+            }}
+          >
+            +
+          </button>
+        </div>
       </div>
-      {showDetails && (
+
+      {product.choosenFlavours && (
         <div className="details">
           <h3>{product.choosenFlavours.length > 1 ? "Sabores" : "Sabor"}</h3>
           <ul>

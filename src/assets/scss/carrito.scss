@@ -6,8 +6,6 @@
   padding-bottom: 0rem;
 
   & > .content {
-    font-weight: 500;
-
     $gap: 1rem;
     @include mainContent();
     .empty {
@@ -64,7 +62,9 @@
         background-color: var(--primary-color);
         padding: 0.8rem;
         border-radius: 0.5rem;
+        row-gap: 0.5rem;
         position: relative;
+        font-size: 14px;
         .remove {
           position: absolute;
           width: 1.5rem;
@@ -94,6 +94,9 @@
             display: flex;
             flex-direction: column;
             gap: 0.2rem;
+            p.name {
+              color: black;
+            }
           }
           .details-button {
             padding: 0.4rem;
@@ -102,6 +105,7 @@
             display: grid;
             grid-template-columns: auto 1fr auto;
             box-shadow: var(--cool-shadow);
+            color: black !important;
             button {
               width: 1.4rem;
               height: 1.4rem;
@@ -112,10 +116,11 @@
             }
 
             span {
-              font-size: 0.8rem;
+              font-size: 12px;
               display: flex;
               align-items: center;
               justify-content: center;
+              color: white;
             }
           }
         }
@@ -126,6 +131,9 @@
           align-items: center;
           gap: 0.5rem;
           padding: 0.5rem;
+          h3 {
+            font-weight: 500;
+          }
           ul {
             li {
               list-style-type: disc;
