@@ -3,7 +3,8 @@ import "../assets/scss/index.scss";
 import React, { useState, useRef } from "react";
 import CountUp from "react-countup";
 import { Link } from "gatsby";
-
+import animationData from "../assets/animations/delivery.json";
+import Lottie from "lottie-react";
 import ScrollTrigger from "react-scroll-trigger";
 
 import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
@@ -27,6 +28,7 @@ const stringsArray = [
 ];
 
 export default function Home() {
+  const deliveryAnimationRef = useRef(null);
   return (
     <main id="home">
       <TextCarousel slides={stringsArray} />
@@ -83,7 +85,12 @@ export default function Home() {
               alt="shopping-cart"
               placeholder="blurred"
             />
-            <StaticImage src="../images/delivery.png" />
+            <Lottie
+              lottieRef={deliveryAnimationRef}
+              animationData={animationData}
+              autoplay={true}
+              loop={true}
+            />
           </div>
           <Link to="/catalogo">
             <button>Pedi ya! 😋🍦</button>
