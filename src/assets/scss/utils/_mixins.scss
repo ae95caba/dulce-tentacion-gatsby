@@ -7,6 +7,71 @@
   flex-direction: column;
 }
 
+@mixin faded($offset, $blur-radius, $spread-radius) {
+  &.faded-left:after {
+    box-shadow: inset $offset 0 $blur-radius (-$spread-radius);
+  }
+
+  &.faded-right:after {
+    box-shadow: inset (-$offset) 0 $blur-radius (-$spread-radius);
+  }
+
+  &.faded-top:after {
+    box-shadow: inset 0 $offset $blur-radius (-$spread-radius);
+  }
+
+  &.faded-bottom:after {
+    box-shadow: inset 0 (-$offset) $blur-radius (-$spread-radius);
+  }
+
+  &.faded-left.faded-right:after {
+    box-shadow: inset $offset 0 $blur-radius (-$spread-radius),
+      inset (-$offset) 0 $blur-radius (-$spread-radius);
+  }
+
+  &.faded-left.faded-top:after {
+    box-shadow: inset $offset ($offset) $blur-radius (-$spread-radius);
+  }
+
+  &.faded-right.faded-bottom:after {
+    box-shadow: inset (-$offset) (-$offset) $blur-radius (-$spread-radius);
+  }
+
+  &.faded-top.faded-right:after {
+    box-shadow: inset (-$offset) $offset $blur-radius (-$spread-radius);
+  }
+
+  &.faded-top.faded-bottom:after {
+    box-shadow: inset 0 $offset $blur-radius (-$spread-radius),
+      inset 0 (-$offset) $blur-radius (-$spread-radius);
+  }
+
+  &.faded-left.faded-bottom:after {
+    box-shadow: inset $offset (-$offset) $blur-radius (-$spread-radius);
+  }
+
+  &.faded-top.faded-right.faded-bottom:after {
+    box-shadow: inset (-$offset/2) 0 $blur-radius $spread-radius;
+  }
+
+  &.faded-left.faded-right.faded-bottom:after {
+    box-shadow: inset 0 (-$offset/2) $blur-radius $spread-radius;
+  }
+
+  &.faded-left.faded-top.faded-bottom:after {
+    box-shadow: inset ($offset/2) 0 $blur-radius $spread-radius;
+  }
+
+  &.faded-left.faded-top.faded-right:after {
+    box-shadow: inset 0 ($offset/2) $blur-radius $spread-radius;
+  }
+
+  &.faded-all:after,
+  &.faded-left.faded-top.faded-right.faded-bottom:after {
+    box-shadow: inset 0 0 $blur-radius $spread-radius;
+  }
+}
+
 @mixin imageCarouselContainer($includeImageWrapperStyles: true) {
   position: relative;
   .swiper {

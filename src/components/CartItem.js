@@ -22,7 +22,7 @@ export default function CartItem({ cartItem }) {
           })
         }
       />
-      <div className="left">
+      <div className="left faded faded-right">
         <GatsbyImage image={image} alt={product.name} />
       </div>
       <div className="right">
