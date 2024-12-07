@@ -9,7 +9,7 @@ import ScrollTrigger from "react-scroll-trigger";
 
 import TextCarousel from "../components/TextCarousel";
 import ImagesCarousel from "../components/ImagesCarousel";
-import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
+
 import { StaticImage } from "gatsby-plugin-image";
 
 const stringsArray = [
@@ -26,22 +26,38 @@ const firstCarousel = [
     alt="shopping-cart"
     placeholder="blurred"
     loading="eager"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotional/1cuarto2.jpeg"
     alt="shopping-cart"
     placeholder="blurred"
     loading="eager"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotional/1kg.jpeg"
     alt="shopping-cart"
     placeholder="blurred"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotional/todos.jpeg"
     alt="shopping-cart"
     placeholder="blurred"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
 ];
 
@@ -51,20 +67,69 @@ const secondCarousel = [
     alt="shopping-cart"
     placeholder="blurred"
     loading="eager"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotions/deals.png"
     alt="shopping-cart"
     placeholder="blurred"
     loading="eager"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotions/kilo.png"
     alt="shopping-cart"
     placeholder="blurred"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
   />,
   <StaticImage
     src="../images/promotions/medio.png"
+    alt="shopping-cart"
+    placeholder="blurred"
+    height={200}
+    width={200}
+    layout="fixed"
+    transformOptions={{ cropFocus: "center" }} // Align cropping to the center
+  />,
+];
+
+const thirdCarousel = [
+  <StaticImage
+    src="../images/kids/1.jpg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/kids/2.jpg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/kids/3.jpg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/kids/4.jpg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/kids/5.jpg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/kids/6.jpg"
     alt="shopping-cart"
     placeholder="blurred"
   />,
@@ -95,17 +160,7 @@ export default function Home() {
             casi lo mismo! 😎
           </p>
 
-          <ImagesCarousel
-            slides={[
-              <Kid1 />,
-              <Kid2 />,
-              <Kid3 />,
-              <Kid4 />,
-              <Kid5 />,
-              <Kid6 />,
-            ]}
-            slidesPerView={1}
-          />
+          <ImagesCarousel slides={thirdCarousel} slidesPerView={1} />
         </div>
       </section>
       <section class="stats">
