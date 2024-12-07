@@ -7,13 +7,6 @@ import animationData from "../assets/animations/delivery.json";
 import Lottie from "lottie-react";
 import ScrollTrigger from "react-scroll-trigger";
 
-import { Kilo, Cuarto, Medio, Deals } from "../components/Images/Promotions";
-import {
-  UnCuarto,
-  UnCuarto2,
-  UnKilo,
-  Todos,
-} from "../components/Images/Promotional";
 import TextCarousel from "../components/TextCarousel";
 import ImagesCarousel from "../components/ImagesCarousel";
 import { Kid1, Kid2, Kid3, Kid4, Kid5, Kid6 } from "../components/Images/Kids";
@@ -27,6 +20,56 @@ const stringsArray = [
   "Somos calidad a precio accesible",
 ];
 
+const firstCarousel = [
+  <StaticImage
+    src="../images/promotional/1cuarto.jpeg"
+    alt="shopping-cart"
+    placeholder="blurred"
+    loading="eager"
+  />,
+  <StaticImage
+    src="../images/promotional/1cuarto2.jpeg"
+    alt="shopping-cart"
+    placeholder="blurred"
+    loading="eager"
+  />,
+  <StaticImage
+    src="../images/promotional/1kg.jpeg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/promotional/todos.jpeg"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+];
+
+const secondCarousel = [
+  <StaticImage
+    src="../images/promotions/cuarto.png"
+    alt="shopping-cart"
+    placeholder="blurred"
+    loading="eager"
+  />,
+  <StaticImage
+    src="../images/promotions/deals.png"
+    alt="shopping-cart"
+    placeholder="blurred"
+    loading="eager"
+  />,
+  <StaticImage
+    src="../images/promotions/kilo.png"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+  <StaticImage
+    src="../images/promotions/medio.png"
+    alt="shopping-cart"
+    placeholder="blurred"
+  />,
+];
+
 export default function Home() {
   const deliveryAnimationRef = useRef(null);
   return (
@@ -37,15 +80,11 @@ export default function Home() {
         <div className="content">
           <h3>#DULCE-TENTACION</h3>
           <div className="container">
-            <ImagesCarousel
-              slides={[<UnCuarto />, <UnCuarto2 />, <UnKilo />, <Todos />]}
-            />
+            <ImagesCarousel slides={firstCarousel} />
           </div>
           <h3>#Promos</h3>
           <div className="container">
-            <ImagesCarousel
-              slides={[<Kilo />, <Medio />, <Cuarto />, <Deals />]}
-            />
+            <ImagesCarousel slides={secondCarousel} />
           </div>
         </div>
       </section>
