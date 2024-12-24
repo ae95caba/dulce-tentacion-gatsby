@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
           <div className="contact subcontainer">
             <h4>Contacto</h4>
-            <p>Whatsapp: 11-2169-0969</p>
+            <p>Whatsapp: 11-2169-0959</p>
           </div>
         </div>
         <div className="icons">
