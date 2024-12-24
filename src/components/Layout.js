@@ -25,7 +25,7 @@ export default function Layout({ children }) {
       {children}
       <ToastContainer />
       <Footer />
-      <OpenCloseSign />
+      {/* <OpenCloseSign /> */}
     </>
   );
 }
