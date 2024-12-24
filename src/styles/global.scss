@@ -1,5 +1,12 @@
 //
-@import url("https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap");
+
+@font-face {
+  font-family: "Parkinsans var";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(/fonts/Parkinsans.var.ttf) format("truetype-variations");
+}
 *,
 *::after,
 *::before {
@@ -9,7 +16,7 @@
   margin: 0px;
   list-style: none;
   text-decoration: none;
-  font-family: "Parkinsans", sans-serif;
+  font-family: "Parkinsans var";
 }
 
 .Toastify__toast-container {

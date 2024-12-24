@@ -61,7 +61,7 @@ function Card({ product }) {
 
   return (
     <div className="card">
-      <GatsbyImage image={image} alt={product.name} />
+      <GatsbyImage image={image} alt={product.name} width={128} height={128} />
 
       <div className="container">
         <p className="product-name">{product.name}</p>
@@ -105,7 +105,12 @@ export const query = graphql`
           price
           localImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED)
+              gatsbyImageData(
+                width: 128
+                height: 128
+                layout: FIXED
+                placeholder: BLURRED
+              )
             }
           }
           outOfStock
