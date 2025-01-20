@@ -8,75 +8,26 @@ import { navigate } from "gatsby";
 import { graphql } from "gatsby";
 import cone from "../images/ice-cream-cone.svg";
 export default function IceCreamForm({ data, location }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [flavourList, setFlavourList] = useState(null);
-
-  const [product, setProduct] = useState(null);
   const { dispatch } = useContext(GlobalContext);
   const allParams = new URLSearchParams(location.search);
   const productIdParam = allParams.get("id");
   const products = data.allProduct.edges;
+  const menus = data.allMenu.nodes;
   const [choosenFlavours, setChoosenFlavours] = useState([]);
 
+  //nuevo inicio
+  const product = products.find((product) => {
+    return product.node._id === productIdParam;
+  });
+
+  const menu = menus.find((menu) => {
+    return menu.apiRoute === product.node.apiRoute;
+  });
+  console.log(menu);
+  const flavourList = menu.fetchContent;
+  console.log(flavourList);
   const maxSelections = product && (product.flavours || 1);
-
-  //get product from param to fetch corresponding options
-  useEffect(() => {
-    const foundProduct = products.find((product) => {
-      return product.node._id === productIdParam;
-    });
-
-    setProduct(foundProduct.node);
-  }, []);
-
-  //fetch options from api
-  useEffect(() => {
-    if (product) {
-      async function setFlavoursState() {
-        async function fetchFlavors() {
-          const requestOptions = {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          };
-          try {
-            const apiUrl = process.env.GATSBY_API_URL;
-
-            const response = await fetch(
-              `${apiUrl}/${product.apiRoute}`,
-              requestOptions
-            );
-
-            if (!response.ok) {
-              throw new Error("Request failed");
-            }
-
-            const flavours = await response.json();
-
-            const availableFlavours = flavours
-              .filter((obj) => obj.outOfStock === false)
-              .map((obj) => obj.name);
-            return availableFlavours;
-
-            // Process the data or perform other operations
-          } catch (error) {
-            console.log(error);
-          }
-        }
-        const flavours = await fetchFlavors();
-        setFlavourList(flavours);
-      }
-
-      setFlavoursState();
-    }
-  }, [product]);
-
-  //after fetching the option stop loading animation
-  useEffect(() => {
-    if (flavourList) {
-      setIsLoading(false);
-    }
-  }, [flavourList]);
+  //nuevo fin
 
   function handleChange(e) {
     const { value, checked } = e.target;
@@ -120,43 +71,38 @@ export default function IceCreamForm({ data, location }) {
 
   return (
     <main id="ice-cream-list">
-      {isLoading ? (
-        <div className="loader-container">
-          <img src={cone} className="loader" />
-          <p>Cargando</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          {<h1>{product.name} 🍨</h1>}
-          {product.description && <h2>{product.description}</h2>}
-          <h3>
-            Sabores
-            {<span>{` ${choosenFlavours.length}/${maxSelections}`}</span>}
-          </h3>
-          <div className="container">
-            {flavourList.map((flavourValue) => (
-              <label key={flavourValue} htmlFor={flavourValue}>
-                <span>{flavourValue}</span>
+      <form onSubmit={handleSubmit}>
+        {<h1>{product.name} 🍨</h1>}
+        {product.description && <h2>{product.description}</h2>}
+        <h3>
+          Sabores
+          {<span>{` ${choosenFlavours.length}/${maxSelections}`}</span>}
+        </h3>
+        <div className="container">
+          {flavourList
+            .filter((flavour) => !flavour.outOfStock) // Exclude out-of-stock flavours
+            .map((flavour) => (
+              <label key={flavour.name} htmlFor={flavour.name}>
+                <span>{flavour.name}</span>
 
                 <input
-                  id={flavourValue}
+                  id={flavour.name}
                   type="checkbox"
                   disabled={
-                    !choosenFlavours.includes(flavourValue) &&
+                    !choosenFlavours.includes(flavour.name) &&
                     choosenFlavours.length >= maxSelections
                   }
                   name="flavour"
-                  value={flavourValue}
+                  value={flavour.name}
                   onChange={handleChange}
                 />
               </label>
             ))}
-          </div>
+        </div>
 
-          <button name="go to cart">Comprar ahora</button>
-          <button name="go to catalog">Agregar al carrito</button>
-        </form>
-      )}
+        <button name="go to cart">Comprar ahora</button>
+        <button name="go to catalog">Agregar al carrito</button>
+      </form>
     </main>
   );
 }
@@ -179,6 +125,15 @@ export const query = graphql`
           _id
           flavours
           apiRoute
+        }
+      }
+    }
+    allMenu {
+      nodes {
+        apiRoute
+        fetchContent {
+          name
+          outOfStock
         }
       }
     }
