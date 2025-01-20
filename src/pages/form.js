@@ -18,14 +18,14 @@ export default function IceCreamForm({ data, location }) {
   //nuevo inicio
   const product = products.find((product) => {
     return product.node._id === productIdParam;
-  });
+  }).node;
 
   if (!product) {
     return <p>Page not found</p>; // Or redirect to a 404 page
   }
 
   const menu = menus.find((menu) => {
-    return menu.apiRoute === product.node.apiRoute;
+    return menu.apiRoute === product.apiRoute;
   });
   console.log(menu);
   const flavourList = menu.fetchContent;
