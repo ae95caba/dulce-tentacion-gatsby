@@ -20,6 +20,10 @@ export default function IceCreamForm({ data, location }) {
     return product.node._id === productIdParam;
   });
 
+  if (!product) {
+    return <p>Page not found</p>; // Or redirect to a 404 page
+  }
+
   const menu = menus.find((menu) => {
     return menu.apiRoute === product.node.apiRoute;
   });
