@@ -15,14 +15,13 @@ export default function IceCreamForm({ data, location }) {
   const menus = data.allMenu.nodes;
   const [choosenFlavours, setChoosenFlavours] = useState([]);
 
-  //nuevo inicio
+  if (!productIdParam) {
+    return <p>Page not found</p>; // Or redirect to a 404 page
+  }
+
   const product = products.find((product) => {
     return product.node._id === productIdParam;
   }).node;
-
-  if (!product) {
-    return <p>Page not found</p>; // Or redirect to a 404 page
-  }
 
   const menu = menus.find((menu) => {
     return menu.apiRoute === product.apiRoute;
