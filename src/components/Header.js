@@ -5,16 +5,39 @@ import { Link } from "gatsby";
 import { useContext, useRef, useEffect, useState } from "react";
 import cartIcon from "../images/cart.svg";
 import { StaticImage } from "gatsby-plugin-image";
-import hamburgerMenuIcon from "../images/hamburger-menu.svg";
+
 import Hamburger from "hamburger-react";
 
 const tabsObj = ["Catalogo", "Kiosko", "Nosotros", "Galeria", "Testimonios"];
 
 export default function Header() {
-  /*   const hambugerAnimationRef = useRef(null); */
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const headerHeight = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${headerHeight}px`
+        );
+      }
+    };
+
+    //Update on mount and window resize
+
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+    //Cleanup the event listener
+
+    return () => {
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
+  }, []);
+
   const [isOpen, setOpen] = useState(false);
   return (
-    <header>
+    <header ref={headerRef}>
       <div className="content">
         <Link to="/" activeClassName="active">
           <StaticImage
