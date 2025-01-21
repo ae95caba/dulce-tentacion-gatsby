@@ -23,7 +23,7 @@
   width: fit-content !important;
   font-size: 12px;
   .Toastify__toast {
-    min-height: 56px;
+    min-height: var(--header-height);
   }
 }
 
