@@ -1,3 +1,5 @@
+@use "maps" as *;
+
 @mixin mainContent {
   margin: auto;
   max-width: var(--universal-width);
@@ -116,5 +118,21 @@
   &:after {
     right: 0;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+}
+
+@mixin min-width-query($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin max-width-query($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
   }
 }

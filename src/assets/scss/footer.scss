@@ -21,7 +21,8 @@ footer {
     column-gap: 4rem;
     row-gap: 2rem;
     .subcontainer {
-      width: 240px;
+      width: 100%;
+      max-width: 240px;
 
       h4 {
         margin-bottom: 0.4rem;

@@ -2,9 +2,12 @@
 
 #cart {
   $cart-padding: 2rem;
+
   padding: $cart-padding;
   padding-bottom: 0rem;
-
+  @include max-width-query(xsm) {
+    padding: 0.5rem;
+  }
   & > .content {
     $gap: 1rem;
     @include mainContent();
@@ -21,7 +24,7 @@
       .gatsby-image-wrapper:nth-of-type(2) {
         img {
           width: 12rem;
-
+          max-width: 100%;
           margin-right: auto;
         }
       }
@@ -128,10 +131,16 @@
           height: 8rem;
           background-color: white;
           padding-right: 0.3rem;
-
+          @include max-width-query(xsm) {
+            height: 6rem;
+          }
           .gatsby-image-wrapper {
             width: 8rem;
             vertical-align: middle;
+            @include max-width-query(xsm) {
+              width: 6rem !important;
+              height: 6rem !important;
+            }
           }
         }
         .right {
@@ -140,7 +149,11 @@
           width: 10rem;
           flex-direction: column;
           justify-content: space-between;
-
+          @include max-width-query(xsm) {
+            width: 8rem;
+            font-size: 0.7rem;
+            padding: 0.4rem;
+          }
           .description {
             flex-grow: 1;
             text-align: center;
@@ -163,6 +176,7 @@
             box-shadow: var(--cool-shadow);
             color: black !important;
             background-color: white;
+
             button {
               width: 1.4rem;
               height: 1.4rem;
@@ -171,6 +185,11 @@
               display: flex;
               align-items: center;
               justify-content: center;
+              @include max-width-query(xsm) {
+                font-size: 0.6rem;
+                width: 1rem;
+                height: 1rem;
+              }
             }
 
             span {
@@ -178,6 +197,9 @@
               display: flex;
               align-items: center;
               justify-content: center;
+              @include max-width-query(xsm) {
+                font-size: 0.6rem;
+              }
             }
           }
         }
