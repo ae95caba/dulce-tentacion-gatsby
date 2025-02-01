@@ -61,10 +61,11 @@ export default function Header() {
           />
           <label for="checkbox" class="overlay"></label>
           <Sidebar />
-          <label className="hamburger-menu" htmlFor="checkbox">
-            <Hamburger toggled={isOpen} toggle={setOpen} />
-          </label>
+
           <CartButton />
+          <label className="hamburger-menu" htmlFor="checkbox">
+            <Hamburger toggled={isOpen} size={24} toggle={setOpen} />
+          </label>
         </div>
       </div>
     </header>
