@@ -262,7 +262,10 @@ export default function Cart() {
                           <FaCopy size={"1.3rem"} />
                         )}
                       </p>
-                      <p>A nombre de {process.env.GATSBY_OWNER}</p>
+                      <p className="titular">
+                        Titular:
+                        <span>{process.env.GATSBY_OWNER}</span>
+                      </p>
                     </>
                   )}
                 </section>
