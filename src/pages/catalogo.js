@@ -51,7 +51,10 @@ function Card({ product }) {
     if (!product.apiRoute) {
       dispatch({
         type: "add-cart-item",
-        payload: { id: product._id, product: structuredClone(product) },
+        payload: {
+          product: structuredClone(product),
+          quantity: 1,
+        },
       });
     } else {
       const encodedParamValue = encodeURIComponent(product.name);
