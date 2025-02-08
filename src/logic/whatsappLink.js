@@ -57,7 +57,11 @@ ${totalItemsPrice != totalPrice ? `\n*Productos:* $${totalItemsPrice}` : ""}${
   }
 *Total:* $${totalPrice}
 
-*${paymentMethod == "cash" ? "Paga en efectivo" : "Paga con transferencia"}*
+${
+  paymentMethod == "cash"
+    ? "*Paga en efectivo*"
+    : `*Paga con transferencia*: \nALIAS ${process.env.GATSBY_ALIAS}`
+} 
 
 ${
   deliveryInfo.isChecked
