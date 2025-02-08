@@ -39,9 +39,11 @@ export default function GlobalContextProvider({ children }) {
     let product;
     let indexOfProductInCart;
     let isProductInCart;
+    let quantity;
 
     if (action.payload && action.payload.product) {
       product = action.payload.product;
+      quantity = action.payload.quantity;
       // Helper function to check if two arrays contain the same elements (ignoring order)
       function areArraysEqual(arr1, arr2) {
         if (arr1.length !== arr2.length) return false;
@@ -88,6 +90,7 @@ export default function GlobalContextProvider({ children }) {
 
     switch (action.type) {
       case "add-cart-item": {
+        //function to create a new item on the cart (a stack)
         function newCartItem(product) {
           return {
             product,
@@ -97,8 +100,12 @@ export default function GlobalContextProvider({ children }) {
             },
           };
         }
-        triggerAlert("Producto agregado al carrito →");
-        console.log(isProductInCart);
+        const message =
+          quantity > 1
+            ? `${quantity} productos agregados →`
+            : "Producto agregado →";
+        triggerAlert(message);
+
         if (!isProductInCart()) {
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
@@ -106,16 +113,15 @@ export default function GlobalContextProvider({ children }) {
           return cartItemsCopy;
         } else {
           //increase the count of the item
-          console.log(`index is : ${indexOfProductInCart()}`);
-          cartItemsCopy[indexOfProductInCart()].count++;
 
-          console.log(`increase count of item in cart`);
+          cartItemsCopy[indexOfProductInCart()].count += quantity;
+
           return cartItemsCopy;
         }
       }
       case "remove-cart-item": {
         if (cartItems[indexOfProductInCart()].count > 1) {
-          cartItemsCopy[indexOfProductInCart()].count--;
+          cartItemsCopy[indexOfProductInCart()].count -= quantity;
           return cartItemsCopy;
         } else {
           cartItemsCopy.splice(indexOfProductInCart(), 1);

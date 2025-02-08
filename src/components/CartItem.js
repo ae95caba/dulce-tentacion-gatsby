@@ -37,7 +37,7 @@ export default function CartItem({ cartItem }) {
             onClick={() => {
               dispatch({
                 type: "remove-cart-item",
-                payload: { product: product },
+                payload: { product: product, quantity: 1 },
               });
               inputRef.current.value = cartItem.count - 1;
             }}
@@ -60,21 +60,19 @@ export default function CartItem({ cartItem }) {
               if (newValue > currentCount) {
                 // If the new value is greater, add the difference
                 const difference = newValue - currentCount;
-                for (let i = 0; i < difference; i++) {
-                  dispatch({
-                    type: "add-cart-item",
-                    payload: { product: product }, // Add one item at a time
-                  });
-                }
+
+                dispatch({
+                  type: "add-cart-item",
+                  payload: { product: product, quantity: difference }, // Add one item at a time
+                });
               } else if (newValue < currentCount) {
                 // If the new value is less, remove the difference
                 const difference = currentCount - newValue;
-                for (let i = 0; i < difference; i++) {
-                  dispatch({
-                    type: "remove-cart-item",
-                    payload: { product: product }, // Remove one item at a time
-                  });
-                }
+
+                dispatch({
+                  type: "remove-cart-item",
+                  payload: { product: product, quantity: difference }, // Remove one item at a time
+                });
               }
               // If the value is the same, do nothing
             }}
@@ -89,7 +87,7 @@ export default function CartItem({ cartItem }) {
             onClick={() => {
               dispatch({
                 type: "add-cart-item",
-                payload: { product: product },
+                payload: { product: product, quantity: 1 },
               });
               inputRef.current.value = cartItem.count + 1;
             }}
