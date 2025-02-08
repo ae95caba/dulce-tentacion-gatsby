@@ -192,14 +192,30 @@
               }
             }
 
-            span {
+            input {
+              width: 100%;
               font-size: 12px;
               display: flex;
               align-items: center;
+              text-align: center;
               justify-content: center;
               @include max-width-query(xsm) {
                 font-size: 0.6rem;
               }
+            }
+            input:focus {
+              outline: none; /* Remove the default focus outline */
+            }
+            /* Hide the arrows in the number input */
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            /* Firefox */
+            input[type="number"] {
+              -moz-appearance: textfield;
             }
           }
         }

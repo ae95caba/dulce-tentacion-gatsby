@@ -9,6 +9,7 @@ export default function CartItem({ cartItem }) {
   const [showDetails, setShowDetails] = useState(false);
   const product = cartItem.product;
   const image = getImage(product.localImage);
+  const inputRef = useRef(null);
   return (
     <div className="cart-item">
       <img
@@ -38,17 +39,59 @@ export default function CartItem({ cartItem }) {
                 type: "remove-cart-item",
                 payload: { product: product },
               });
+              inputRef.current.value = cartItem.count - 1;
             }}
           >
             -
           </button>
-          <span>{cartItem.count}</span>
+          <input
+            ref={inputRef}
+            required
+            type="number"
+            defaultValue={cartItem.count}
+            onBlur={(e) => {
+              console.log(cartItem);
+              if (e.target.value === "") {
+                e.target.value = 1;
+              }
+              const newValue = parseInt(e.target.value, 10);
+              const currentCount = cartItem.count;
+
+              if (newValue > currentCount) {
+                // If the new value is greater, add the difference
+                const difference = newValue - currentCount;
+                for (let i = 0; i < difference; i++) {
+                  dispatch({
+                    type: "add-cart-item",
+                    payload: { product: product }, // Add one item at a time
+                  });
+                }
+              } else if (newValue < currentCount) {
+                // If the new value is less, remove the difference
+                const difference = currentCount - newValue;
+                for (let i = 0; i < difference; i++) {
+                  dispatch({
+                    type: "remove-cart-item",
+                    payload: { product: product }, // Remove one item at a time
+                  });
+                }
+              }
+              // If the value is the same, do nothing
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.target.blur(); // Remove focus from the input
+              }
+            }}
+            min="0" // Ensure the input doesn't go below 0
+          />
           <button
             onClick={() => {
               dispatch({
                 type: "add-cart-item",
                 payload: { product: product },
               });
+              inputRef.current.value = cartItem.count + 1;
             }}
           >
             +

@@ -13,7 +13,7 @@ header {
     display: flex;
     /*  width: var(--universal-width); */
     gap: 2rem;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     align-items: center;
     justify-content: space-between;
   }
@@ -34,7 +34,7 @@ header {
 
   .container {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
     #cart-button {
       position: relative;
