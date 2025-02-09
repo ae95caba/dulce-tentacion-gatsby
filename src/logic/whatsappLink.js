@@ -60,7 +60,7 @@ ${totalItemsPrice != totalPrice ? `\n*Productos:* $${totalItemsPrice}` : ""}${
 ${
   paymentMethod == "cash"
     ? "*Paga en efectivo*"
-    : `*Paga con transferencia*: \nALIAS ${process.env.GATSBY_ALIAS}`
+    : `*Paga con transferencia*: \nALIAS: ${process.env.GATSBY_ALIAS}\nTITULAR: ${process.env.GATSBY_OWNER}`
 } 
 
 ${
