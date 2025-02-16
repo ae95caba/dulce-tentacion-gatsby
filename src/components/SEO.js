@@ -32,7 +32,10 @@ const SEO = ({ title, description, image, url }) => {
       <meta property="og:title" content={metaTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:url" content={metaUrl} />
-      <meta property="og:image" content={metaImageUrl} />
+      <meta
+        property="og:image"
+        content="https://dulce-tentacion-mp.netlify.app/meta-image.jpg"
+      />
 
       {/* WhatsApp uses Open Graph, so these should work */}
 
