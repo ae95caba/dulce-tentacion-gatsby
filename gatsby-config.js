@@ -16,7 +16,7 @@ module.exports = {
     description: "Catalogo online",
     author: "André Espinoza",
     image: `/meta-image.jpg`,
-    siteUrl: "https://dulce-tentacion-mp.netlify.app/",
+    siteUrl: "https://dulce-tentacion-mp.netlify.app",
   },
   plugins: [
     {
