@@ -7,6 +7,7 @@ import "../styles/global.scss"; // Import the global CSS file
 import OpenCloseSign from "./OpenCloseSign";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SEO from "../components/SEO";
 // Supports weights 400-700
 import "@fontsource-variable/caveat";
 import "@fontsource/roboto";
@@ -16,11 +17,7 @@ export default function Layout({ children }) {
   const { title, description } = useSiteMetadata();
   return (
     <>
-      <Helmet>
-        <html lang="es" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
+      <SEO />
       <Header />
       {children}
       <ToastContainer />

@@ -15,7 +15,8 @@ module.exports = {
     title: "Dulce Tentación",
     description: "Catalogo online",
     author: "André Espinoza",
-    image: `src/images/logo512.png`,
+    image: `/meta-image.jpg`,
+    siteUrl: "https://dulce-tentacion-mp.netlify.app/",
   },
   plugins: [
     {
