@@ -43,6 +43,10 @@ const SEO = ({ title, description, image, url }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
+      <meta
+        property="twitter:image"
+        content="https://dulce-tentacion-mp.netlify.app/meta-image.jpg"
+      />
     </Helmet>
   );
 };
