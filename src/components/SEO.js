@@ -43,7 +43,6 @@ const SEO = ({ title, description, image, url }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta property="twitter:image" content={metaImageUrl} />
     </Helmet>
   );
 };
