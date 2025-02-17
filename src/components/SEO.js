@@ -18,8 +18,8 @@ const SEO = ({ title, description, image, url }) => {
   const metaTitle = title || site.siteMetadata.title;
   const metaDescription = description || site.siteMetadata.description;
   const metaUrl = url || site.siteMetadata.siteUrl;
-  const metaImage = image || site.siteMetadata.image; // Use passed image or default
-  const metaImageUrl = `${site.siteMetadata.siteUrl}${metaImage}`; // Complete URL for Open Graph
+  /*  const metaImage = image || site.siteMetadata.image; // Use passed image or default
+  const metaImageUrl = `${site.siteMetadata.siteUrl}${metaImage}`; // Complete URL for Open Graph */
 
   return (
     <Helmet>
