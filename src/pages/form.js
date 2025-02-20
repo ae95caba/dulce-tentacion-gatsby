@@ -2,6 +2,7 @@ import "../assets/scss/form.scss";
 import { useEffect, useState, useRef } from "react";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import chocolatePreview from "../images/chocolate.jpg";
 import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
 import { navigate } from "gatsby";
@@ -23,6 +24,13 @@ export default function IceCreamForm({ data, location }) {
     return product.node._id === productIdParam;
   }).node;
 
+  console.log(
+    `-------------------------------------------------------------------------------------`
+  );
+  console.log(product);
+  console.log(
+    `-------------------------------------------------------------------------------------`
+  );
   const menu = menus.find((menu) => {
     return menu.apiRoute === product.apiRoute;
   });
@@ -87,18 +95,24 @@ export default function IceCreamForm({ data, location }) {
             .map((flavour) => (
               <label key={flavour.name} htmlFor={flavour.name}>
                 <span>{flavour.name}</span>
-
-                <input
-                  id={flavour.name}
-                  type="checkbox"
-                  disabled={
-                    !choosenFlavours.includes(flavour.name) &&
-                    choosenFlavours.length >= maxSelections
-                  }
-                  name="flavour"
-                  value={flavour.name}
-                  onChange={handleChange}
-                />
+                <div>
+                  <input
+                    id={flavour.name}
+                    type="checkbox"
+                    disabled={
+                      !choosenFlavours.includes(flavour.name) &&
+                      choosenFlavours.length >= maxSelections
+                    }
+                    name="flavour"
+                    value={flavour.name}
+                    onChange={handleChange}
+                  />
+                  {product.apiRoute === "generic/flavour" ? (
+                    <img src={chocolatePreview} />
+                  ) : (
+                    ""
+                  )}
+                </div>
               </label>
             ))}
         </div>
