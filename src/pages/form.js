@@ -56,6 +56,7 @@ export default function IceCreamForm({ data, location }) {
         payload: {
           id: product._id,
           product: { ...product, choosenFlavours },
+          quantity: 1,
         },
       });
       if (buttonName == "go to cart") {
