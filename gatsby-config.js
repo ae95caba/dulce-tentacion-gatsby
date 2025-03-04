@@ -44,13 +44,22 @@ module.exports = {
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-perf-budgets`,
     `gatsby-plugin-webpack-bundle-analyser-v2`,
+
     {
       resolve: `gatsby-plugin-remote-images`,
       options: {
-        nodeType: "Product", // Replace with your actual node type
-        imagePath: "imgUrl", // Replace with your actual image path
+        nodeType: "Flavour",
+        imagePath: "imgUrl",
       },
     },
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: "Product",
+        imagePath: "imgUrl",
+      },
+    },
+
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

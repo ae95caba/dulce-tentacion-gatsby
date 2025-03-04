@@ -50,7 +50,6 @@ exports.sourceNodes = async ({ actions }) => {
       ...new Set(
         products
           .map((p) => {
-            console.log("apiRoute value (raw):", p.apiRoute);
             return p.apiRoute;
           })
           .filter(Boolean)
@@ -88,27 +87,33 @@ exports.sourceNodes = async ({ actions }) => {
 
     // Fetch and create nodes for each unique apiRoute
     for (const apiRoute of uniqueApiRoutes) {
-      const fetchContent = await fetchApiRouteContent(apiRoute);
+      const allFlavours = await fetchApiRouteContent(apiRoute);
+      for (const flavour of allFlavours) {
+        const flavourNode = {
+          id: flavour._id,
+          _id: flavour._id,
+          parent: `__SOURCE__`,
+          internal: {
+            type: `Flavour`,
+          },
+          children: [],
+          apiRoute,
+          name: flavour.name,
+          outOfStock: flavour.outOfStock,
+          imgUrl:
+            flavour.imgUrl ||
+            "https://res.cloudinary.com/dto1ctatc/image/upload/v1739735861/dulce-tentacion/meta-image_wd4l7m.png",
+        };
 
-      const menuNode = {
-        id: `menu-${apiRoute}`,
-        parent: `__SOURCE__`,
-        internal: {
-          type: `Menu`,
-        },
-        children: [],
-        apiRoute,
-        fetchContent,
-      };
+        const contentDigest = crypto
+          .createHash(`md5`)
+          .update(JSON.stringify(flavourNode))
+          .digest(`hex`);
 
-      const contentDigest = crypto
-        .createHash(`md5`)
-        .update(JSON.stringify(menuNode))
-        .digest(`hex`);
+        flavourNode.internal.contentDigest = contentDigest;
 
-      menuNode.internal.contentDigest = contentDigest;
-
-      createNode(menuNode);
+        createNode(flavourNode);
+      }
     }
   } catch (error) {
     console.error("Error fetching data:", error);

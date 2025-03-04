@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import chocolatePreview from "../images/chocolate.jpg";
 import { GlobalContext } from "../context/GlobalContext";
 import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
 import cone from "../images/ice-cream-cone.svg";
@@ -13,7 +14,7 @@ export default function IceCreamForm({ data, location }) {
   const allParams = new URLSearchParams(location.search);
   const productIdParam = allParams.get("id");
   const products = data.allProduct.edges;
-  const menus = data.allMenu.nodes;
+  const allFlavours = data.allFlavour.nodes;
   const [choosenFlavours, setChoosenFlavours] = useState([]);
 
   if (!productIdParam) {
@@ -31,12 +32,11 @@ export default function IceCreamForm({ data, location }) {
   console.log(
     `-------------------------------------------------------------------------------------`
   );
-  const menu = menus.find((menu) => {
-    return menu.apiRoute === product.apiRoute;
+  const matchingFlavours = allFlavours.filter((flavour) => {
+    return flavour.apiRoute === product.apiRoute;
   });
-  console.log(menu);
-  const flavourList = menu.fetchContent;
-  console.log(flavourList);
+  console.log(JSON.stringify(matchingFlavours));
+
   const maxSelections = product && (product.flavours || 1);
   //nuevo fin
 
@@ -90,31 +90,48 @@ export default function IceCreamForm({ data, location }) {
           {<span>{` ${choosenFlavours.length}/${maxSelections}`}</span>}
         </h3>
         <div className="container">
-          {flavourList
+          {matchingFlavours
             .filter((flavour) => !flavour.outOfStock) // Exclude out-of-stock flavours
-            .map((flavour) => (
-              <label key={flavour.name} htmlFor={flavour.name}>
-                <span>{flavour.name}</span>
-                <div>
-                  <input
-                    id={flavour.name}
-                    type="checkbox"
-                    disabled={
-                      !choosenFlavours.includes(flavour.name) &&
-                      choosenFlavours.length >= maxSelections
-                    }
-                    name="flavour"
-                    value={flavour.name}
-                    onChange={handleChange}
-                  />
+            .map((flavour) => {
+              const image =
+                product.apiRoute === "generic/flavour"
+                  ? getImage(flavour.localImage)
+                  : "";
+              return (
+                <label key={flavour.name} htmlFor={flavour.name}>
+                  <span>{flavour.name}</span>
                   {product.apiRoute === "generic/flavour" ? (
-                    <img src={chocolatePreview} />
+                    <div>
+                      <input
+                        id={flavour.name}
+                        type="checkbox"
+                        disabled={
+                          !choosenFlavours.includes(flavour.name) &&
+                          choosenFlavours.length >= maxSelections
+                        }
+                        name="flavour"
+                        value={flavour.name}
+                        onChange={handleChange}
+                      />
+
+                      <GatsbyImage image={image} alt={flavour.name} />
+                    </div>
                   ) : (
-                    ""
+                    <input
+                      id={flavour.name}
+                      type="checkbox"
+                      disabled={
+                        !choosenFlavours.includes(flavour.name) &&
+                        choosenFlavours.length >= maxSelections
+                      }
+                      name="flavour"
+                      value={flavour.name}
+                      onChange={handleChange}
+                    />
                   )}
-                </div>
-              </label>
-            ))}
+                </label>
+              );
+            })}
         </div>
 
         <button name="go to cart">Comprar ahora</button>
@@ -145,12 +162,18 @@ export const query = graphql`
         }
       }
     }
-    allMenu {
+    allFlavour {
       nodes {
         apiRoute
-        fetchContent {
-          name
-          outOfStock
+
+        name
+        outOfStock
+
+        localImage {
+          absolutePath
+          childImageSharp {
+            gatsbyImageData(width: 48, height: 48, layout: CONSTRAINED)
+          }
         }
       }
     }
