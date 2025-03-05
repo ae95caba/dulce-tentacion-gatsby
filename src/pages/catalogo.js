@@ -46,7 +46,7 @@ export default function Shop(props) {
 function Card({ product }) {
   const { dispatch } = useContext(GlobalContext);
   const image = getImage(product.localImage);
-
+  const buttonRef = useRef(null);
   function handleClick() {
     if (!product.apiRoute) {
       dispatch({
@@ -63,7 +63,13 @@ function Card({ product }) {
   }
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => {
+        handleClick();
+        buttonRef.current.classList.add("active");
+      }}
+    >
       <GatsbyImage image={image} alt={product.name} width={128} height={128} />
 
       <div className="container">
@@ -71,21 +77,19 @@ function Card({ product }) {
         <p className="product-price">$ {product.price}</p>
       </div>
 
-      <Button handleClick={handleClick} apiRoute={product.apiRoute} />
+      <Button
+        buttonRef={buttonRef}
+        handleClick={handleClick}
+        apiRoute={product.apiRoute}
+      />
     </div>
   );
 }
 
-function Button({ handleClick, apiRoute }) {
-  const buttonRef = useRef(null);
-
+function Button({ apiRoute, buttonRef }) {
   return (
     <button
       ref={buttonRef}
-      onClick={() => {
-        handleClick();
-        buttonRef.current.classList.add("active");
-      }}
       className="to-cart"
       onAnimationEnd={() => {
         buttonRef.current.classList.remove("active");
