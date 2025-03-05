@@ -100,7 +100,15 @@ export default function IceCreamForm({ data, location }) {
                   : "";
               return (
                 <label key={flavour.name} htmlFor={flavour.name}>
-                  <span>{flavour.name}</span>
+                  <span
+                    style={{
+                      color: choosenFlavours.includes(flavour.name)
+                        ? "black"
+                        : "inherit",
+                    }}
+                  >
+                    {flavour.name}
+                  </span>
                   {product.apiRoute === "generic/flavour" ? (
                     <div>
                       <input
