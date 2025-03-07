@@ -8,7 +8,7 @@ export function createWhatsAppLink(messageData) {
 
   // Create the WhatsApp link with the phone number and pre-filled message
   // Usar el esquema adecuado según el dispositivo
-  const link = `https://wa.me/${phoneNumber}&text=${encodedMessage}`;
+  const link = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
   // Return the link
   return link;
