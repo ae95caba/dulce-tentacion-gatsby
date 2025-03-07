@@ -144,7 +144,11 @@ export default function Cart() {
 
       const whatsappLink = createWhatsAppLink(messageData);
 
-      window.open(whatsappLink, "_blank");
+      if (/android|iphone|ipad|ipod/i.test(navigator.userAgent)) {
+        window.location.href = whatsappLink; // Redirige directamente en móviles
+      } else {
+        window.open(whatsappLink, "_blank"); // Abre en nueva pestaña en PC
+      }
 
       Swal.fire({
         title: "Gracias!💗",
