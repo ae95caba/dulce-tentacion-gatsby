@@ -145,7 +145,7 @@ export default function Cart() {
       const whatsappLink = createWhatsAppLink(messageData);
 
       if (/android|iphone|ipad|ipod/i.test(navigator.userAgent)) {
-        window.location.href = whatsappLink; // Redirige directamente en móviles
+        window.open(whatsappLink); // Sin "_blank" para evitar la advertencia en Firefox móvil
       } else {
         window.open(whatsappLink, "_blank"); // Abre en nueva pestaña en PC
       }
