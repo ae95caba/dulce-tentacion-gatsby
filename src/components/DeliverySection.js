@@ -31,7 +31,7 @@ export default function DeliverySection({ setDeliveryInfo, deliveryInfo }) {
             name="fullfillment-method"
             value="pickup"
             id="pickup"
-            checked={deliveryInfo.isChecked === false}
+            checked={isTakeAwayChecked}
             required
             onChange={() => {
               setDeliveryInfo((prev) => ({ ...prev, isChecked: false }));
