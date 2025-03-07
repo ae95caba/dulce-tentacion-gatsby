@@ -146,7 +146,9 @@ export default function Cart() {
 
       if (/android|iphone|ipad|ipod/i.test(navigator.userAgent)) {
         window.location.href = whatsappLink; // Redirige directamente en móviles
+        console.log("this is mobile");
       } else {
+        console.log("this is desktop");
         window.open(whatsappLink, "_blank"); // Abre en nueva pestaña en PC
       }
 

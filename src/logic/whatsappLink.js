@@ -6,14 +6,9 @@ export function createWhatsAppLink(messageData) {
   // Encode the message text for use in the URL
   const encodedMessage = encodeURIComponent(message);
 
-  // Detectar si el usuario está en un dispositivo móvil
-  const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-
   // Create the WhatsApp link with the phone number and pre-filled message
   // Usar el esquema adecuado según el dispositivo
-  const link = isMobile
-    ? `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}`
-    : `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+  const link = `https://wa.me/${phoneNumber}&text=${encodedMessage}`;
 
   // Return the link
   return link;
