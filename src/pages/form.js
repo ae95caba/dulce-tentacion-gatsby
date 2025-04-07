@@ -106,49 +106,56 @@ export default function IceCreamForm({ data, location }) {
     namePrefix
   ) {
     return (
-      <ul className="container">
-        {flavours
-          .filter((flavour) => !flavour.outOfStock)
-          .map((flavour) => {
-            const image =
-              apiRoute === "generic/flavour" && getImage(flavour.localImage);
-            return (
-              <li>
-                <label
-                  key={flavour.name}
-                  htmlFor={`${namePrefix}-${flavour.name}`}
-                >
-                  <span
-                    style={{
-                      color: chosenFlavours.includes(flavour.name)
-                        ? "black"
-                        : "inherit",
-                    }}
+      <>
+        <h3>
+          {apiRoute === "generic/sauce" ? "Salsas" : "Sabores"}
+          {maxSelections > 1 && (
+            <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
+          )}
+        </h3>
+        <ul className="container">
+          {flavours
+            .filter((flavour) => !flavour.outOfStock)
+            .map((flavour) => {
+              const image =
+                apiRoute === "generic/flavour" && getImage(flavour.localImage);
+              return (
+                <li>
+                  <label
+                    key={flavour.name}
+                    htmlFor={`${namePrefix}-${flavour.name}`}
                   >
-                    {flavour.name}
-                  </span>
-
-                  <div>
-                    <input
-                      id={`${namePrefix}-${flavour.name}`}
-                      type="checkbox"
-                      disabled={
-                        !chosenFlavours.includes(flavour.name) &&
-                        chosenFlavours.length >= maxSelections
-                      }
-                      name={`${namePrefix}-flavour`}
-                      value={flavour.name}
-                      onChange={handleChange}
-                    />
-                    {apiRoute === "generic/flavour" && (
-                      <GatsbyImage image={image} alt={flavour.name} />
-                    )}
-                  </div>
-                </label>
-              </li>
-            );
-          })}
-      </ul>
+                    <span
+                      style={{
+                        color: chosenFlavours.includes(flavour.name)
+                          ? "black"
+                          : "inherit",
+                      }}
+                    >
+                      {flavour.name}
+                    </span>
+                    <div>
+                      <input
+                        id={`${namePrefix}-${flavour.name}`}
+                        type="checkbox"
+                        disabled={
+                          !chosenFlavours.includes(flavour.name) &&
+                          chosenFlavours.length >= maxSelections
+                        }
+                        name={`${namePrefix}-flavour`}
+                        value={flavour.name}
+                        onChange={handleChange}
+                      />
+                      {apiRoute === "generic/flavour" && (
+                        <GatsbyImage image={image} alt={flavour.name} />
+                      )}
+                    </div>
+                  </label>
+                </li>
+              );
+            })}
+        </ul>
+      </>
     );
   }
 
@@ -156,14 +163,12 @@ export default function IceCreamForm({ data, location }) {
     <main id="ice-cream-list">
       <form onSubmit={handleSubmit}>
         {<h1>{product.name} 🍨</h1>}
-        {product.description && <h2>{product.description}</h2>}
+        <h2>
+          {maxSelections === 1
+            ? "Elige un sabor"
+            : `Podes elegir hasta ${maxSelections} sabores`}
+        </h2>
         <div>
-          <h3>
-            Sabores
-            {
-              <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
-            }
-          </h3>
           {unorderedList(
             flavoursOfSelectedProduct,
             product.apiRoute,
@@ -173,12 +178,6 @@ export default function IceCreamForm({ data, location }) {
           )}
         </div>
         <div>
-          <h3>
-            Sabores
-            {
-              <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
-            }
-          </h3>
           {product.apiRoute === "generic/flavour" &&
             unorderedList(
               saucesFlavours,
