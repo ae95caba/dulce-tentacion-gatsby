@@ -15,6 +15,7 @@ export default function IceCreamForm({ data, location }) {
   const productIdParam = allParams.get("id");
   const products = data.allProduct.edges;
   const allFlavours = data.allFlavour.nodes;
+  const [rockletsChecked, setRockletsChecked] = useState(false);
   const [mainMenuChosenFlavours, setMainMenuChosenFlavours] = useState([]);
   const [sauceMenuChosenFlavours, setSauceMenuChosenFlavours] = useState([]);
   if (!productIdParam) {
@@ -27,6 +28,10 @@ export default function IceCreamForm({ data, location }) {
 
   const saucePrice = products.find((product) => {
     return product.node.apiRoute === "generic/sauce";
+  }).node.price;
+
+  const rockletsPrice = products.find((product) => {
+    return product.node.name.toLowerCase() === "rocklets";
   }).node.price;
 
   const flavoursOfSelectedProduct = allFlavours.filter((flavour) => {
@@ -197,8 +202,44 @@ export default function IceCreamForm({ data, location }) {
               "sauce"
             )}
         </div>
+
+        <label className="rocklets-label">
+          <span>Rocklets</span>
+          <div>
+            <input
+              type="checkbox"
+              checked={rockletsChecked}
+              onChange={(e) => setRockletsChecked(e.target.checked)}
+            />
+          </div>
+        </label>
+        {/* Details Section for Each Sauce */}
+        <div className="details-section">
+          <h4>Details:</h4>
+          <p>
+            {product.name}: <span>${product.price.toFixed(2)}</span>
+          </p>
+          {sauceMenuChosenFlavours.map((sauce) => {
+            const sauceItem = saucesFlavours.find(
+              (flavour) => flavour.name === sauce
+            );
+            return (
+              <p key={sauce}>
+                Salsa de {sauce}: <span>${sauceItem ? saucePrice : 0}</span>
+              </p>
+            );
+          })}
+          {rockletsChecked && (
+            <p>
+              Rocklets: <span>${rockletsPrice.toFixed(2)}</span>
+            </p>
+          )}
+        </div>
         <h4>
-          Total: ${sauceMenuChosenFlavours.length * saucePrice + product.price}
+          Total: $
+          {sauceMenuChosenFlavours.length * saucePrice +
+            product.price +
+            (rockletsChecked ? rockletsPrice : 0)}
         </h4>
         <button name="go to cart">Comprar ahora</button>
         <button name="go to catalog">Agregar al carrito</button>

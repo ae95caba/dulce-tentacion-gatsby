@@ -64,6 +64,45 @@
         }
       }
     }
+    label {
+      border: 1px solid white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      background-color: var(--primary-color);
+      border-radius: 0.4rem;
+      overflow: clip;
+      justify-content: space-between;
+      gap: 0.5rem;
+      span {
+        padding: 0.5rem;
+      }
+      input {
+        border-radius: 0.2rem;
+        width: 1.2rem;
+        aspect-ratio: 1/1;
+        margin-right: 1rem;
+        accent-color: var(--accent-color);
+      }
+      div {
+        display: flex;
+
+        img {
+          width: 3rem;
+          aspect-ratio: 1/1;
+          background-color: black;
+        }
+      }
+    }
+    .rocklets-label {
+      background-color: transparent;
+    }
+    .details-section {
+      p {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
     button {
       margin-top: 2rem;
       width: 100%;
