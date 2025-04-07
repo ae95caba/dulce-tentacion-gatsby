@@ -25,6 +25,10 @@ export default function IceCreamForm({ data, location }) {
     return product.node._id === productIdParam;
   }).node;
 
+  const saucePrice = products.find((product) => {
+    return product.node.apiRoute === "generic/sauce";
+  }).node.price;
+
   const flavoursOfSelectedProduct = allFlavours.filter((flavour) => {
     return flavour.apiRoute === product.apiRoute;
   });
@@ -105,56 +109,67 @@ export default function IceCreamForm({ data, location }) {
     chosenFlavours,
     namePrefix
   ) {
+    const isSauce = apiRoute === "generic/sauce";
     return (
       <>
-        <h3>
-          {apiRoute === "generic/sauce" ? "Salsas" : "Sabores"}
-          {maxSelections > 1 && (
-            <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
-          )}
-        </h3>
-        <ul className="container">
-          {flavours
-            .filter((flavour) => !flavour.outOfStock)
-            .map((flavour) => {
-              const image =
-                apiRoute === "generic/flavour" && getImage(flavour.localImage);
-              return (
-                <li>
-                  <label
-                    key={flavour.name}
-                    htmlFor={`${namePrefix}-${flavour.name}`}
-                  >
-                    <span
-                      style={{
-                        color: chosenFlavours.includes(flavour.name)
-                          ? "black"
-                          : "inherit",
-                      }}
+        <h2>
+          {maxSelections === 1
+            ? "Elige un sabor"
+            : `Podes elegir hasta ${maxSelections} ${
+                isSauce ? "salsas" : "sabores"
+              }`}
+        </h2>
+        <div>
+          <h3>
+            {isSauce ? "Salsas" : "Sabores"}
+            {maxSelections > 1 && (
+              <span>{` ${chosenFlavours.length}/${maxSelections}`}</span>
+            )}
+          </h3>
+          <ul className="container">
+            {flavours
+              .filter((flavour) => !flavour.outOfStock)
+              .map((flavour) => {
+                const image =
+                  apiRoute === "generic/flavour" &&
+                  getImage(flavour.localImage);
+                return (
+                  <li>
+                    <label
+                      key={flavour.name}
+                      htmlFor={`${namePrefix}-${flavour.name}`}
                     >
-                      {flavour.name}
-                    </span>
-                    <div>
-                      <input
-                        id={`${namePrefix}-${flavour.name}`}
-                        type="checkbox"
-                        disabled={
-                          !chosenFlavours.includes(flavour.name) &&
-                          chosenFlavours.length >= maxSelections
-                        }
-                        name={`${namePrefix}-flavour`}
-                        value={flavour.name}
-                        onChange={handleChange}
-                      />
-                      {apiRoute === "generic/flavour" && (
-                        <GatsbyImage image={image} alt={flavour.name} />
-                      )}
-                    </div>
-                  </label>
-                </li>
-              );
-            })}
-        </ul>
+                      <span
+                        style={{
+                          color: chosenFlavours.includes(flavour.name)
+                            ? "black"
+                            : "inherit",
+                        }}
+                      >
+                        {flavour.name}
+                      </span>
+                      <div>
+                        <input
+                          id={`${namePrefix}-${flavour.name}`}
+                          type="checkbox"
+                          disabled={
+                            !chosenFlavours.includes(flavour.name) &&
+                            chosenFlavours.length >= maxSelections
+                          }
+                          name={`${namePrefix}-flavour`}
+                          value={flavour.name}
+                          onChange={handleChange}
+                        />
+                        {apiRoute === "generic/flavour" && (
+                          <GatsbyImage image={image} alt={flavour.name} />
+                        )}
+                      </div>
+                    </label>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
       </>
     );
   }
@@ -163,20 +178,15 @@ export default function IceCreamForm({ data, location }) {
     <main id="ice-cream-list">
       <form onSubmit={handleSubmit}>
         {<h1>{product.name} 🍨</h1>}
-        <h2>
-          {maxSelections === 1
-            ? "Elige un sabor"
-            : `Podes elegir hasta ${maxSelections} sabores`}
-        </h2>
-        <div>
-          {unorderedList(
-            flavoursOfSelectedProduct,
-            product.apiRoute,
-            handleMainMenuChange,
-            mainMenuChosenFlavours,
-            "main"
-          )}
-        </div>
+
+        {unorderedList(
+          flavoursOfSelectedProduct,
+          product.apiRoute,
+          handleMainMenuChange,
+          mainMenuChosenFlavours,
+          "main"
+        )}
+
         <div>
           {product.apiRoute === "generic/flavour" &&
             unorderedList(
@@ -187,7 +197,9 @@ export default function IceCreamForm({ data, location }) {
               "sauce"
             )}
         </div>
-
+        <h4>
+          Total: ${sauceMenuChosenFlavours.length * saucePrice + product.price}
+        </h4>
         <button name="go to cart">Comprar ahora</button>
         <button name="go to catalog">Agregar al carrito</button>
       </form>
