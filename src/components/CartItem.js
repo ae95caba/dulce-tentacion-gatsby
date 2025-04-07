@@ -97,11 +97,11 @@ export default function CartItem({ cartItem }) {
         </div>
       </div>
 
-      {product.choosenFlavours && (
+      {product.chosenFlavours && (
         <div className="details">
-          <h3>{product.choosenFlavours.length > 1 ? "Sabores" : "Sabor"}</h3>
+          <h3>{product.chosenFlavours.length > 1 ? "Sabores" : "Sabor"}</h3>
           <ul>
-            {product.choosenFlavours.map((flavour) => {
+            {product.chosenFlavours.map((flavour) => {
               return <li key={uniqid()}>{flavour}</li>;
             })}
           </ul>

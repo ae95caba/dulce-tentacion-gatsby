@@ -53,34 +53,34 @@ export default function GlobalContextProvider({ children }) {
       }
       isProductInCart = () => {
         return cartItems.some((cartItem) => {
-          if (product.choosenFlavours && cartItem.product.choosenFlavours) {
-            // Check if both _id matches and choosenFlavours contain the same elements
+          if (product.chosenFlavours && cartItem.product.chosenFlavours) {
+            // Check if both _id matches and chosenFlavours contain the same elements
             return (
               product._id === cartItem.product._id &&
               areArraysEqual(
-                product.choosenFlavours,
-                cartItem.product.choosenFlavours
+                product.chosenFlavours,
+                cartItem.product.chosenFlavours
               )
             );
           }
-          // Check only _id if choosenFlavours is not present
+          // Check only _id if chosenFlavours is not present
           return product._id === cartItem.product._id;
         });
       };
 
       indexOfProductInCart = () => {
         return cartItems.findIndex((cartItem) => {
-          if (product.choosenFlavours && cartItem.product.choosenFlavours) {
-            // Check both _id and choosenFlavours
+          if (product.chosenFlavours && cartItem.product.chosenFlavours) {
+            // Check both _id and chosenFlavours
             return (
               product._id === cartItem.product._id &&
               areArraysEqual(
-                product.choosenFlavours,
-                cartItem.product.choosenFlavours
+                product.chosenFlavours,
+                cartItem.product.chosenFlavours
               )
             );
           }
-          // Check only _id if choosenFlavours is not present
+          // Check only _id if chosenFlavours is not present
           return product._id === cartItem.product._id;
         });
       };

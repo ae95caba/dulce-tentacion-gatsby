@@ -73,7 +73,11 @@ export default function IceCreamForm({ data, location }) {
         type: "add-cart-item",
         payload: {
           id: product._id,
-          product: { ...product, chosenFlavours: mainMenuChosenFlavours },
+          product: {
+            ...product,
+            chosenFlavours: mainMenuChosenFlavours,
+            chosenSauces: sauceMenuChosenFlavours,
+          },
           quantity: 1,
         },
       });

@@ -32,11 +32,11 @@ function createMessage({
       cartItemsList += `\u{1F6D2} ${product.name} X ${
         cartItem.count
       } | $${cartItem.getTotalPrice()}\n`;
-      if (product.choosenFlavours) {
+      if (product.chosenFlavours) {
         let flavoursList = `		*${
-          product.choosenFlavours > 1 ? "Sabores" : "Sabor"
+          product.chosenFlavours > 1 ? "Sabores" : "Sabor"
         }*:\n`;
-        product.choosenFlavours.forEach((flavour) => {
+        product.chosenFlavours.forEach((flavour) => {
           flavoursList += `			-${flavour}\n`;
         });
 
