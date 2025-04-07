@@ -107,6 +107,17 @@ export default function CartItem({ cartItem }) {
           </ul>
         </div>
       )}
+
+      {product.chosenSauces && (
+        <div className="details">
+          <h3>{product.chosenSauces.length > 1 ? "Salsas" : "Salsa"}</h3>
+          <ul>
+            {product.chosenSauces.map((sauce) => {
+              return <li key={uniqid()}>{sauce}</li>;
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
