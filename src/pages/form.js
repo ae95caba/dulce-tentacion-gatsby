@@ -15,8 +15,8 @@ export default function IceCreamForm({ data, location }) {
   const productIdParam = allParams.get("id");
   const products = data.allProduct.edges;
   const allFlavours = data.allFlavour.nodes;
-  const [choosenFlavours, setChoosenFlavours] = useState([]);
-
+  const [mainMenuChosenFlavours, setMainMenuChosenFlavours] = useState([]);
+  const [sauceMenuChosenFlavours, setSauceMenuChosenFlavours] = useState([]);
   if (!productIdParam) {
     return <p>Page not found</p>; // Or redirect to a 404 page
   }
@@ -25,32 +25,42 @@ export default function IceCreamForm({ data, location }) {
     return product.node._id === productIdParam;
   }).node;
 
-  console.log(
-    `-------------------------------------------------------------------------------------`
-  );
-  console.log(product);
-  console.log(
-    `-------------------------------------------------------------------------------------`
-  );
-  const matchingFlavours = allFlavours.filter((flavour) => {
+  const flavoursOfSelectedProduct = allFlavours.filter((flavour) => {
     return flavour.apiRoute === product.apiRoute;
   });
-  console.log(JSON.stringify(matchingFlavours));
+  const saucesFlavours = allFlavours.filter((flavour) => {
+    return flavour.apiRoute === "generic/sauce";
+  });
+  console.log(JSON.stringify(flavoursOfSelectedProduct));
 
   const maxSelections = product && (product.flavours || 1);
   //nuevo fin
 
-  function handleChange(e) {
+  function handleMainMenuChange(e) {
     const { value, checked } = e.target;
 
     if (checked) {
-      setChoosenFlavours((prev) => [...prev, value]);
+      setMainMenuChosenFlavours((prev) => [...prev, value]);
     } else {
-      const index = choosenFlavours.indexOf(value);
-      const copy = choosenFlavours;
+      const index = mainMenuChosenFlavours.indexOf(value);
+      const copy = mainMenuChosenFlavours;
       copy.splice(index, 1);
 
-      setChoosenFlavours([...copy]);
+      setMainMenuChosenFlavours([...copy]);
+    }
+  }
+
+  function handleSauceMenuChange(e) {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSauceMenuChosenFlavours((prev) => [...prev, value]);
+    } else {
+      const index = sauceMenuChosenFlavours.indexOf(value);
+      const copy = sauceMenuChosenFlavours;
+      copy.splice(index, 1);
+
+      setSauceMenuChosenFlavours([...copy]);
     }
   }
 
@@ -58,12 +68,12 @@ export default function IceCreamForm({ data, location }) {
     e.preventDefault();
     const buttonSubmitter = e.nativeEvent.submitter;
     const buttonName = buttonSubmitter.name;
-    if (choosenFlavours.length > 0) {
+    if (mainMenuChosenFlavours.length > 0) {
       dispatch({
         type: "add-cart-item",
         payload: {
           id: product._id,
-          product: { ...product, choosenFlavours },
+          product: { ...product, chosenFlavours: mainMenuChosenFlavours },
           quantity: 1,
         },
       });
@@ -81,66 +91,95 @@ export default function IceCreamForm({ data, location }) {
     }
   }
 
-  return (
-    <main id="ice-cream-list">
-      <form onSubmit={handleSubmit}>
-        {<h1>{product.name} 🍨</h1>}
-        {product.description && <h2>{product.description}</h2>}
-        <h3>
-          Sabores
-          {<span>{` ${choosenFlavours.length}/${maxSelections}`}</span>}
-        </h3>
-        <div className="container">
-          {matchingFlavours
-            .filter((flavour) => !flavour.outOfStock) // Exclude out-of-stock flavours
-            .map((flavour) => {
-              const image =
-                product.apiRoute === "generic/flavour"
-                  ? getImage(flavour.localImage)
-                  : "";
-              return (
-                <label key={flavour.name} htmlFor={flavour.name}>
+  function unorderedList(
+    flavours,
+    apiRoute,
+    handleChange,
+    chosenFlavours,
+    namePrefix
+  ) {
+    return (
+      <ul className="container">
+        {flavours
+          .filter((flavour) => !flavour.outOfStock)
+          .map((flavour) => {
+            const image =
+              apiRoute === "generic/flavour" && getImage(flavour.localImage);
+            return (
+              <li>
+                <label
+                  key={flavour.name}
+                  htmlFor={`${namePrefix}-${flavour.name}`}
+                >
                   <span
                     style={{
-                      color: choosenFlavours.includes(flavour.name)
+                      color: chosenFlavours.includes(flavour.name)
                         ? "black"
                         : "inherit",
                     }}
                   >
                     {flavour.name}
                   </span>
-                  {product.apiRoute === "generic/flavour" ? (
-                    <div>
-                      <input
-                        id={flavour.name}
-                        type="checkbox"
-                        disabled={
-                          !choosenFlavours.includes(flavour.name) &&
-                          choosenFlavours.length >= maxSelections
-                        }
-                        name="flavour"
-                        value={flavour.name}
-                        onChange={handleChange}
-                      />
 
-                      <GatsbyImage image={image} alt={flavour.name} />
-                    </div>
-                  ) : (
+                  <div>
                     <input
-                      id={flavour.name}
+                      id={`${namePrefix}-${flavour.name}`}
                       type="checkbox"
                       disabled={
-                        !choosenFlavours.includes(flavour.name) &&
-                        choosenFlavours.length >= maxSelections
+                        !chosenFlavours.includes(flavour.name) &&
+                        chosenFlavours.length >= maxSelections
                       }
-                      name="flavour"
+                      name={`${namePrefix}-flavour`}
                       value={flavour.name}
                       onChange={handleChange}
                     />
-                  )}
+                    {apiRoute === "generic/flavour" && (
+                      <GatsbyImage image={image} alt={flavour.name} />
+                    )}
+                  </div>
                 </label>
-              );
-            })}
+              </li>
+            );
+          })}
+      </ul>
+    );
+  }
+
+  return (
+    <main id="ice-cream-list">
+      <form onSubmit={handleSubmit}>
+        {<h1>{product.name} 🍨</h1>}
+        {product.description && <h2>{product.description}</h2>}
+        <div>
+          <h3>
+            Sabores
+            {
+              <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
+            }
+          </h3>
+          {unorderedList(
+            flavoursOfSelectedProduct,
+            product.apiRoute,
+            handleMainMenuChange,
+            mainMenuChosenFlavours,
+            "main"
+          )}
+        </div>
+        <div>
+          <h3>
+            Sabores
+            {
+              <span>{` ${mainMenuChosenFlavours.length}/${maxSelections}`}</span>
+            }
+          </h3>
+          {product.apiRoute === "generic/flavour" &&
+            unorderedList(
+              saucesFlavours,
+              "generic/sauce",
+              handleSauceMenuChange,
+              sauceMenuChosenFlavours,
+              "sauce"
+            )}
         </div>
 
         <button name="go to cart">Comprar ahora</button>
