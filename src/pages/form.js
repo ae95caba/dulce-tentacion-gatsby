@@ -76,7 +76,10 @@ export default function IceCreamForm({ data, location }) {
           product: {
             ...product,
             chosenFlavours: mainMenuChosenFlavours,
-            chosenSauces: sauceMenuChosenFlavours,
+            chosenSauces:
+              sauceMenuChosenFlavours.length > 0
+                ? sauceMenuChosenFlavours
+                : undefined,
           },
           quantity: 1,
         },

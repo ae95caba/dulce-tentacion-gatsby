@@ -54,12 +54,17 @@ export default function GlobalContextProvider({ children }) {
       isProductInCart = () => {
         return cartItems.some((cartItem) => {
           if (product.chosenFlavours && cartItem.product.chosenFlavours) {
-            // Check if both _id matches and chosenFlavours contain the same elements
+            // Check if both _id matches and chosenFlavours and chosenSauces contain the same elements
             return (
               product._id === cartItem.product._id &&
               areArraysEqual(
                 product.chosenFlavours,
                 cartItem.product.chosenFlavours
+              ) &&
+              product.chosenSauces &&
+              areArraysEqual(
+                product.chosenSauces,
+                cartItem.product.chosenSauces
               )
             );
           }
