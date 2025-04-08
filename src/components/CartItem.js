@@ -98,19 +98,21 @@ export default function CartItem({ cartItem }) {
         </div>
       </div>
 
-      <DetailsSection
-        product={product}
-        rocklets={{
-          price: product.addOns.rocklets.price,
-          included: product.addOns.rocklets.included,
-        }}
-        totalPrice={product.totalPriceWithAddOns}
-        sauces={{
-          price: product.addOns.sauces.price,
-          chosenSauces: product.addOns.sauces.chosenSauces,
-        }}
-        chosenFlavours={product.chosenFlavours}
-      />
+      {product.chosenFlavours && (
+        <DetailsSection
+          product={product}
+          rocklets={{
+            price: product.addOns.rocklets.price,
+            included: product.addOns.rocklets.included,
+          }}
+          totalPrice={product.totalPriceWithAddOns}
+          sauces={{
+            price: product.addOns.sauces.price,
+            chosenSauces: product.addOns.sauces.chosenSauces,
+          }}
+          chosenFlavours={product.chosenFlavours}
+        />
+      )}
     </div>
   );
 }

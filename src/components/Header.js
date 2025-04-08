@@ -76,7 +76,7 @@ function CartButton() {
   const { cartItems } = useContext(GlobalContext);
   const [className, setClassName] = useState("as");
   const [isFirstMount, setIsFirstMount] = useState(true);
-  console.log(`cart itesm is : ${JSON.stringify(cartItems)}`);
+
   useEffect(() => {
     if (isFirstMount) {
       setIsFirstMount(false);

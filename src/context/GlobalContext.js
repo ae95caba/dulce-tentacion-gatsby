@@ -46,6 +46,10 @@ export default function GlobalContextProvider({ children }) {
       quantity = action.payload.quantity;
       // Helper function to check if two arrays contain the same elements (ignoring order)
       function areArraysEqual(arr1, arr2) {
+        console.log("-------------funtion start -------------------");
+        console.log(arr1);
+        console.log(arr2);
+        console.log("-------------funtion end -------------------");
         if (arr1.length !== arr2.length) return false;
         const sortedArr1 = [...arr1].sort();
         const sortedArr2 = [...arr2].sort();
@@ -53,23 +57,53 @@ export default function GlobalContextProvider({ children }) {
       }
       isProductInCart = () => {
         return cartItems.some((cartItem) => {
-          if (product.chosenFlavours && cartItem.product.chosenFlavours) {
-            // Check if both _id matches and chosenFlavours and chosenSauces contain the same elements
-            return (
-              product._id === cartItem.product._id &&
-              areArraysEqual(
+          // First check if it's the same product
+          if (product._id !== cartItem.product._id) {
+            return false;
+          }
+
+          // Check flavors if they exist
+          if (product.chosenFlavours || cartItem.product.chosenFlavours) {
+            // If one has flavors and the other doesn't, they're different
+            if (!product.chosenFlavours || !cartItem.product.chosenFlavours) {
+              return false;
+            }
+            // Compare flavors
+            if (
+              !areArraysEqual(
                 product.chosenFlavours,
                 cartItem.product.chosenFlavours
-              ) &&
-              product.chosenSauces &&
-              areArraysEqual(
-                product.addOns.sauces.chosenSauces,
-                cartItem.product.addOns.sauces.chosenSauces
               )
-            );
+            ) {
+              return false;
+            }
           }
-          // Check only _id if chosenFlavours is not present
-          return product._id === cartItem.product._id;
+
+          // Check sauces if they exist
+          const productSauces = product.addOns?.sauces?.chosenSauces;
+          const cartItemSauces = cartItem.product.addOns?.sauces?.chosenSauces;
+
+          if (productSauces || cartItemSauces) {
+            // If one has sauces and the other doesn't, they're different
+            if (!productSauces || !cartItemSauces) {
+              return false;
+            }
+            // Compare sauces
+            if (!areArraysEqual(productSauces, cartItemSauces)) {
+              return false;
+            }
+          }
+
+          // Check rocklets if they exist
+          const productRocklets = product.addOns?.rocklets?.included;
+          const cartItemRocklets = cartItem.product.addOns?.rocklets?.included;
+
+          if (productRocklets !== cartItemRocklets) {
+            return false;
+          }
+
+          // If we get here, all checks passed
+          return true;
         });
       };
 
@@ -112,11 +146,17 @@ export default function GlobalContextProvider({ children }) {
         triggerAlert(message);
 
         if (!isProductInCart()) {
+          console.log("--------------------------------");
+          console.log("is not in the cart");
+          console.log("--------------------------------");
           //create 1 instance of the product in the cart
           cartItemsCopy.push(newCartItem(product));
 
           return cartItemsCopy;
         } else {
+          console.log("--------------------------------");
+          console.log("is in the cart");
+          console.log("--------------------------------");
           //increase the count of the item
 
           cartItemsCopy[indexOfProductInCart()].count += quantity;

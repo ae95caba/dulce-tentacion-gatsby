@@ -46,7 +46,6 @@ export default function IceCreamForm({ data, location }) {
   const saucesFlavours = allFlavours.filter((flavour) => {
     return flavour.apiRoute === "generic/sauce";
   });
-  console.log(JSON.stringify(flavoursOfSelectedProduct));
 
   const maxSelections = product && (product.flavours || 1);
   //nuevo fin
@@ -101,7 +100,10 @@ export default function IceCreamForm({ data, location }) {
               rocklets: { price: rockletsPrice, included: rockletsChecked },
             },
             totalPriceWithAddOns: totalPrice,
-            chosenFlavours: mainMenuChosenFlavours,
+            chosenFlavours:
+              mainMenuChosenFlavours.length > 0
+                ? mainMenuChosenFlavours
+                : undefined,
           },
           quantity: 1,
         },
