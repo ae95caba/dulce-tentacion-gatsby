@@ -135,7 +135,11 @@ export default function GlobalContextProvider({ children }) {
             product,
             count: 1,
             getTotalPrice() {
-              return this.product.price * this.count;
+              if (this.product.priceWithAddOns) {
+                return this.product.priceWithAddOns * this.count;
+              } else {
+                return this.product.price * this.count;
+              }
             },
           };
         }

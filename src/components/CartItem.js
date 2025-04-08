@@ -27,77 +27,14 @@ export default function CartItem({ cartItem }) {
       <div className="left faded faded-right">
         <GatsbyImage image={image} alt={product.name} />
       </div>
-      <div className="right">
-        <div className="description">
-          <p className="name">{product.name}</p>
-          <p className="price">$ {product.totalPriceWithAddOns}</p>
+      {!product.chosenFlavours && (
+        <div className="right">
+          <div className="description">
+            <p className="name">{product.name}</p>
+            <p className="price">$ {product.price}</p>
+          </div>
         </div>
-
-        <div className="quantity">
-          <button
-            onClick={() => {
-              dispatch({
-                type: "remove-cart-item",
-                payload: { product: product, quantity: 1 },
-              });
-              inputRef.current.value = cartItem.count - 1;
-            }}
-          >
-            -
-          </button>
-          <input
-            ref={inputRef}
-            required
-            type="number"
-            defaultValue={cartItem.count}
-            onBlur={(e) => {
-              console.log(cartItem);
-              if (e.target.value === "") {
-                e.target.value = 1;
-              }
-              const newValue = parseInt(e.target.value, 10);
-              const currentCount = cartItem.count;
-
-              if (newValue > currentCount) {
-                // If the new value is greater, add the difference
-                const difference = newValue - currentCount;
-
-                dispatch({
-                  type: "add-cart-item",
-                  payload: { product: product, quantity: difference }, // Add one item at a time
-                });
-              } else if (newValue < currentCount) {
-                // If the new value is less, remove the difference
-                const difference = currentCount - newValue;
-
-                dispatch({
-                  type: "remove-cart-item",
-                  payload: { product: product, quantity: difference }, // Remove one item at a time
-                });
-              }
-              // If the value is the same, do nothing
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.target.blur(); // Remove focus from the input
-              }
-            }}
-            min="0" // Ensure the input doesn't go below 0
-          />
-          <button
-            onClick={() => {
-              dispatch({
-                type: "add-cart-item",
-                payload: { product: product, quantity: 1 },
-              });
-              inputRef.current.value = cartItem.count + 1;
-            }}
-          >
-            +
-          </button>
-        </div>
-      </div>
-
+      )}
       {product.chosenFlavours && (
         <DetailsSection
           product={product}
@@ -105,13 +42,79 @@ export default function CartItem({ cartItem }) {
             price: product.addOns.rocklets.price,
             included: product.addOns.rocklets.included,
           }}
-          totalPrice={product.totalPriceWithAddOns}
+          priceWithAddOns={product.priceWithAddOns}
           sauces={{
             price: product.addOns.sauces.price,
             chosenSauces: product.addOns.sauces.chosenSauces,
           }}
           chosenFlavours={product.chosenFlavours}
         />
+      )}{" "}
+      <div className="quantity">
+        <button
+          onClick={() => {
+            dispatch({
+              type: "remove-cart-item",
+              payload: { product: product, quantity: 1 },
+            });
+            inputRef.current.value = cartItem.count - 1;
+          }}
+        >
+          -
+        </button>
+        <input
+          ref={inputRef}
+          required
+          type="number"
+          defaultValue={cartItem.count}
+          onBlur={(e) => {
+            console.log(cartItem);
+            if (e.target.value === "") {
+              e.target.value = 1;
+            }
+            const newValue = parseInt(e.target.value, 10);
+            const currentCount = cartItem.count;
+
+            if (newValue > currentCount) {
+              // If the new value is greater, add the difference
+              const difference = newValue - currentCount;
+
+              dispatch({
+                type: "add-cart-item",
+                payload: { product: product, quantity: difference }, // Add one item at a time
+              });
+            } else if (newValue < currentCount) {
+              // If the new value is less, remove the difference
+              const difference = currentCount - newValue;
+
+              dispatch({
+                type: "remove-cart-item",
+                payload: { product: product, quantity: difference }, // Remove one item at a time
+              });
+            }
+            // If the value is the same, do nothing
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.target.blur(); // Remove focus from the input
+            }
+          }}
+          min="0" // Ensure the input doesn't go below 0
+        />
+        <button
+          onClick={() => {
+            dispatch({
+              type: "add-cart-item",
+              payload: { product: product, quantity: 1 },
+            });
+            inputRef.current.value = cartItem.count + 1;
+          }}
+        >
+          +
+        </button>
+      </div>
+      {cartItem.count > 1 && (
+        <p className="subtotal">Subtotal: $ {cartItem.getTotalPrice()}</p>
       )}
     </div>
   );

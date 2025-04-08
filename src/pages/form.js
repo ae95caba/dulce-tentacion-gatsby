@@ -99,7 +99,7 @@ export default function IceCreamForm({ data, location }) {
               },
               rocklets: { price: rockletsPrice, included: rockletsChecked },
             },
-            totalPriceWithAddOns: totalPrice,
+            priceWithAddOns: totalPrice,
             chosenFlavours:
               mainMenuChosenFlavours.length > 0
                 ? mainMenuChosenFlavours
@@ -232,8 +232,8 @@ export default function IceCreamForm({ data, location }) {
         <DetailsSection
           product={product}
           rocklets={{ price: rockletsPrice, included: rockletsChecked }}
-          totalPrice={totalPrice}
           sauces={{ price: saucePrice, chosenSauces: sauceMenuChosenFlavours }}
+          priceWithAddOns={totalPrice}
           chosenFlavours={mainMenuChosenFlavours}
         />
 
