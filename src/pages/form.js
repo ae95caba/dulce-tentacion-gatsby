@@ -35,6 +35,11 @@ export default function IceCreamForm({ data, location }) {
     return product.node.name.toLowerCase() === "rocklets";
   }).node.price;
 
+  const totalPrice =
+    sauceMenuChosenFlavours.length * saucePrice +
+    product.price +
+    (rockletsChecked ? rockletsPrice : 0);
+
   const flavoursOfSelectedProduct = allFlavours.filter((flavour) => {
     return flavour.apiRoute === product.apiRoute;
   });
@@ -225,6 +230,7 @@ export default function IceCreamForm({ data, location }) {
         <DetailsSection
           product={product}
           rocklets={{ price: rockletsPrice, included: rockletsChecked }}
+          totalPrice={totalPrice}
           sauces={{ price: saucePrice, chosenSauces: sauceMenuChosenFlavours }}
         />
 

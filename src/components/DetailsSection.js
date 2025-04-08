@@ -1,10 +1,6 @@
 import React from "react";
 
-const DetailsSection = ({ product, rocklets, sauces }) => {
-  const totalPrice =
-    sauces.chosenSauces.length * sauces.price +
-    product.price +
-    (rocklets.included ? rocklets.price : 0);
+const DetailsSection = ({ product, rocklets, sauces, totalPrice }) => {
   return (
     <div className="details-section">
       <h4>Detalle:</h4>
