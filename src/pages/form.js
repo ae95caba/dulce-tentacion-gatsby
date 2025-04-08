@@ -8,6 +8,7 @@ import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
+import DetailsSection from "../components/DetailsSection";
 import cone from "../images/ice-cream-cone.svg";
 export default function IceCreamForm({ data, location }) {
   const { dispatch } = useContext(GlobalContext);
@@ -84,11 +85,18 @@ export default function IceCreamForm({ data, location }) {
           id: product._id,
           product: {
             ...product,
+            addOns: {
+              sauces: {
+                price: saucePrice,
+                chosenSauces:
+                  sauceMenuChosenFlavours.length > 0
+                    ? sauceMenuChosenFlavours
+                    : undefined,
+              },
+              rocklets: { price: rockletsPrice, included: rockletsChecked },
+            },
+            totalPriceWithAddOns: totalPrice,
             chosenFlavours: mainMenuChosenFlavours,
-            chosenSauces:
-              sauceMenuChosenFlavours.length > 0
-                ? sauceMenuChosenFlavours
-                : undefined,
           },
           quantity: 1,
         },
@@ -192,7 +200,7 @@ export default function IceCreamForm({ data, location }) {
           "main"
         )}
 
-        <div>
+        <>
           {product.apiRoute === "generic/flavour" &&
             unorderedList(
               saucesFlavours,
@@ -201,7 +209,7 @@ export default function IceCreamForm({ data, location }) {
               sauceMenuChosenFlavours,
               "sauce"
             )}
-        </div>
+        </>
 
         <label className="rocklets-label">
           <span>Rocklets</span>
@@ -214,33 +222,12 @@ export default function IceCreamForm({ data, location }) {
           </div>
         </label>
         {/* Details Section for Each Sauce */}
-        <div className="details-section">
-          <h4>Details:</h4>
-          <p>
-            {product.name}: <span>${product.price.toFixed(2)}</span>
-          </p>
-          {sauceMenuChosenFlavours.map((sauce) => {
-            const sauceItem = saucesFlavours.find(
-              (flavour) => flavour.name === sauce
-            );
-            return (
-              <p key={sauce}>
-                Salsa de {sauce}: <span>${sauceItem ? saucePrice : 0}</span>
-              </p>
-            );
-          })}
-          {rockletsChecked && (
-            <p>
-              Rocklets: <span>${rockletsPrice.toFixed(2)}</span>
-            </p>
-          )}
-        </div>
-        <h4>
-          Total: $
-          {sauceMenuChosenFlavours.length * saucePrice +
-            product.price +
-            (rockletsChecked ? rockletsPrice : 0)}
-        </h4>
+        <DetailsSection
+          product={product}
+          rocklets={{ price: rockletsPrice, included: rockletsChecked }}
+          sauces={{ price: saucePrice, chosenSauces: sauceMenuChosenFlavours }}
+        />
+
         <button name="go to cart">Comprar ahora</button>
         <button name="go to catalog">Agregar al carrito</button>
       </form>

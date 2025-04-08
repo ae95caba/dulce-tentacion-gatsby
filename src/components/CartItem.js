@@ -29,7 +29,7 @@ export default function CartItem({ cartItem }) {
       <div className="right">
         <div className="description">
           <p className="name">{product.name}</p>
-          <p className="price">$ {cartItem.getTotalPrice()}</p>
+          <p className="price">$ {product.totalPriceWithAddOns}</p>
         </div>
 
         <div className="quantity">
@@ -99,7 +99,9 @@ export default function CartItem({ cartItem }) {
 
       {product.chosenFlavours && (
         <div className="details">
-          <h3>{product.chosenFlavours.length > 1 ? "Sabores" : "Sabor"}</h3>
+          <h3>
+            {product.name}-${product.price}
+          </h3>
           <ul>
             {product.chosenFlavours.map((flavour) => {
               return <li key={uniqid()}>{flavour}</li>;
@@ -108,14 +110,24 @@ export default function CartItem({ cartItem }) {
         </div>
       )}
 
-      {product.chosenSauces && (
+      {product.addOns.sauces.chosenSauces && (
         <div className="details">
-          <h3>{product.chosenSauces.length > 1 ? "Salsas" : "Salsa"}</h3>
+          <h3>
+            {product.addOns.sauces.chosenSauces.length > 1 ? "Salsas" : "Salsa"}
+            -${product.addOns.sauces.price}
+          </h3>
           <ul>
-            {product.chosenSauces.map((sauce) => {
+            {product.addOns.sauces.chosenSauces.map((sauce) => {
               return <li key={uniqid()}>{sauce}</li>;
             })}
           </ul>
+        </div>
+      )}
+
+      {product.addOns.rocklets.included && (
+        <div className="details">
+          <h3>Rocklets - ${product.addOns.rocklets.price}</h3>
+          <p>Included</p>
         </div>
       )}
     </div>
