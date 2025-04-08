@@ -232,10 +232,13 @@ export default function IceCreamForm({ data, location }) {
           rocklets={{ price: rockletsPrice, included: rockletsChecked }}
           totalPrice={totalPrice}
           sauces={{ price: saucePrice, chosenSauces: sauceMenuChosenFlavours }}
+          chosenFlavours={mainMenuChosenFlavours}
         />
 
-        <button name="go to cart">Comprar ahora</button>
-        <button name="go to catalog">Agregar al carrito</button>
+        <div className="buttons-container">
+          <button name="go to cart">Comprar ahora</button>
+          <button name="go to catalog">Agregar al carrito</button>
+        </div>
       </form>
     </main>
   );

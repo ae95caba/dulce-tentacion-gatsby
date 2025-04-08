@@ -4,6 +4,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import recycleBin from "../images/recycle-bin.png";
 import { useContext } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import DetailsSection from "./DetailsSection";
 export default function CartItem({ cartItem }) {
   const { dispatch } = useContext(GlobalContext);
   const [showDetails, setShowDetails] = useState(false);
@@ -97,39 +98,19 @@ export default function CartItem({ cartItem }) {
         </div>
       </div>
 
-      {product.chosenFlavours && (
-        <div className="details">
-          <h3>
-            {product.name}-${product.price}
-          </h3>
-          <ul>
-            {product.chosenFlavours.map((flavour) => {
-              return <li key={uniqid()}>{flavour}</li>;
-            })}
-          </ul>
-        </div>
-      )}
-
-      {product.addOns.sauces.chosenSauces && (
-        <div className="details">
-          <h3>
-            {product.addOns.sauces.chosenSauces.length > 1 ? "Salsas" : "Salsa"}
-            -${product.addOns.sauces.price}
-          </h3>
-          <ul>
-            {product.addOns.sauces.chosenSauces.map((sauce) => {
-              return <li key={uniqid()}>{sauce}</li>;
-            })}
-          </ul>
-        </div>
-      )}
-
-      {product.addOns.rocklets.included && (
-        <div className="details">
-          <h3>Rocklets - ${product.addOns.rocklets.price}</h3>
-          <p>Included</p>
-        </div>
-      )}
+      <DetailsSection
+        product={product}
+        rocklets={{
+          price: product.addOns.rocklets.price,
+          included: product.addOns.rocklets.included,
+        }}
+        totalPrice={product.totalPriceWithAddOns}
+        sauces={{
+          price: product.addOns.sauces.price,
+          chosenSauces: product.addOns.sauces.chosenSauces,
+        }}
+        chosenFlavours={product.chosenFlavours}
+      />
     </div>
   );
 }

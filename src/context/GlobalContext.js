@@ -63,8 +63,8 @@ export default function GlobalContextProvider({ children }) {
               ) &&
               product.chosenSauces &&
               areArraysEqual(
-                product.chosenSauces,
-                cartItem.product.chosenSauces
+                product.addOns.sauces.chosenSauces,
+                cartItem.product.addOns.sauces.chosenSauces
               )
             );
           }
