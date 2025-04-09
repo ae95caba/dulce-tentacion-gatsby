@@ -1,42 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import uniqid from "uniqid";
-import { GlobalContext } from "../context/GlobalContext";
-import recycleBin from "../images/recycle-bin.png";
-import { useContext } from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import DetailsSection from "./DetailsSection";
+import React from "react";
 
-export default function CartItem({ cartItem }) {
-  const { dispatch } = useContext(GlobalContext);
-  const [showDetails, setShowDetails] = useState(false);
-  const product = cartItem.product;
-  const image = getImage(product.localImage);
-  const inputRef = useRef(null);
-
-  // Function to capitalize the first letter of a string
-  const capitalizeFirstLetter = (string) => {
-    if (!string) return ""; // Handle empty string
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  // Function to format description with line breaks and dots
-  const formatDescription = (description) => {
-    if (!description) return ""; // Handle empty description
-    const sentences = description
-      .split(".")
-      .map((line) => line.trim())
-      .filter(Boolean); // Split by dot and trim
-    return sentences.map((line, index) => (
-      <span key={index}>
-        {line}
-        {line && "."} {/* Add a dot at the end of each line */}
-        <br /> {/* Add line break after each line */}
-      </span>
-    ));
-  };
-
+export default function ProductCard({ isCart }) {
   return (
     <div className="cart-item">
+      isCart && (
       <img
         className="remove"
         alt="remove"
@@ -48,7 +15,8 @@ export default function CartItem({ cartItem }) {
           })
         }
       />
-      <div className="left">
+      )
+      <div className="left ">
         <GatsbyImage image={image} alt={product.name} />
       </div>
       {!product.chosenFlavours && (

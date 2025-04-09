@@ -260,7 +260,12 @@ export const query = graphql`
           price
           localImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED)
+              gatsbyImageData(
+                width: 160
+                height: 160
+                layout: FIXED
+                placeholder: BLURRED
+              )
             }
           }
           outOfStock
