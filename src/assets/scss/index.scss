@@ -252,7 +252,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     cursor: pointer;
     z-index: 2;
   }
-  .left {
+  .image-container {
     position: relative;
     display: flex;
 
@@ -273,44 +273,36 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
       } */
     }
   }
-  .right {
+  .description {
     padding: $shared-padding;
     display: flex;
     align-self: center;
     flex-direction: column;
     justify-content: space-between;
-    /*   @include max-width-query(xsm) {
-      width: 10rem;
-      font-size: 0.9rem;
-      padding: 0.8rem;
-    } */
-    .description {
-      flex-grow: 1;
-      text-align: center;
 
-      width: 100%;
-      display: flex;
+    text-align: center;
 
-      flex-direction: column;
-      gap: 0.5rem;
-      p.name {
-        color: black;
+    width: 100%;
+
+    gap: 0.5rem;
+    p.name {
+      color: black;
+      text-transform: uppercase;
+      max-width: 10rem;
+    }
+    p.description-string {
+      color: rgb(43, 43, 43);
+      max-width: 10rem;
+      text-align: left;
+      font-size: 0.8rem;
+      &::first-letter {
         text-transform: uppercase;
-        max-width: 10rem;
       }
-      p.description-string {
-        color: rgb(43, 43, 43);
-        max-width: 10rem;
-        text-align: left;
-        &::first-letter {
-          text-transform: uppercase;
-        }
-      }
+    }
 
-      p.price {
-        font-size: 1.2rem;
-        color: white;
-      }
+    p.price {
+      font-size: 1.2rem;
+      color: white;
     }
   }
   .quantity {
@@ -322,8 +314,8 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     background-color: white;
 
     button {
-      width: 1.4rem;
-      height: 1.4rem;
+      width: 1.5rem;
+      height: 1.5rem;
       padding: 0;
       font-weight: 400;
       display: flex;
@@ -366,7 +358,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     text-align: center;
     font-weight: 600;
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 1rem 0rem;
   }
 }
 

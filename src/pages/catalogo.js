@@ -89,7 +89,7 @@ function Card({ product }) {
         buttonRef.current.classList.add("active");
       }}
     >
-      <div className="left">
+      <div className="image-container">
         <GatsbyImage
           image={image}
           alt={product.name}
@@ -98,14 +98,12 @@ function Card({ product }) {
         />
       </div>
 
-      <div className="right">
-        <div className="description">
-          <p className="name">{product.name}</p>
-          <p className="price">$ {product.price}</p>
-          <p className="description-string">
-            {formatDescription(capitalizeFirstLetter(product.description))}
-          </p>
-        </div>
+      <div className="description">
+        <p className="name">{product.name}</p>
+        <p className="price">$ {product.price}</p>
+        <p className="description-string">
+          {formatDescription(capitalizeFirstLetter(product.description))}
+        </p>
       </div>
 
       <Button
