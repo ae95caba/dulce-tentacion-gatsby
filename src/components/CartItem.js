@@ -5,12 +5,36 @@ import recycleBin from "../images/recycle-bin.png";
 import { useContext } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import DetailsSection from "./DetailsSection";
+
 export default function CartItem({ cartItem }) {
   const { dispatch } = useContext(GlobalContext);
   const [showDetails, setShowDetails] = useState(false);
   const product = cartItem.product;
   const image = getImage(product.localImage);
   const inputRef = useRef(null);
+
+  // Function to capitalize the first letter of a string
+  const capitalizeFirstLetter = (string) => {
+    if (!string) return ""; // Handle empty string
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  // Function to format description with line breaks and dots
+  const formatDescription = (description) => {
+    if (!description) return ""; // Handle empty description
+    const sentences = description
+      .split(".")
+      .map((line) => line.trim())
+      .filter(Boolean); // Split by dot and trim
+    return sentences.map((line, index) => (
+      <span key={index}>
+        {line}
+        {line && "."} {/* Add a dot at the end of each line */}
+        <br /> {/* Add line break after each line */}
+      </span>
+    ));
+  };
+
   return (
     <div className="cart-item">
       <img
@@ -32,6 +56,9 @@ export default function CartItem({ cartItem }) {
           <div className="description">
             <p className="name">{product.name}</p>
             <p className="price">$ {product.price}</p>
+            <p className="description-string">
+              {formatDescription(capitalizeFirstLetter(product.description))}
+            </p>
           </div>
         </div>
       )}
@@ -49,7 +76,7 @@ export default function CartItem({ cartItem }) {
           }}
           chosenFlavours={product.chosenFlavours}
         />
-      )}{" "}
+      )}
       <div className="quantity">
         <button
           onClick={() => {
@@ -68,7 +95,6 @@ export default function CartItem({ cartItem }) {
           type="number"
           defaultValue={cartItem.count}
           onBlur={(e) => {
-            console.log(cartItem);
             if (e.target.value === "") {
               e.target.value = 1;
             }
@@ -76,30 +102,25 @@ export default function CartItem({ cartItem }) {
             const currentCount = cartItem.count;
 
             if (newValue > currentCount) {
-              // If the new value is greater, add the difference
               const difference = newValue - currentCount;
-
               dispatch({
                 type: "add-cart-item",
-                payload: { product: product, quantity: difference }, // Add one item at a time
+                payload: { product: product, quantity: difference },
               });
             } else if (newValue < currentCount) {
-              // If the new value is less, remove the difference
               const difference = currentCount - newValue;
-
               dispatch({
                 type: "remove-cart-item",
-                payload: { product: product, quantity: difference }, // Remove one item at a time
+                payload: { product: product, quantity: difference },
               });
             }
-            // If the value is the same, do nothing
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              e.target.blur(); // Remove focus from the input
+              e.target.blur();
             }
           }}
-          min="0" // Ensure the input doesn't go below 0
+          min="0"
         />
         <button
           onClick={() => {

@@ -46,10 +46,6 @@ export default function GlobalContextProvider({ children }) {
       quantity = action.payload.quantity;
       // Helper function to check if two arrays contain the same elements (ignoring order)
       function areArraysEqual(arr1, arr2) {
-        console.log("-------------funtion start -------------------");
-        console.log(arr1);
-        console.log(arr2);
-        console.log("-------------funtion end -------------------");
         if (arr1.length !== arr2.length) return false;
         const sortedArr1 = [...arr1].sort();
         const sortedArr2 = [...arr2].sort();

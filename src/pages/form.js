@@ -218,25 +218,31 @@ export default function IceCreamForm({ data, location }) {
             )}
         </>
 
-        <label className="rocklets-label">
-          <span>Rocklets</span>
-          <div>
-            <input
-              type="checkbox"
-              checked={rockletsChecked}
-              onChange={(e) => setRockletsChecked(e.target.checked)}
-            />
-          </div>
-        </label>
-        {/* Details Section for Each Sauce */}
-        <DetailsSection
-          product={product}
-          rocklets={{ price: rockletsPrice, included: rockletsChecked }}
-          sauces={{ price: saucePrice, chosenSauces: sauceMenuChosenFlavours }}
-          priceWithAddOns={totalPrice}
-          chosenFlavours={mainMenuChosenFlavours}
-        />
+        {product.apiRoute === "generic/flavour" && (
+          <>
+            <label className="rocklets-label">
+              <span>Rocklets</span>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={rockletsChecked}
+                  onChange={(e) => setRockletsChecked(e.target.checked)}
+                />
+              </div>
+            </label>
 
+            <DetailsSection
+              product={product}
+              rocklets={{ price: rockletsPrice, included: rockletsChecked }}
+              sauces={{
+                price: saucePrice,
+                chosenSauces: sauceMenuChosenFlavours,
+              }}
+              priceWithAddOns={totalPrice}
+              chosenFlavours={mainMenuChosenFlavours}
+            />
+          </>
+        )}
         <div className="buttons-container">
           <button name="go to cart">Comprar ahora</button>
           <button name="go to catalog">Agregar al carrito</button>
