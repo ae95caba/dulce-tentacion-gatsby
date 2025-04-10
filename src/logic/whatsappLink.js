@@ -18,59 +18,76 @@ export function createWhatsAppLink(messageData) {
 function createMessage({
   cartItems,
   deliveryInfo,
-  totalPrice,
-  totalItemsPrice,
+  totalCartPriceWithDiscount,
+  totalCartPriceWithoutDiscount,
+
   totalDiscountAmmount,
   paymentMethod,
 }) {
-  function createCartItemsList() {
-    let cartItemsList = "";
-    //fill itemList
-    cartItems.forEach((cartItem) => {
-      const product = cartItem.product;
+  const CART_ITEM_BULLET = "•";
+  const INDENT = "    "; // Four spaces for indentation
 
-      cartItemsList += `\u{1F6D2} ${product.name} X ${
-        cartItem.count
-      } | $${cartItem.getTotalPrice()}\n`;
-      if (product.chosenFlavours) {
-        let flavoursList = `		*${
-          product.chosenFlavours > 1 ? "Sabores" : "Sabor"
-        }*:\n`;
-        product.chosenFlavours.forEach((flavour) => {
-          flavoursList += `			-${flavour}\n`;
-        });
+  const createCartItemsList = () => {
+    return cartItems
+      .map((cartItem) => {
+        const product = cartItem.product;
 
-        cartItemsList += `${flavoursList}`;
-      }
-    });
+        const itemLine = `${CART_ITEM_BULLET} ${product.name} X ${
+          cartItem.count
+        } | $${product.price * cartItem.count}\n`;
 
-    return cartItemsList;
-  }
+        // Check for add-ons
+        let addOnsDetails = "";
+        let subtotalLine = ""; // Initialize subtotal line for this item
+        let hasAddOns =
+          product.addOns?.rocklets?.included ||
+          product.addOns?.sauces?.chosenSauces?.length > 0;
+        if (hasAddOns) {
+          if (product.addOns.rocklets.included) {
+            addOnsDetails += `${INDENT}*Rocklets*: $${product.addOns.rocklets.price}\n`;
+          }
+          if (product.addOns.sauces.chosenSauces?.length > 0) {
+            addOnsDetails += `${INDENT}*Salsas*:\n`;
+            product.addOns.sauces.chosenSauces.forEach((sauce) => {
+              addOnsDetails += `${INDENT}${INDENT}-${sauce} ($${product.addOns.sauces.price})\n`;
+            });
+          }
 
-  return `*Orden*:		
-${createCartItemsList()}	
-${totalItemsPrice != totalPrice ? `\n*Productos:* $${totalItemsPrice}` : ""}${
-    totalDiscountAmmount ? `\n*Descuentos:* $${totalDiscountAmmount}` : ""
-  }
-*Total:* $${totalPrice}
+          // Calculate subtotal for this item if it has add-ons
 
-${
-  paymentMethod == "cash"
-    ? "*Paga en efectivo*"
-    : `*Paga con transferencia*: \nALIAS: ${process.env.GATSBY_ALIAS}\nTITULAR: ${process.env.GATSBY_OWNER}`
-} 
+          subtotalLine = `${INDENT}Subtotal: $${cartItem.getTotalCartItemPrice()}\n`;
+        }
 
-${
-  deliveryInfo.isChecked
-    ? `*Datos para el delivery*:
-		Barrio: ${deliveryInfo.neighborhood}
-		Direccion: ${deliveryInfo.address}
-		Entrecalles: ${deliveryInfo.crossStreets}${
-        deliveryInfo.aditionalInfo
-          ? `\n		Extra: ${deliveryInfo.aditionalInfo}`
-          : ""
-      }`
-    : `*Retira en el local*`
-}
-`;
+        // Logic to display chosen flavours
+        if (product.chosenFlavours) {
+          let flavoursList = `${INDENT}*${
+            product.chosenFlavours.length > 1 ? "Sabores" : "Sabor"
+          }*:\n`;
+          product.chosenFlavours.forEach((flavour) => {
+            flavoursList += `${INDENT}${INDENT}-${flavour}\n`;
+          });
+
+          return itemLine + flavoursList + addOnsDetails + subtotalLine; // Combine item line with add-ons details, subtotal, and flavours
+        }
+
+        return itemLine + addOnsDetails + subtotalLine; // Combine item line with add-ons details and subtotal if no flavours
+      })
+      .join(""); // Join all cart items into a single string
+  };
+
+  const cartItemsList = createCartItemsList();
+
+  return (
+    `*Orden*:\n${cartItemsList}` +
+    `*Total:* $${totalCartPriceWithDiscount}\n\n` +
+    (paymentMethod === "cash"
+      ? "*Paga en efectivo*"
+      : `*Paga con transferencia*: \nALIAS: ${process.env.GATSBY_ALIAS}\nTITULAR: ${process.env.GATSBY_OWNER}\n`) +
+    (deliveryInfo.isChecked
+      ? `*Datos para el delivery*:\n${INDENT}Barrio: ${deliveryInfo.neighborhood}\n${INDENT}Direccion: ${deliveryInfo.address}\n${INDENT}Entrecalles: ${deliveryInfo.crossStreets}` +
+        (deliveryInfo.aditionalInfo
+          ? `\n${INDENT}Extra: ${deliveryInfo.aditionalInfo}`
+          : "")
+      : "*Retira en el local*")
+  );
 }

@@ -3,7 +3,7 @@ import React, { useContext, useRef } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import { BannerSection } from "../components/BannerSection";
-
+import { SharedCardDescription } from "../components/SharedCardSections";
 import toCartIcon from "../images/to-cart.svg";
 
 import { graphql } from "gatsby";
@@ -23,7 +23,13 @@ export default function Shop(props) {
           {products.map((product, index) => {
             const productData = product.node;
 
-            return productData.outOfStock ? (
+            // Check if the product is out of stock or has a name that includes "salsa" or "rocklets"
+            const isOutOfStock = productData.outOfStock;
+            const isExcludedName =
+              /salsa/i.test(productData.name) ||
+              /rocklets/i.test(productData.name); // Regular expression for case-insensitive match
+
+            return isOutOfStock || isExcludedName ? (
               ""
             ) : (
               <Card key={`${productData.name}`} product={productData} />
@@ -60,27 +66,7 @@ function Card({ product }) {
       const encodedParamValue = encodeURIComponent(product.name);
       navigate(`/form?id=${product._id}`);
     }
-  } // Function to capitalize the first letter of a string
-  const capitalizeFirstLetter = (string) => {
-    if (!string) return ""; // Handle empty string
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  // Function to format description with line breaks and dots
-  const formatDescription = (description) => {
-    if (!description) return ""; // Handle empty description
-    const sentences = description
-      .split(".")
-      .map((line) => line.trim())
-      .filter(Boolean); // Split by dot and trim
-    return sentences.map((line, index) => (
-      <span key={index}>
-        {line}
-        {line && "."} {/* Add a dot at the end of each line */}
-        <br /> {/* Add line break after each line */}
-      </span>
-    ));
-  };
+  }
   return (
     <div
       className="cart-item"
@@ -98,13 +84,7 @@ function Card({ product }) {
         />
       </div>
 
-      <div className="description">
-        <p className="name">{product.name}</p>
-        <p className="price">$ {product.price}</p>
-        <p className="description-string">
-          {formatDescription(capitalizeFirstLetter(product.description))}
-        </p>
-      </div>
+      <SharedCardDescription product={product} />
 
       <Button
         buttonRef={buttonRef}

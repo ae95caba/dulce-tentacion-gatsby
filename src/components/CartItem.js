@@ -5,35 +5,13 @@ import recycleBin from "../images/recycle-bin.png";
 import { useContext } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import DetailsSection from "./DetailsSection";
-
+import { SharedCardDescription } from "./SharedCardSections";
 export default function CartItem({ cartItem }) {
   const { dispatch } = useContext(GlobalContext);
   const [showDetails, setShowDetails] = useState(false);
   const product = cartItem.product;
   const image = getImage(product.localImage);
   const inputRef = useRef(null);
-
-  // Function to capitalize the first letter of a string
-  const capitalizeFirstLetter = (string) => {
-    if (!string) return ""; // Handle empty string
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  // Function to format description with line breaks and dots
-  const formatDescription = (description) => {
-    if (!description) return ""; // Handle empty description
-    const sentences = description
-      .split(".")
-      .map((line) => line.trim())
-      .filter(Boolean); // Split by dot and trim
-    return sentences.map((line, index) => (
-      <span key={index}>
-        {line}
-        {line && "."} {/* Add a dot at the end of each line */}
-        <br /> {/* Add line break after each line */}
-      </span>
-    ));
-  };
 
   return (
     <div className="cart-item">
@@ -51,15 +29,7 @@ export default function CartItem({ cartItem }) {
       <div className="image-container">
         <GatsbyImage image={image} alt={product.name} />
       </div>
-      {!product.chosenFlavours && (
-        <div className="description">
-          <p className="name">{product.name}</p>
-          <p className="price">$ {product.price}</p>
-          <p className="description-string">
-            {formatDescription(capitalizeFirstLetter(product.description))}
-          </p>
-        </div>
-      )}
+      {!product.chosenFlavours && <SharedCardDescription product={product} />}
       {product.chosenFlavours && (
         <DetailsSection
           product={product}
@@ -133,7 +103,9 @@ export default function CartItem({ cartItem }) {
         </button>
       </div>
       {cartItem.count > 1 && (
-        <p className="subtotal">Subtotal: $ {cartItem.getTotalPrice()}</p>
+        <p className="subtotal">
+          Subtotal: $ {cartItem.getTotalCartItemPrice()}
+        </p>
       )}
     </div>
   );

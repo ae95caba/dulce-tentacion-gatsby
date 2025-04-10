@@ -130,7 +130,7 @@ export default function GlobalContextProvider({ children }) {
           return {
             product,
             count: 1,
-            getTotalPrice() {
+            getTotalCartItemPrice() {
               if (this.product.priceWithAddOns) {
                 return this.product.priceWithAddOns * this.count;
               } else {
@@ -183,18 +183,23 @@ export default function GlobalContextProvider({ children }) {
     }
   }
 
-  function getTotalItemsPrice() {
+  function getTotalCartPriceWithoutDiscount() {
     let total = 0;
 
     for (var i = 0; i < cartItems.length; i++) {
-      total += cartItems[i].getTotalPrice();
+      total += cartItems[i].getTotalCartItemPrice();
     }
     return total;
   }
 
   return (
     <GlobalContext.Provider
-      value={{ getTotalItemsPrice, cartItems, dispatch, ACTIONS }}
+      value={{
+        getTotalCartPriceWithoutDiscount,
+        cartItems,
+        dispatch,
+        ACTIONS,
+      }}
     >
       {children}
     </GlobalContext.Provider>

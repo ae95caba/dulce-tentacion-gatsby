@@ -4,32 +4,33 @@ import { GlobalContext } from "../context/GlobalContext";
 
 import { useContext } from "react";
 export default function SummarySection({
-  getTotalPrice,
+  getTotalCartPriceWithDiscount,
 
   getAllIceCreamDiscounts,
 }) {
-  const { getTotalItemsPrice } = useContext(GlobalContext);
-
+  const { getTotalCartPriceWithoutDiscount } = useContext(GlobalContext);
+  console.log(JSON.stringify(getAllIceCreamDiscounts()));
   return (
     <section className="summary">
       <h3>Detalle: </h3>
 
       <div className="container">
-        {getTotalPrice() !== getTotalItemsPrice() && (
+        {getTotalCartPriceWithDiscount() !==
+          getTotalCartPriceWithoutDiscount() && (
           <p>
-            Productos: <span>$ {getTotalItemsPrice()}</span>
+            Productos: <span>$ {getTotalCartPriceWithoutDiscount()}</span>
           </p>
         )}
 
         {getAllIceCreamDiscounts().length > 0 &&
-          getAllIceCreamDiscounts().map((discount) => (
-            <p>
-              {discount.name} <span>- ${discount.ammount}</span>
+          getAllIceCreamDiscounts().map((discount, index) => (
+            <p key={index}>
+              {discount.name} <span>- ${discount.amount}</span>
             </p>
           ))}
         <p>
           Total a pagar:
-          <span>${getTotalPrice()}</span>
+          <span>${getTotalCartPriceWithDiscount()}</span>
         </p>
       </div>
     </section>

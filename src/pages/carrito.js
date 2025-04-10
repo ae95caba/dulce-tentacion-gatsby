@@ -18,92 +18,81 @@ import { TbCopyCheckFilled } from "react-icons/tb";
 import { triggerAlert } from "../context/GlobalContext";
 import { StaticImage } from "gatsby-plugin-image";
 export default function Cart() {
-  const { dispatch, cartItems, getTotalItemsPrice } = useContext(GlobalContext);
+  const { dispatch, cartItems, getTotalCartPriceWithoutDiscount } =
+    useContext(GlobalContext);
   const [deliveryInfo, setDeliveryInfo] = useState({});
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [textCopied, setTextCopied] = useState(false);
 
   function getAllIceCreamDiscounts() {
-    function getDiscountsOf_FlavoursIceCream(flavours) {
-      function get_FlavourIceCreamAparitions(flavours) {
-        let count = 0;
-        cartItems.forEach((item) => {
-          if (item.product.flavours === flavours) {
-            count++;
-          }
-        });
-        return count;
-      }
-
-      function getDiscountAmount() {
-        let amount = 0;
-        switch (flavours) {
-          case 4:
-            amount = 300;
-            break;
-          case 3:
-            amount = 200;
-            break;
-          case 2:
-            amount = 200;
-            break;
-          default:
-            break;
+    function countFlavourAppearances(flavour) {
+      const count = cartItems.reduce((acc, item) => {
+        if (item.product.flavours === flavour) {
+          return acc + item.count; // Add the count of this item to the accumulator
         }
-        return amount;
-      }
-
-      function getIceCreamNameFrom_(flavours) {
-        let name;
-        switch (flavours) {
-          case 4:
-            name = "1 kg";
-            break;
-          case 3:
-            name = "1/2 kg";
-            break;
-
-          case 2:
-            name = "1/4 kg";
-            break;
-
-          default:
-            break;
-        }
-        return name;
-      }
-
-      let discounts = [];
-      const numberOfCombos = Math.floor(
-        get_FlavourIceCreamAparitions(flavours) / 2
-      );
-      for (let index = 0; index < numberOfCombos; index++) {
-        discounts.push({
-          name: `Combo 2 x ${getIceCreamNameFrom_(flavours)}`,
-          ammount: getDiscountAmount(),
-        });
-      }
-      return discounts;
+        return acc; // Return the accumulator unchanged if the flavour doesn't match
+      }, 0);
+      console.log(`Flavour: ${flavour}, Total Appearances: ${count}`); // Log the flavour and its total count
+      return count;
     }
 
-    let discounts = [];
-
-    for (let index = 2; index <= 4; index++) {
-      discounts.push(...getDiscountsOf_FlavoursIceCream(index));
+    function getDiscountAmount(flavourCount) {
+      const discountMap = {
+        2: 200,
+        3: 200,
+        4: 300,
+      };
+      const amount = discountMap[flavourCount] || 0; // Return 0 if no discount
+      console.log(`Flavour Count: ${flavourCount}, Discount Amount: ${amount}`); // Log the flavour count and discount amount
+      return amount;
     }
+
+    function getIceCreamName(flavourCount) {
+      const flavourNames = {
+        2: "1/4 kg",
+        3: "1/2 kg",
+        4: "1 kg",
+      };
+      const name = flavourNames[flavourCount] || ""; // Return empty string if no match
+      console.log(`Flavour Count: ${flavourCount}, Ice Cream Name: ${name}`); // Log the flavour count and ice cream name
+      return name;
+    }
+
+    function calculateDiscountsForFlavour(flavourCount) {
+      const appearances = countFlavourAppearances(flavourCount);
+      const numberOfCombos = Math.floor(appearances / 2);
+      const discountAmount = getDiscountAmount(flavourCount);
+      const iceCreamName = getIceCreamName(flavourCount);
+
+      console.log(
+        `Calculating Discounts for Flavour Count: ${flavourCount}, Appearances: ${appearances}, Number of Combos: ${numberOfCombos}`
+      ); // Log the number of combos
+
+      return Array.from({ length: numberOfCombos }, () => ({
+        name: `Combo 2 x ${iceCreamName}`,
+        amount: discountAmount,
+      }));
+    }
+
+    const discounts = [];
+    for (let flavourCount = 2; flavourCount <= 4; flavourCount++) {
+      discounts.push(...calculateDiscountsForFlavour(flavourCount));
+    }
+
+    console.log(`Final Discounts:`, discounts); // Log the final discounts array
     return discounts;
   }
 
   function getTotalDiscountAmmount() {
     let total = 0;
     getAllIceCreamDiscounts().forEach((discount) => {
-      total += discount.ammount;
+      total += discount.amount;
     });
     return total;
   }
 
-  function getTotalPrice() {
-    return getTotalItemsPrice() - getTotalDiscountAmmount();
+  function getTotalCartPriceWithDiscount() {
+    return getTotalCartPriceWithoutDiscount() - getTotalDiscountAmmount();
   }
 
   //get deliveryInfo from localStorage if there is any
@@ -137,8 +126,8 @@ export default function Cart() {
         cartItems,
         paymentMethod,
         deliveryInfo,
-        totalItemsPrice: getTotalItemsPrice(),
-        totalPrice: getTotalPrice(),
+        totalCartPriceWithoutDiscount: getTotalCartPriceWithoutDiscount(),
+        totalCartPriceWithDiscount: getTotalCartPriceWithDiscount(),
         totalDiscountAmmount: getTotalDiscountAmmount(),
       };
 
@@ -206,8 +195,7 @@ export default function Cart() {
                   setDeliveryInfo={setDeliveryInfo}
                 />
                 <SummarySection
-                  deliveryInfo={deliveryInfo}
-                  getTotalPrice={getTotalPrice}
+                  getTotalCartPriceWithDiscount={getTotalCartPriceWithDiscount}
                   getAllIceCreamDiscounts={getAllIceCreamDiscounts}
                 />
                 <section className="payment options">
