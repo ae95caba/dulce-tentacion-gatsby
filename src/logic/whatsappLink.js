@@ -98,6 +98,6 @@ function createMessage({
         (deliveryInfo.aditionalInfo
           ? `\n${INDENT}Extra: ${deliveryInfo.aditionalInfo}`
           : "")
-      : "*Retira en el local*")
+      : "\n*Retira en el local*")
   );
 }
