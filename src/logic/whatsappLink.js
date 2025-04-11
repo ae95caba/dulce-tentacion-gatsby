@@ -32,9 +32,9 @@ function createMessage({
       .map((cartItem) => {
         const product = cartItem.product;
 
-        const itemLine = `${CART_ITEM_BULLET} ${product.name} X ${
-          cartItem.count
-        } | $${product.price * cartItem.count}\n`;
+        const itemLine = `*${cartItem.count} -* ${product.name}   ($${
+          product.price
+        } ${cartItem.count > 1 ? "c/u" : ""})\n`;
 
         // Check for add-ons
         let addOnsDetails = "";
@@ -42,20 +42,30 @@ function createMessage({
         let hasAddOns =
           product.addOns?.rocklets?.included ||
           product.addOns?.sauces?.chosenSauces?.length > 0;
+
         if (hasAddOns) {
+          // Create Aderezos section
+          addOnsDetails += `${INDENT}*Aderezos:*\n`;
           if (product.addOns.rocklets.included) {
-            addOnsDetails += `${INDENT}*Rocklets*: $${product.addOns.rocklets.price}\n`;
+            addOnsDetails += `${INDENT}${INDENT}- Rocklets ($${product.addOns.rocklets.price})\n`;
           }
           if (product.addOns.sauces.chosenSauces?.length > 0) {
-            addOnsDetails += `${INDENT}*Salsas*:\n`;
+            addOnsDetails += `${INDENT}${INDENT}*Salsas:*\n`;
             product.addOns.sauces.chosenSauces.forEach((sauce) => {
-              addOnsDetails += `${INDENT}${INDENT}-${sauce} ($${product.addOns.sauces.price})\n`;
+              addOnsDetails += `${INDENT}${INDENT}${INDENT}-${sauce} ($${product.addOns.sauces.price})\n`;
             });
           }
 
-          // Calculate subtotal for this item if it has add-ons
+          // Add line for Helado + aderezos
+          addOnsDetails += `${INDENT}*${product.name} + aderezos ($${product.priceWithAddOns}*)\n`;
+        }
 
-          subtotalLine = `${INDENT}Subtotal: $${cartItem.getTotalCartItemPrice()}\n`;
+        // Calculate subtotal for this item if it has add-ons
+        subtotalLine = `${INDENT}*Subtotal: $${cartItem.getTotalCartItemPrice()} ($${
+          product.priceWithAddOns || product.price
+        } x ${cartItem.count})*\n`;
+        if (cartItem.count === 1) {
+          subtotalLine = "";
         }
 
         // Logic to display chosen flavours
@@ -79,7 +89,7 @@ function createMessage({
 
   return (
     `*Orden*:\n${cartItemsList}` +
-    `*Total:* $${totalCartPriceWithDiscount}\n\n` +
+    `\n*Total: $${totalCartPriceWithDiscount}*\n\n` +
     (paymentMethod === "cash"
       ? "*Paga en efectivo*"
       : `*Paga con transferencia*: \nALIAS: ${process.env.GATSBY_ALIAS}\nTITULAR: ${process.env.GATSBY_OWNER}\n`) +
