@@ -376,9 +376,26 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
   li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   ul ul {
     padding-left: 0.5rem;
+  }
+  .aderezos-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    & > div {
+      padding-left: 0.5rem;
+    }
+  }
+  .rocklets-subsection {
+    h6 {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
 

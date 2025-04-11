@@ -56,12 +56,9 @@ const DetailsSection = ({
             {/* Rocklets subsection */}
             {rocklets.included && (
               <div className="rocklets-subsection">
-                <h6>Rocklets:</h6>
-                <ul>
-                  <li>
-                    Incluido <span>${rocklets.price}</span>
-                  </li>
-                </ul>
+                <p>
+                  <h6>Rocklets: </h6> <span>${rocklets.price}</span>
+                </p>
               </div>
             )}
           </div>
@@ -70,7 +67,7 @@ const DetailsSection = ({
         {/* Only show total if there are add-ons */}
         {hasAddOns && (
           <p>
-            Suma: <span>${priceWithAddOns}</span>
+            {product.name} + aderezos: <span>${priceWithAddOns}</span>
           </p>
         )}
       </ul>
