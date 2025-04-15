@@ -295,6 +295,10 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
       max-width: 10rem;
       text-align: left;
       font-size: 0.8rem;
+      span {
+        hyphens: auto !important;
+      }
+
       &::first-letter {
         text-transform: uppercase;
       }
