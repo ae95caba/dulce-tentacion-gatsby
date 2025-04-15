@@ -1,12 +1,9 @@
 @use "./utils/_mixins" as *;
 #kiosko {
-  padding-top: 2rem;
-
   .content {
-    @include mainContent();
+    @include mainContent(true);
 
     .banner {
-      padding: 0rem 2rem;
     }
     h3 {
       font-family: "Caveat Variable", cursive;

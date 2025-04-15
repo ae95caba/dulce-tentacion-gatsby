@@ -1,12 +1,17 @@
 @use "maps" as *;
 
-@mixin mainContent {
+@mixin mainContent($isFullWidth: false) {
   margin: auto;
   max-width: var(--universal-width);
   overflow-x: hidden;
   display: flex;
 
   flex-direction: column;
+  @if $isFullWidth {
+    .banner {
+      padding: 2rem 2rem 0rem 2rem;
+    }
+  }
 }
 
 @mixin faded($offset, $blur-radius, $spread-radius) {

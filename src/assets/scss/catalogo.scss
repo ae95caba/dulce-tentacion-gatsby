@@ -2,7 +2,7 @@
 
 #catalog {
   .content {
-    @include mainContent();
+    @include mainContent(true);
     overflow-x: visible;
   }
 
