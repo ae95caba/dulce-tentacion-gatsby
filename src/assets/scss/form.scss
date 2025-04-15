@@ -6,6 +6,12 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    .disabled {
+      background-color: gray; /* Change background color */
+      color: white; /* Change text color */
+      cursor: not-allowed; /* Change cursor to indicate disabled state */
+      opacity: 0.6; /* Optional: make it look faded */
+    }
     h1 {
       font-size: 2rem;
       font-family: "Caveat Variable", cursive;

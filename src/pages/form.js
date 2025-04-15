@@ -244,8 +244,18 @@ export default function IceCreamForm({ data, location }) {
           </>
         )}
         <div className="buttons-container">
-          <button name="go to cart">Comprar ahora</button>
-          <button name="go to catalog">Agregar al carrito</button>
+          <button
+            name="go to cart"
+            className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
+          >
+            Comprar ahora
+          </button>
+          <button
+            name="go to catalog"
+            className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
+          >
+            Agregar al carrito
+          </button>
         </div>
       </form>
     </main>
