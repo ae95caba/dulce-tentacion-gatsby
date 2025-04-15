@@ -13,6 +13,11 @@ import listIcon from "../images/list.svg";
 export default function Shop(props) {
   const products = props.data.allProduct.edges;
 
+  // Sort products by price from high to low
+  const sortedProducts = products.sort((a, b) => {
+    return b.node.price - a.node.price; // Sort in descending order
+  });
+
   return (
     <main id="catalog">
       <div className="content">
@@ -20,7 +25,7 @@ export default function Shop(props) {
           <StaticImage src="../images/catalog-banner.jpg" />
         </BannerSection>
         <section className="cards-container">
-          {products.map((product, index) => {
+          {sortedProducts.map((product, index) => {
             const productData = product.node;
 
             // Check if the product is out of stock or has a name that includes "salsa" or "rocklets"
