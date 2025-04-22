@@ -129,7 +129,7 @@ export default function GlobalContextProvider({ children }) {
         function newCartItem(product) {
           return {
             product,
-            count: 1,
+            count: quantity || 1,
             getTotalCartItemPrice() {
               if (this.product.priceWithAddOns) {
                 return this.product.priceWithAddOns * this.count;

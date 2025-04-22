@@ -1,5 +1,5 @@
 import "../assets/scss/catalogo.scss";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { navigate } from "gatsby";
 import { BannerSection } from "../components/BannerSection";
@@ -58,13 +58,23 @@ function Card({ product }) {
   const { dispatch } = useContext(GlobalContext);
   const image = getImage(product.localImage);
   const buttonRef = useRef(null);
+
+  // Step 1: Add state for quantity
+  const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    console.log("quantity is ");
+    console.log(quantity);
+  }, [quantity]);
+
   function handleClick() {
+    console.log("quantity inside handleClick is");
+    console.log(quantity);
     if (!product.apiRoute) {
       dispatch({
         type: "add-cart-item",
         payload: {
           product: structuredClone(product),
-          quantity: 1,
+          quantity: quantity, // Step 4: Use quantity in dispatch payload
         },
       });
     } else {
@@ -72,14 +82,18 @@ function Card({ product }) {
       navigate(`/form?id=${product._id}`);
     }
   }
+
+  // Step 2: Functions to handle quantity changes
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1)); // Prevent going below 1
+  };
+
   return (
-    <div
-      className="cart-item"
-      onClick={() => {
-        handleClick();
-        buttonRef.current.classList.add("active");
-      }}
-    >
+    <div className="cart-item">
       <div className="image-container">
         <GatsbyImage
           image={image}
@@ -89,7 +103,18 @@ function Card({ product }) {
         />
       </div>
 
-      <SharedCardDescription product={product} />
+      {/* Step 3: Quantity controls */}
+      <div className="quantity">
+        <button onClick={decrementQuantity}>-</button>
+        <input
+          type="number"
+          value={quantity} // Bind input value to quantity state
+          onChange={(e) => setQuantity(Math.max(1, e.target.value))} // Ensure it doesn't go below 1
+        />
+        <button onClick={incrementQuantity}>+</button>
+      </div>
+
+      <SharedCardDescription product={product} units={quantity} />
 
       <Button
         buttonRef={buttonRef}
@@ -100,13 +125,17 @@ function Card({ product }) {
   );
 }
 
-function Button({ apiRoute, buttonRef }) {
+function Button({ apiRoute, buttonRef, handleClick }) {
   return (
     <button
       ref={buttonRef}
       className="to-cart"
       onAnimationEnd={() => {
         buttonRef.current.classList.remove("active");
+        handleClick();
+      }}
+      onClick={() => {
+        buttonRef.current.classList.add("active");
       }}
     >
       {apiRoute ? (
