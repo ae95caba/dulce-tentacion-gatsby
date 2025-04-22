@@ -29,7 +29,9 @@ export default function CartItem({ cartItem }) {
       <div className="image-container">
         <GatsbyImage image={image} alt={product.name} />
       </div>
-      {!product.chosenFlavours && <SharedCardDescription product={product} />}
+      {!product.chosenFlavours && (
+        <SharedCardDescription product={product} units={cartItem.count} />
+      )}
       {product.chosenFlavours && (
         <DetailsSection
           product={product}
@@ -102,11 +104,6 @@ export default function CartItem({ cartItem }) {
           +
         </button>
       </div>
-      {cartItem.count > 1 && (
-        <p className="subtotal">
-          Subtotal: $ {cartItem.getTotalCartItemPrice()}
-        </p>
-      )}
     </div>
   );
 }

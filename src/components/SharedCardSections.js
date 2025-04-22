@@ -1,6 +1,6 @@
 import React from "react";
 
-export function SharedCardDescription({ product }) {
+export function SharedCardDescription({ product, units = 1 }) {
   // Function to capitalize the first letter of a string
   const capitalizeFirstLetter = (string) => {
     if (!string) return ""; // Handle empty string
@@ -25,7 +25,7 @@ export function SharedCardDescription({ product }) {
   return (
     <div className="description">
       <p className="name">{product.name}</p>
-      <p className="price">$ {product.price}</p>
+      <p className="price">$ {product.price * units}</p>
       <p className="description-string">
         {formatDescription(capitalizeFirstLetter(product.description))}
       </p>
