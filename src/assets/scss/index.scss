@@ -313,7 +313,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     display: grid;
 
     max-width: 100%;
-
+    z-index: 1;
     grid-template-columns: auto 1fr auto;
     box-shadow: var(--cool-shadow);
     justify-items: center;

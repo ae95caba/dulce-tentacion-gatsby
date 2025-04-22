@@ -58,7 +58,7 @@ function Card({ product }) {
   const { dispatch } = useContext(GlobalContext);
   const image = getImage(product.localImage);
   const buttonRef = useRef(null);
-
+  console.log(JSON.stringify(product));
   // Step 1: Add state for quantity
   const [quantity, setQuantity] = useState(1);
   useEffect(() => {
@@ -104,15 +104,17 @@ function Card({ product }) {
       </div>
 
       {/* Step 3: Quantity controls */}
-      <div className="quantity">
-        <button onClick={decrementQuantity}>-</button>
-        <input
-          type="number"
-          value={quantity} // Bind input value to quantity state
-          onChange={(e) => setQuantity(Math.max(1, e.target.value))} // Ensure it doesn't go below 1
-        />
-        <button onClick={incrementQuantity}>+</button>
-      </div>
+      {!product.apiRoute && (
+        <div className="quantity">
+          <button onClick={decrementQuantity}>-</button>
+          <input
+            type="number"
+            value={quantity} // Bind input value to quantity state
+            onChange={(e) => setQuantity(Math.max(1, e.target.value))} // Ensure it doesn't go below 1
+          />
+          <button onClick={incrementQuantity}>+</button>
+        </div>
+      )}
 
       <SharedCardDescription product={product} units={quantity} />
 
