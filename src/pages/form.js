@@ -47,7 +47,6 @@ export default function IceCreamForm({ data, location }) {
     return flavour.apiRoute === "generic/sauce";
   });
 
-  const maxSelections = product && (product.flavours || 1);
   //nuevo fin
 
   function handleMainMenuChange(e) {
@@ -127,17 +126,17 @@ export default function IceCreamForm({ data, location }) {
     apiRoute,
     handleChange,
     chosenFlavours,
-    namePrefix
+    namePrefix,
+    maxSelections
   ) {
     const isSauce = apiRoute === "generic/sauce";
+
     return (
       <>
         <h2>
           {maxSelections === 1
-            ? "Elige un sabor"
-            : `Podes elegir hasta ${maxSelections} ${
-                isSauce ? "salsas" : "sabores"
-              }`}
+            ? `Elige ${isSauce ? "una salsa" : "un sabor"}`
+            : `Podes elegir hasta ${maxSelections} sabores`}
         </h2>
         <div>
           <h3>
@@ -204,7 +203,8 @@ export default function IceCreamForm({ data, location }) {
           product.apiRoute,
           handleMainMenuChange,
           mainMenuChosenFlavours,
-          "main"
+          "main",
+          product.flavours || 1
         )}
 
         <>
@@ -214,7 +214,8 @@ export default function IceCreamForm({ data, location }) {
               "generic/sauce",
               handleSauceMenuChange,
               sauceMenuChosenFlavours,
-              "sauce"
+              "sauce",
+              1
             )}
         </>
 
