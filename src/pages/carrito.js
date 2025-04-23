@@ -264,7 +264,7 @@ export default function Cart() {
             </div>
             <p className="info">
               Al precionar "Comprar", se abrira un chat de whatsapp con toda la
-              info de tu pedido pre-cargado, solo deberas enviarlo y nosotros
+              info de tu pedido pre-cargada, solo deberas enviarla y nosotros
               haremos el resto 😉
             </p>
           </>
