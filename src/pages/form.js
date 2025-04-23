@@ -135,8 +135,8 @@ export default function IceCreamForm({ data, location }) {
       <>
         <h2>
           {maxSelections === 1
-            ? `Elige ${isSauce ? "una salsa" : "un sabor"}`
-            : `Podes elegir hasta ${maxSelections} sabores`}
+            ? `Elige ${isSauce ? "una salsa" : "un sabor"}:`
+            : `Podes elegir hasta ${maxSelections} sabores:`}
         </h2>
         <div>
           <h3>
@@ -249,13 +249,13 @@ export default function IceCreamForm({ data, location }) {
             name="go to cart"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Comprar ahora
+            Ir a caja
           </button>
           <button
             name="go to catalog"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Agregar al carrito
+            Seguir comprando
           </button>
         </div>
       </form>
