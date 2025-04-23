@@ -25,7 +25,8 @@ const DetailsSection = ({
     <div className="details-section">
       <h4>Detalle:</h4>
       <p>
-        🛒{product.name}: <span>${product.price}</span>
+        🛒{product.name}:{" "}
+        <span className={hasAddOns ? "" : "subtotal"}>${product.price}</span>
       </p>
 
       {/* List of chosen flavors */}
@@ -60,7 +61,8 @@ const DetailsSection = ({
       {/* Only show total if there are add-ons */}
       {hasAddOns && (
         <p>
-          {product.name} + aderezos: <span>${priceWithAddOns}</span>
+          {product.name} + aderezos:
+          <span className="subtotal">${priceWithAddOns}</span>
         </p>
       )}
     </div>

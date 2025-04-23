@@ -25,7 +25,7 @@ export function SharedCardDescription({ product, units = 1 }) {
   return (
     <div className="description">
       <p className="name">{product.name}</p>
-      <p className="price">$ {product.price * units}</p>
+      <p className="subtotal">$ {product.price * units}</p>
       <p className="description-string">
         {formatDescription(capitalizeFirstLetter(product.description))}
       </p>

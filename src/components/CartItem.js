@@ -30,7 +30,66 @@ export default function CartItem({ cartItem }) {
         <GatsbyImage image={image} alt={product.name} />
       </div>
       {!product.chosenFlavours && (
-        <SharedCardDescription product={product} units={cartItem.count} />
+        <>
+          <SharedCardDescription product={product} units={cartItem.count} />
+          <div className="quantity">
+            <button
+              onClick={() => {
+                dispatch({
+                  type: "remove-cart-item",
+                  payload: { product: product, quantity: 1 },
+                });
+                inputRef.current.value = cartItem.count - 1;
+              }}
+            >
+              -
+            </button>
+            <input
+              ref={inputRef}
+              required
+              type="number"
+              defaultValue={cartItem.count}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  e.target.value = 1;
+                }
+                const newValue = parseInt(e.target.value, 10);
+                const currentCount = cartItem.count;
+
+                if (newValue > currentCount) {
+                  const difference = newValue - currentCount;
+                  dispatch({
+                    type: "add-cart-item",
+                    payload: { product: product, quantity: difference },
+                  });
+                } else if (newValue < currentCount) {
+                  const difference = currentCount - newValue;
+                  dispatch({
+                    type: "remove-cart-item",
+                    payload: { product: product, quantity: difference },
+                  });
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.target.blur();
+                }
+              }}
+              min="0"
+            />
+            <button
+              onClick={() => {
+                dispatch({
+                  type: "add-cart-item",
+                  payload: { product: product, quantity: 1 },
+                });
+                inputRef.current.value = cartItem.count + 1;
+              }}
+            >
+              +
+            </button>
+          </div>
+        </>
       )}
       {product.chosenFlavours && (
         <DetailsSection
@@ -47,63 +106,6 @@ export default function CartItem({ cartItem }) {
           chosenFlavours={product.chosenFlavours}
         />
       )}
-      <div className="quantity">
-        <button
-          onClick={() => {
-            dispatch({
-              type: "remove-cart-item",
-              payload: { product: product, quantity: 1 },
-            });
-            inputRef.current.value = cartItem.count - 1;
-          }}
-        >
-          -
-        </button>
-        <input
-          ref={inputRef}
-          required
-          type="number"
-          defaultValue={cartItem.count}
-          onBlur={(e) => {
-            if (e.target.value === "") {
-              e.target.value = 1;
-            }
-            const newValue = parseInt(e.target.value, 10);
-            const currentCount = cartItem.count;
-
-            if (newValue > currentCount) {
-              const difference = newValue - currentCount;
-              dispatch({
-                type: "add-cart-item",
-                payload: { product: product, quantity: difference },
-              });
-            } else if (newValue < currentCount) {
-              const difference = currentCount - newValue;
-              dispatch({
-                type: "remove-cart-item",
-                payload: { product: product, quantity: difference },
-              });
-            }
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.target.blur();
-            }
-          }}
-          min="0"
-        />
-        <button
-          onClick={() => {
-            dispatch({
-              type: "add-cart-item",
-              payload: { product: product, quantity: 1 },
-            });
-            inputRef.current.value = cartItem.count + 1;
-          }}
-        >
-          +
-        </button>
-      </div>
     </div>
   );
 }

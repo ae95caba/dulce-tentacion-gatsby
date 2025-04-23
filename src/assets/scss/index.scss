@@ -244,14 +244,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
   /*  @include max-width-query(xsm) {
     margin: 0rem 1rem;
   } */
-  .remove {
-    position: absolute;
-    width: 1.2rem;
-    right: 3%;
-    top: 3%;
-    cursor: pointer;
-    z-index: 2;
-  }
+
   .image-container {
     position: relative;
     display: flex;
@@ -273,6 +266,11 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
       } */
     }
   }
+  .subtotal {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 500;
+  }
   .description {
     padding: $shared-padding;
     display: flex;
@@ -285,6 +283,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     width: 100%;
 
     gap: 0.5rem;
+
     p.name {
       color: black;
       text-transform: uppercase;
@@ -302,11 +301,6 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
       &::first-letter {
         text-transform: uppercase;
       }
-    }
-
-    p.price {
-      font-size: 1.2rem;
-      color: white;
     }
   }
   .quantity {
@@ -360,12 +354,6 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
       -moz-appearance: textfield;
     }
   }
-  .subtotal {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 1rem 0rem;
-  }
 }
 
 .details-section {
@@ -383,6 +371,7 @@ $shared-padding: 1rem 0.7rem; // Adjust this value as needed
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
   }
   ul {
     padding-left: 1rem;
