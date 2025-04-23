@@ -24,7 +24,7 @@ export default function Shop(props) {
         <BannerSection h2="Ve al carrito para finalizar 👆 " h1="Catalogo">
           <StaticImage src="../images/catalog-banner.jpg" />
         </BannerSection>
-        <section className="cards-container">
+        <section className="product-cards">
           {sortedProducts.map((product, index) => {
             const productData = product.node;
 
@@ -93,7 +93,7 @@ function Card({ product }) {
   };
 
   return (
-    <div className="cart-item">
+    <div className="product-card">
       <div className="image-container">
         <GatsbyImage
           image={image}

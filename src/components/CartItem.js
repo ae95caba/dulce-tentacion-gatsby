@@ -14,7 +14,7 @@ export default function CartItem({ cartItem }) {
   const inputRef = useRef(null);
 
   return (
-    <div className="cart-item">
+    <div className="product-card">
       <img
         className="remove"
         alt="remove"

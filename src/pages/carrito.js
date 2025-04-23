@@ -176,7 +176,7 @@ export default function Cart() {
         {cartItems.length > 0 ? (
           <>
             <div className="container">
-              <section className="cart-items">
+              <section className="product-cards">
                 {cartItems.map((cartItem, index) => {
                   return (
                     <CartItem cartItem={cartItem} key={`cart-item-${index}`} />
