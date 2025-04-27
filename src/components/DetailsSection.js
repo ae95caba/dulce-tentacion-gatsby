@@ -30,9 +30,11 @@ const DetailsSection = ({
       <h5>Sabores:</h5>
       {/* List of chosen flavors */}
       <ul>
-        {chosenFlavours.map((flavour) => (
-          <li key={flavour}>🍦{flavour}</li>
-        ))}
+        {chosenFlavours.length > 0 ? (
+          chosenFlavours.map((flavour) => <li key={flavour}>🍦{flavour}</li>)
+        ) : (
+          <li>?????</li>
+        )}
       </ul>
 
       {/* Aderezos section */}

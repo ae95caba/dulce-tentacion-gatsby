@@ -132,11 +132,11 @@ export default function IceCreamForm({ data, location }) {
     const isSauce = apiRoute === "generic/sauce";
 
     return (
-      <>
+      <div>
         <h2>
           {maxSelections === 1
-            ? `Elige ${isSauce ? "una salsa" : "un sabor"}:`
-            : `Podes elegir hasta ${maxSelections} sabores:`}
+            ? `Elige ${isSauce ? "una salsa ($400)" : "un sabor"}`
+            : `Podes elegir hasta ${maxSelections} sabores`}
         </h2>
         <div>
           <h3>
@@ -189,7 +189,7 @@ export default function IceCreamForm({ data, location }) {
               })}
           </ul>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -222,7 +222,7 @@ export default function IceCreamForm({ data, location }) {
         {product.apiRoute === "generic/flavour" && (
           <>
             <label className="rocklets-label">
-              <span>Rocklets</span>
+              <span>Rocklets ($600)</span>
               <div>
                 <input
                   type="checkbox"
