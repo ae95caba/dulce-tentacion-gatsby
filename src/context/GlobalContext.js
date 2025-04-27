@@ -139,10 +139,8 @@ export default function GlobalContextProvider({ children }) {
             },
           };
         }
-        const message =
-          quantity > 1
-            ? `${quantity} productos agregados →`
-            : "Producto agregado →";
+
+        const message = `Agregaste ${quantity} ${product.name.toUpperCase()}`;
         triggerAlert(message);
 
         if (!isProductInCart()) {
