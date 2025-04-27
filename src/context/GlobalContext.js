@@ -140,7 +140,7 @@ export default function GlobalContextProvider({ children }) {
           };
         }
 
-        const message = `Agregaste ${quantity} ${product.name.toUpperCase()}`;
+        const message = `Agregaste ${quantity} ${product.name.toUpperCase()} ➔`;
         triggerAlert(message);
 
         if (!isProductInCart()) {
