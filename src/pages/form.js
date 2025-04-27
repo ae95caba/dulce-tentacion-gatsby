@@ -249,13 +249,13 @@ export default function IceCreamForm({ data, location }) {
             name="go to cart"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Ir a caja
+            Ir a caja 🛒
           </button>
           <button
             name="go to catalog"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Seguir comprando
+            Seguir comprando 🍦
           </button>
         </div>
       </form>
