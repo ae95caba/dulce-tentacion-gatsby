@@ -23,12 +23,11 @@ const DetailsSection = ({
 
   return (
     <div className="details-section">
-      <h4>Detalle:</h4>
       <p>
         🛒{product.name}:{" "}
         <span className={hasAddOns ? "" : "subtotal"}>${product.price}</span>
       </p>
-
+      <h5>Sabores:</h5>
       {/* List of chosen flavors */}
       <ul>
         {chosenFlavours.map((flavour) => (

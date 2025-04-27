@@ -69,7 +69,7 @@ export default function Cart() {
       ); // Log the number of combos
 
       return Array.from({ length: numberOfCombos }, () => ({
-        name: `Combo 2 x ${iceCreamName}`,
+        name: `Descuento 2u ${iceCreamName}`,
         amount: discountAmount,
       }));
     }
@@ -194,10 +194,7 @@ export default function Cart() {
                   deliveryInfo={deliveryInfo}
                   setDeliveryInfo={setDeliveryInfo}
                 />
-                <SummarySection
-                  getTotalCartPriceWithDiscount={getTotalCartPriceWithDiscount}
-                  getAllIceCreamDiscounts={getAllIceCreamDiscounts}
-                />
+
                 <section className="payment options">
                   <label
                     className={`option ${
@@ -257,6 +254,15 @@ export default function Cart() {
                     </>
                   )}
                 </section>
+                {cartItems.length > 1 && (
+                  <SummarySection
+                    isDeliveryChecked={deliveryInfo.isChecked}
+                    getTotalCartPriceWithDiscount={
+                      getTotalCartPriceWithDiscount
+                    }
+                    getAllIceCreamDiscounts={getAllIceCreamDiscounts}
+                  />
+                )}
                 <button type="submit" form="checkout-form">
                   Comprar
                 </button>
