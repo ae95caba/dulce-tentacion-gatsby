@@ -243,16 +243,19 @@ export default function IceCreamForm({ data, location }) {
               </div>
             </div>
 
-            <DetailsSection
-              product={product}
-              rocklets={{ price: rockletsPrice, included: rockletsChecked }}
-              sauces={{
-                price: saucePrice,
-                chosenSauces: sauceMenuChosenFlavours,
-              }}
-              priceWithAddOns={totalPrice}
-              chosenFlavours={mainMenuChosenFlavours}
-            />
+            <div>
+              <h2>Tu pedido :</h2>
+              <DetailsSection
+                product={product}
+                rocklets={{ price: rockletsPrice, included: rockletsChecked }}
+                sauces={{
+                  price: saucePrice,
+                  chosenSauces: sauceMenuChosenFlavours,
+                }}
+                priceWithAddOns={totalPrice}
+                chosenFlavours={mainMenuChosenFlavours}
+              />
+            </div>
           </>
         )}
         <div className="buttons-container">
