@@ -189,6 +189,15 @@ export default function Cart() {
                 autoComplete="on"
                 onSubmit={(e) => handleSubmit(e)}
               >
+                {cartItems.length > 1 && (
+                  <SummarySection
+                    isDeliveryChecked={deliveryInfo.isChecked}
+                    getTotalCartPriceWithDiscount={
+                      getTotalCartPriceWithDiscount
+                    }
+                    getAllIceCreamDiscounts={getAllIceCreamDiscounts}
+                  />
+                )}
                 <DeliverySection
                   handleSubmit={handleSubmit}
                   deliveryInfo={deliveryInfo}
@@ -254,15 +263,7 @@ export default function Cart() {
                     </>
                   )}
                 </section>
-                {cartItems.length > 1 && (
-                  <SummarySection
-                    isDeliveryChecked={deliveryInfo.isChecked}
-                    getTotalCartPriceWithDiscount={
-                      getTotalCartPriceWithDiscount
-                    }
-                    getAllIceCreamDiscounts={getAllIceCreamDiscounts}
-                  />
-                )}
+
                 <button type="submit" form="checkout-form">
                   Comprar
                 </button>
