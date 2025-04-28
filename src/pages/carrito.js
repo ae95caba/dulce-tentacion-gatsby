@@ -265,13 +265,13 @@ export default function Cart() {
                 </section>
 
                 <button type="submit" form="checkout-form">
-                  Comprar
+                  Finalizar
                 </button>
               </form>
             </div>
             <p className="info">
-              Al precionar "Comprar", se abrira un chat de whatsapp con toda la
-              info de tu pedido pre-cargada, solo deberas enviarla y nosotros
+              Al precionar "Finalizar", se abrira un chat de whatsapp con toda
+              la info de tu pedido pre-cargada, solo deberas enviarla y nosotros
               haremos el resto 😉
             </p>
           </>

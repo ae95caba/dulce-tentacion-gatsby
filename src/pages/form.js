@@ -264,7 +264,7 @@ export default function IceCreamForm({ data, location }) {
             name="go to cart"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Agregar al carrito 🛒
+            Comprar ahora 🛒
           </button>
           <button
             name="go to catalog"
