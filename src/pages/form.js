@@ -9,7 +9,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { navigate } from "gatsby";
 import { graphql } from "gatsby";
 import DetailsSection from "../components/DetailsSection";
-import cone from "../images/ice-cream-cone.svg";
+import { TiArrowBack } from "react-icons/ti";
+
 export default function IceCreamForm({ data, location }) {
   const { dispatch } = useContext(GlobalContext);
   const allParams = new URLSearchParams(location.search);
@@ -135,7 +136,7 @@ export default function IceCreamForm({ data, location }) {
       <div>
         <h2>
           {maxSelections === 1
-            ? `Elige ${isSauce ? "una salsa ($400)" : "un sabor"}`
+            ? `Elige ${isSauce ? `una salsa ($${saucePrice})` : "un sabor"}`
             : `Podes elegir hasta ${maxSelections} sabores`}
         </h2>
         <div>
@@ -222,7 +223,7 @@ export default function IceCreamForm({ data, location }) {
         {product.apiRoute === "generic/flavour" && (
           <>
             <div className="rocklets-section">
-              <h2>Agregale Rocklets ($600)</h2>
+              <h2>Agregale Rocklets (${rockletsPrice})</h2>
               <div className="checkbox-container">
                 <label>
                   <input
@@ -269,7 +270,7 @@ export default function IceCreamForm({ data, location }) {
             name="go to catalog"
             className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
           >
-            Seguir comprando 🍦
+            Seguir comprando <TiArrowBack size={25} className="back-arrow" />
           </button>
         </div>
       </form>
