@@ -221,16 +221,27 @@ export default function IceCreamForm({ data, location }) {
 
         {product.apiRoute === "generic/flavour" && (
           <>
-            <label className="rocklets-label">
-              <span>Rocklets ($600)</span>
-              <div>
-                <input
-                  type="checkbox"
-                  checked={rockletsChecked}
-                  onChange={(e) => setRockletsChecked(e.target.checked)}
-                />
+            <div className="rocklets-section">
+              <h2>Agregale Rocklets ($600)</h2>
+              <div className="checkbox-container">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={rockletsChecked}
+                    onChange={(e) => setRockletsChecked(e.target.checked)}
+                  />
+                  Si
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={!rockletsChecked}
+                    onChange={(e) => setRockletsChecked(false)}
+                  />
+                  No
+                </label>
               </div>
-            </label>
+            </div>
 
             <DetailsSection
               product={product}
