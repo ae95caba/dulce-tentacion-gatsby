@@ -38,9 +38,8 @@ export default function Cart() {
 
     function getDiscountAmount(flavourCount) {
       const discountMap = {
-        2: 200,
-        3: 200,
-        4: 300,
+        2: 300,
+        3: 500,
       };
       const amount = discountMap[flavourCount] || 0; // Return 0 if no discount
       console.log(`Flavour Count: ${flavourCount}, Discount Amount: ${amount}`); // Log the flavour count and discount amount
@@ -51,7 +50,6 @@ export default function Cart() {
       const flavourNames = {
         2: "1/4 kg",
         3: "1/2 kg",
-        4: "1 kg",
       };
       const name = flavourNames[flavourCount] || ""; // Return empty string if no match
       console.log(`Flavour Count: ${flavourCount}, Ice Cream Name: ${name}`); // Log the flavour count and ice cream name
@@ -75,7 +73,7 @@ export default function Cart() {
     }
 
     const discounts = [];
-    for (let flavourCount = 2; flavourCount <= 4; flavourCount++) {
+    for (let flavourCount = 2; flavourCount <= 3; flavourCount++) {
       discounts.push(...calculateDiscountsForFlavour(flavourCount));
     }
 
