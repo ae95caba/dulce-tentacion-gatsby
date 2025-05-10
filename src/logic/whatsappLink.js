@@ -20,7 +20,7 @@ function createMessage({
   deliveryInfo,
   totalCartPriceWithDiscount,
   totalCartPriceWithoutDiscount,
-
+  allIceCreamDiscounts,
   totalDiscountAmmount,
   paymentMethod,
 }) {
@@ -86,9 +86,14 @@ function createMessage({
   };
 
   const cartItemsList = createCartItemsList();
-
+  function formatDiscounts(discounts) {
+    return discounts.map(
+      (discount) => `\n${discount.name}: - $${discount.amount}`
+    );
+  }
   return (
     `*Orden*:\n${cartItemsList}` +
+    formatDiscounts(allIceCreamDiscounts).join("") +
     `\n*Total: $${totalCartPriceWithDiscount}*\n\n` +
     (paymentMethod === "cash"
       ? "*Paga en efectivo*"

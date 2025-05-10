@@ -127,6 +127,7 @@ export default function Cart() {
         totalCartPriceWithoutDiscount: getTotalCartPriceWithoutDiscount(),
         totalCartPriceWithDiscount: getTotalCartPriceWithDiscount(),
         totalDiscountAmmount: getTotalDiscountAmmount(),
+        allIceCreamDiscounts: getAllIceCreamDiscounts(),
       };
 
       const whatsappLink = createWhatsAppLink(messageData);
