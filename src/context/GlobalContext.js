@@ -53,7 +53,12 @@ export default function GlobalContextProvider({ children }) {
       }
       isProductInCart = () => {
         return cartItems.some((cartItem) => {
-          // First check if it's the same product
+          //check if it is scoped ice cream
+          if (product.flavours) {
+            return false;
+          }
+          //   check if it's the same product
+
           if (product._id !== cartItem.product._id) {
             return false;
           }
@@ -73,29 +78,6 @@ export default function GlobalContextProvider({ children }) {
             ) {
               return false;
             }
-          }
-
-          // Check sauces if they exist
-          const productSauces = product.addOns?.sauces?.chosenSauces;
-          const cartItemSauces = cartItem.product.addOns?.sauces?.chosenSauces;
-
-          if (productSauces || cartItemSauces) {
-            // If one has sauces and the other doesn't, they're different
-            if (!productSauces || !cartItemSauces) {
-              return false;
-            }
-            // Compare sauces
-            if (!areArraysEqual(productSauces, cartItemSauces)) {
-              return false;
-            }
-          }
-
-          // Check rocklets if they exist
-          const productRocklets = product.addOns?.rocklets?.included;
-          const cartItemRocklets = cartItem.product.addOns?.rocklets?.included;
-
-          if (productRocklets !== cartItemRocklets) {
-            return false;
           }
 
           // If we get here, all checks passed
