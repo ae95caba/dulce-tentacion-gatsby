@@ -96,7 +96,7 @@ function createMessage({
     formatDiscounts(allIceCreamDiscounts).join("") +
     `\n*Total: $${totalCartPriceWithDiscount}*\n\n` +
     (paymentMethod === "cash"
-      ? "*Paga en efectivo*"
+      ? "*Paga en efectivo*\n"
       : `*Paga con transferencia*: \nALIAS: ${process.env.GATSBY_ALIAS}\nTITULAR: ${process.env.GATSBY_OWNER}\n`) +
     (deliveryInfo.isChecked
       ? `*Datos para el delivery*:\n${INDENT}Barrio: ${deliveryInfo.neighborhood}\n${INDENT}Direccion: ${deliveryInfo.address}\n${INDENT}Entrecalles: ${deliveryInfo.crossStreets}` +
