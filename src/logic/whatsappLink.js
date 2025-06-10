@@ -1,21 +1,6 @@
-export function createWhatsAppLink(messageData) {
-  const message = createMessage(messageData);
-
-  const phoneNumber = `5491121690959`;
-
-  // Encode the message text for use in the URL
-  const encodedMessage = encodeURIComponent(message);
-
-  // Create the WhatsApp link with the phone number and pre-filled message
-  // Usar el esquema adecuado según el dispositivo
-  const link = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-  // Return the link
-  return link;
-}
 // to make a line break use "\n"
 //tabs are visible on whatsapp
-function createMessage({
+export function createMessage({
   cartItems,
   deliveryInfo,
   totalCartPriceWithDiscount,
@@ -105,4 +90,20 @@ function createMessage({
           : "")
       : "\n*Retira en el local*")
   );
+}
+
+export function createWhatsAppLink(messageData) {
+  const message = createMessage(messageData);
+
+  const phoneNumber = `5491121690959`;
+
+  // Encode the message text for use in the URL
+  const encodedMessage = encodeURIComponent(message);
+
+  // Create the WhatsApp link with the phone number and pre-filled message
+  // Usar el esquema adecuado según el dispositivo
+  const link = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  // Return the link
+  return link;
 }

@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { useContext } from "react";
 
 import Swal from "sweetalert2";
-import { createWhatsAppLink } from "../logic/whatsappLink";
+import { createWhatsAppLink, createMessage } from "../logic/whatsappLink";
 
 import CartItem from "../components/CartItem";
 import SummarySection from "../components/SummarySection";
@@ -145,7 +145,7 @@ export default function Cart() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message: whatsappLink }),
+            body: JSON.stringify({ message: createMessage(messageData) }),
           }),
           timeoutPromise,
         ]);
