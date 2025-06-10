@@ -116,7 +116,7 @@ export default function Cart() {
     ///////////////////////////
   }, [deliveryInfo]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (e.target.checkValidity()) {
       console.log(paymentMethod);
@@ -132,21 +132,58 @@ export default function Cart() {
 
       const whatsappLink = createWhatsAppLink(messageData);
 
-      window.location.href = whatsappLink; // Redirige directamente en móviles
+      // Create a promise that resolves after 5 seconds
+      const timeoutPromise = new Promise((resolve) => {
+        setTimeout(resolve, 5000);
+      });
 
+      try {
+        // Race between the fetch and the timeout
+        const response = await Promise.race([
+          fetch("https://formspree.io/f/xeokaped", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: whatsappLink }),
+          }),
+          timeoutPromise,
+        ]);
+
+        if (response && response.json) {
+          const data = await response.json();
+          console.log("Success:", data);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+
+      // Show success message and continue with the flow
       Swal.fire({
         title: "Gracias!💗",
         html: `En caso de no haberse enviado el mensaje con tu pedido reinténtalo <a href="${whatsappLink}" target="_blank">ACA</a>.`,
         icon: "info",
         confirmButtonText: "OK",
-      }).then((result) => {
-        dispatch({ type: "reset" });
-
-        window.scrollTo(0, 0);
       });
+
+      // Reset the cart and redirect
+      dispatch({ type: "reset" });
+      window.scrollTo(0, 0);
+
+      // Check if device is mobile
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // On mobile, try to open WhatsApp app
+        // If the app is installed and the browser has permission to open it, this will open it
+        // If not, it will fall back to WhatsApp Web in a new tab
+        window.location.href = whatsappLink;
+      } else {
+        // On PC, always open in new tab
+        window.open(whatsappLink, "_blank");
+      }
     } else {
       const formElements = e.target.elements;
-
       for (const element of formElements) {
         e.target.reportValidity();
       }
