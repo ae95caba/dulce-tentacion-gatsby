@@ -268,7 +268,6 @@ export default function Cart() {
                       type="radio"
                       name="payment"
                       value="transfer"
-                      required
                       onClick={(e) => {
                         setPaymentMethod(e.target.value);
                       }}
