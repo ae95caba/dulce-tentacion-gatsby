@@ -189,6 +189,7 @@ export default function Cart() {
       }
       // Focus the first invalid field manually
       //fallback for firefox on mobile
+      const form = e.target;
       const firstInvalid = form.querySelector(":invalid");
       if (firstInvalid) {
         firstInvalid.focus();
