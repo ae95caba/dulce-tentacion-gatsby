@@ -260,16 +260,8 @@ export default function IceCreamForm({ data, location }) {
           </>
         )}
         <div className="buttons-container">
-          <button
-            name="go to cart"
-            className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
-          >
-            Comprar ahora 🛒
-          </button>
-          <button
-            name="go to catalog"
-            className={mainMenuChosenFlavours.length === 0 ? "disabled" : ""}
-          >
+          <button name="go to cart">Comprar ahora 🛒</button>
+          <button name="go to catalog">
             Seguir comprando <TiArrowBack size={25} className="back-arrow" />
           </button>
         </div>
