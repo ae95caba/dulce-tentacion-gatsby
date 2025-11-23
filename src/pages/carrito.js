@@ -140,7 +140,7 @@ export default function Cart() {
       try {
         // Race between the fetch and the timeout
         const response = await Promise.race([
-          fetch("https://formspree.io/f/xeokaped", {
+          fetch("https://submit-form.com/L6kPWEs29", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -249,9 +249,8 @@ export default function Cart() {
 
                 <section className="payment options">
                   <label
-                    className={`option ${
-                      paymentMethod === "cash" && "checked"
-                    }`}
+                    className={`option ${paymentMethod === "cash" && "checked"
+                      }`}
                   >
                     <span>Efectivo 💸</span>
                     <input
@@ -266,9 +265,8 @@ export default function Cart() {
                   </label>
 
                   <label
-                    className={`option ${
-                      paymentMethod === "transfer" && "checked"
-                    }`}
+                    className={`option ${paymentMethod === "transfer" && "checked"
+                      }`}
                   >
                     <span>Transferencia 📱</span>
                     <input
